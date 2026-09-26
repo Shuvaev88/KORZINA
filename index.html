@@ -711,11 +711,7 @@
     getDatabase, ref, onValue, update, push, set, remove
   } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
 
-  // ═════════════════════════════════════════
-  //  ПАРОЛЬ ДЛЯ УДАЛЕНИЯ ВСЕХ ДАННЫХ
-  //  Поменяйте на свой при необходимости
-  // ══════════════════════════════════════════
-  const ADMIN_PASSWORD = '00000';
+  const ADMIN_PASSWORD = 'admin';
 
   const firebaseConfig = {
     apiKey: "AIzaSyCN7gcsdwei8k6L05R3H12p3me0Xf7Pw",
@@ -744,10 +740,42 @@
   let shift = { p1: { cans: 0, packs: 0 }, p2: { cans: 0, packs: 0 }, selfTaken: 0, spent: 0 };
   let prices = { cost: 100, can: 200, pack: 750 };
 
+  // ═══════════════════════════════════════════
+  //  НОРМАЛИЗАЦИЯ ДАННЫХ (защита от NaN)
+  // ═══════════════════════════════════════════
+  function normalizeShift(v) {
+    // Если p1/p2 — это число (старый формат), конвертируем в объект
+    function fixPerson(p) {
+      if (!p || typeof p !== 'object') {
+        return { cans: 0, packs: 0 };
+      }
+      return {
+        cans:  parseInt(p.cans)  || 0,
+        packs: parseInt(p.packs) || 0
+      };
+    }
+    return {
+      p1:        fixPerson(v.p1),
+      p2:        fixPerson(v.p2),
+      selfTaken: parseInt(v.selfTaken) || 0,
+      spent:     parseInt(v.spent)    || 0
+    };
+  }
+
+  function normalizePrices(v) {
+    return {
+      cost: parseInt(v.cost) || 100,
+      can:  parseInt(v.can)  || 200,
+      pack: parseInt(v.pack) || 750
+    };
+  }
+
+  // ─ Слушатели Firebase ──
+
   onValue(priceRef, s => {
     if (s.exists()) {
-      prices = s.val();
-      document.getElementById('priceCost').value = prices.cost || 100;
+      prices = normalizePrices(s.val());
+      document.getElementById('priceCost').value = prices.cost;
       document.getElementById('priceCan').value  = prices.can;
       document.getElementById('pricePack').value = prices.pack;
       render();
@@ -760,15 +788,26 @@
   document.getElementById('pricePack').addEventListener('change', e =>
     update(priceRef, { pack: Math.max(0, parseInt(e.target.value) || 0) }));
 
-  onValue(stockRef, s => { stock = s.exists() ? s.val() : 0; render(); });
+  onValue(stockRef, s => { 
+    const v = s.exists() ? parseInt(s.val()) : 0;
+    stock = isNaN(v) ? 0 : v;
+    render(); 
+  });
 
   onValue(shiftRef, s => {
     if (s.exists()) {
-      const v = s.val();
-      shift.p1 = v.p1 || { cans: 0, packs: 0 };
-      shift.p2 = v.p2 || { cans: 0, packs: 0 };
-      shift.selfTaken = v.selfTaken || 0;
-      shift.spent = v.spent || 0;
+      shift = normalizeShift(s.val());
+      // Если данные были в старом формате — сразу исправляем их в базе
+      const raw = s.val();
+      const needsFix = !raw.p1 || typeof raw.p1 !== 'object' 
+                    || !raw.p2 || typeof raw.p2 !== 'object'
+                    || raw.selfTaken === undefined 
+                    || raw.spent === undefined;
+      if (needsFix) {
+        set(shiftRef, shift);
+      }
+    } else {
+      shift = { p1: { cans: 0, packs: 0 }, p2: { cans: 0, packs: 0 }, selfTaken: 0, spent: 0 };
     }
     render();
   });
@@ -776,27 +815,38 @@
   onValue(historyRef, s => {
     const el = document.getElementById('historyList');
     el.innerHTML = '';
-    if (!s.exists()) { el.innerHTML = '<div style="text-align:center;opacity:.5;font-size:13px;color:#64748b;">Пока пусто</div>'; return; }
+    if (!s.exists()) { 
+      el.innerHTML = '<div style="text-align:center;opacity:.5;font-size:13px;color:#64748b;">Пока пусто</div>'; 
+      return; 
+    }
     const arr = [];
     s.forEach(c => arr.push({ key: c.key, val: c.val() }));
     arr.reverse().forEach(item => {
       const i = item.val;
+      const totalSum = parseInt(i.totalSum) || 0;
+      const spent    = parseInt(i.spent)    || 0;
+      const tCans    = parseInt(i.tCans)    || 0;
+      const tPacks   = parseInt(i.tPacks)   || 0;
+      const selfTaken= parseInt(i.selfTaken)|| 0;
+      const profit   = totalSum - spent;
+      
       const d = document.createElement('div');
       d.className = 'h-item';
-      const profit = i.totalSum - (i.spent || 0);
       d.innerHTML = `
         <div style="flex:1;">
-          <div class="h-date">${i.date}</div>
-          <div class="h-detail">Б:${i.tCans || 0} У:${i.tPacks || 0} | Себе: ${i.selfTaken || 0}</div>
+          <div class="h-date">${i.date || '—'}</div>
+          <div class="h-detail">Б:${tCans} У:${tPacks} | Себе: ${selfTaken}</div>
         </div>
         <div style="text-align:right;">
-          <div class="h-sum">${Number(i.totalSum).toLocaleString()} ₽</div>
+          <div class="h-sum">${totalSum.toLocaleString()} ₽</div>
           <div style="font-size:11px;color:${profit >= 0 ? '#059669' : '#dc2626'};font-weight:700;">Прибыль: ${profit.toLocaleString()} ₽</div>
         </div>
-        <button class="h-delete" onclick="deleteHistoryItem('${item.key}')"></button>`;
+        <button class="h-delete" onclick="deleteHistoryItem('${item.key}')">✕</button>`;
       el.appendChild(d);
     });
   });
+
+  // ─ Отрисовка (с защитой от NaN) ──
 
   function render() {
     const stEl = document.getElementById('stockTotal');
@@ -804,35 +854,38 @@
     stEl.className = 'stock-count' + (stock <= 0 ? ' empty' : stock < 20 ? ' low' : '');
     document.getElementById('stockPacksDisplay').textContent  = Math.floor(stock / PER_PACK);
     document.getElementById('stockLooseDisplay').textContent  = stock % PER_PACK;
-    document.getElementById('selfTaken').textContent = shift.selfTaken;
+    document.getElementById('selfTaken').textContent = shift.selfTaken || 0;
 
     for (const id of [1, 2]) {
-      const p = shift[`p${id}`];
-      const items  = p.cans + p.packs * PER_PACK;
-      const money  = p.cans * prices.can + p.packs * prices.pack;
+      const p = shift[`p${id}`] || { cans: 0, packs: 0 };
+      const cans  = parseInt(p.cans)  || 0;
+      const packs = parseInt(p.packs) || 0;
+      const items = cans + packs * PER_PACK;
+      const money = cans * prices.can + packs * prices.pack;
       document.getElementById(`p${id}_total`).textContent = items;
       document.getElementById(`p${id}_money`).textContent = money.toLocaleString();
     }
 
-    const allItems = shift.p1.cans + shift.p1.packs * PER_PACK + shift.p2.cans + shift.p2.packs * PER_PACK;
-    const allMoney = (shift.p1.cans + shift.p2.cans) * prices.can
-                   + (shift.p1.packs + shift.p2.packs) * prices.pack;
-    const profit = allMoney - shift.spent;
+    const p1 = shift.p1 || { cans: 0, packs: 0 };
+    const p2 = shift.p2 || { cans: 0, packs: 0 };
+    const p1c = parseInt(p1.cans)  || 0, p1p = parseInt(p1.packs) || 0;
+    const p2c = parseInt(p2.cans)  || 0, p2p = parseInt(p2.packs) || 0;
+    
+    const allItems = (p1c + p2c) + (p1p + p2p) * PER_PACK;
+    const allMoney = (p1c + p2c) * prices.can + (p1p + p2p) * prices.pack;
+    const spent    = parseInt(shift.spent) || 0;
+    const profit   = allMoney - spent;
 
-    document.getElementById('profitValue').textContent = profit.toLocaleString() + ' ₽';
-    document.getElementById('revenueValue').textContent = allMoney.toLocaleString() + ' ₽';
-    document.getElementById('spentValue').textContent = shift.spent.toLocaleString() + ' ₽';
+    document.getElementById('profitValue').textContent    = profit.toLocaleString() + ' ₽';
+    document.getElementById('revenueValue').textContent   = allMoney.toLocaleString() + ' ₽';
+    document.getElementById('spentValue').textContent     = spent.toLocaleString() + ' ₽';
     document.getElementById('soldItemsValue').textContent = allItems + ' шт';
     
     const profitBlock = document.getElementById('profitBlock');
-    if (profit < 0) {
-      profitBlock.classList.add('profit-negative');
-    } else {
-      profitBlock.classList.remove('profit-negative');
-    }
+    profitBlock.classList.toggle('profit-negative', profit < 0);
   }
 
-  // Удаление одной записи из истории
+  // ── Удаление одной записи ──
   window.deleteHistoryItem = async function(key) {
     if (!confirm('Удалить эту запись из истории?')) return;
     await remove(ref(db, `history/${key}`));
@@ -903,7 +956,7 @@
     await set(stockRef, Math.max(0, stock - pieces));
     const sKey = `p${modalSeller}`;
     const field = modalType === 'pack' ? 'packs' : 'cans';
-    const currentVal = shift[sKey][field] || 0;
+    const currentVal = parseInt(shift[sKey][field]) || 0;
     await update(shiftRef, { [`${sKey}/${field}`]: currentVal + modalQty });
   };
 
@@ -963,7 +1016,7 @@
     if (!confirm(`Взять ${selfQty} шт. для себя?\nДеньги не начисляются.`)) return;
     closeSelfModal();
     await set(stockRef, Math.max(0, stock - selfQty));
-    const currentSelf = shift.selfTaken || 0;
+    const currentSelf = parseInt(shift.selfTaken) || 0;
     await update(shiftRef, { selfTaken: currentSelf + selfQty });
   };
 
@@ -979,7 +1032,7 @@
     if (!amount || amount <= 0) { alert('Введите сумму расхода'); return; }
     if (!confirm(`Добавить расход ${amount.toLocaleString()} ₽?`)) return;
     closeExpenseModal();
-    const currentSpent = shift.spent || 0;
+    const currentSpent = parseInt(shift.spent) || 0;
     await update(shiftRef, { spent: currentSpent + amount });
   };
 
@@ -991,40 +1044,50 @@
   };
 
   window.saveDay = async function() {
-    const allMoney = (shift.p1.cans + shift.p2.cans) * prices.can
-                   + (shift.p1.packs + shift.p2.packs) * prices.pack;
-    const profit = allMoney - shift.spent;
-    if (allMoney === 0 && shift.selfTaken === 0 && shift.spent === 0) { 
+    const p1 = shift.p1 || { cans: 0, packs: 0 };
+    const p2 = shift.p2 || { cans: 0, packs: 0 };
+    const p1c = parseInt(p1.cans) || 0, p1p = parseInt(p1.packs) || 0;
+    const p2c = parseInt(p2.cans) || 0, p2p = parseInt(p2.packs) || 0;
+    
+    const allMoney = (p1c + p2c) * prices.can + (p1p + p2p) * prices.pack;
+    const spent    = parseInt(shift.spent) || 0;
+    const selfTaken= parseInt(shift.selfTaken) || 0;
+    const profit   = allMoney - spent;
+    
+    if (allMoney === 0 && selfTaken === 0 && spent === 0) { 
       alert('Ничего не продавали, не брали себе и не тратили — сохранять нечего.'); 
       return; 
     }
-    const tCans  = shift.p1.cans + shift.p2.cans;
-    const tPacks = shift.p1.packs + shift.p2.packs;
-    if (!confirm(`Сохранить итоги дня?\n\nВыручка: ${allMoney.toLocaleString()} ₽\nРасходы: ${shift.spent.toLocaleString()} ₽\nЧистая прибыль: ${profit.toLocaleString()} ₽\n\nБанок продано: ${tCans}\nУпаковок продано: ${tPacks}\nДля себя взято: ${shift.selfTaken} шт.\nОстаток склада: ${stock} шт.`)) return;
+    const tCans  = p1c + p2c;
+    const tPacks = p1p + p2p;
+    if (!confirm(`Сохранить итоги дня?\n\nВыручка: ${allMoney.toLocaleString()} ₽\nРасходы: ${spent.toLocaleString()} ₽\nЧистая прибыль: ${profit.toLocaleString()} ₽\n\nБанок продано: ${tCans}\nУпаковок продано: ${tPacks}\nДля себя взято: ${selfTaken} шт.\nОстаток склада: ${stock} шт.`)) return;
     const now = new Date();
     const dateStr = now.toLocaleDateString('ru-RU') + ' ' + now.toLocaleTimeString('ru-RU').slice(0, 5);
     await push(historyRef, {
-      date: dateStr, totalSum: allMoney, spent: shift.spent, profit: profit,
-      tCans, tPacks, selfTaken: shift.selfTaken,
-      p1: shift.p1, p2: shift.p2, stockLeft: stock
+      date: dateStr, totalSum: allMoney, spent: spent, profit: profit,
+      tCans, tPacks, selfTaken: selfTaken,
+      p1: { cans: p1c, packs: p1p }, 
+      p2: { cans: p2c, packs: p2p }, 
+      stockLeft: stock
     });
-    await set(shiftRef, { p1: { cans: 0, packs: 0 }, p2: { cans: 0, packs: 0 }, selfTaken: 0, spent: 0 });
+    await set(shiftRef, { 
+      p1: { cans: 0, packs: 0 }, 
+      p2: { cans: 0, packs: 0 }, 
+      selfTaken: 0, 
+      spent: 0 
+    });
   };
 
-  // ══════════════════════════════════════════
-  //  ПОЛНОЕ УДАЛЕНИЕ ВСЕХ ДАННЫХ
-  // ══════════════════════════════════════════
+  // ═══ ПОЛНОЕ УДАЛЕНИЕ ═══
   window.openDeleteAllModal = function() {
     document.getElementById('deletePassword').value = '';
     document.getElementById('deleteError').style.display = 'none';
     document.getElementById('deleteAllModal').classList.add('active');
     setTimeout(() => document.getElementById('deletePassword').focus(), 100);
   };
-
   window.closeDeleteAllModal = function() {
     document.getElementById('deleteAllModal').classList.remove('active');
   };
-
   window.confirmDeleteAll = async function() {
     const pwd = document.getElementById('deletePassword').value;
     if (pwd !== ADMIN_PASSWORD) {
@@ -1033,27 +1096,15 @@
       document.getElementById('deletePassword').focus();
       return;
     }
-
-    // Финальное подтверждение
     if (!confirm('ТОЧНО УДАЛИТЬ ВСЕ ДАННЫЕ?\n\nЭто действие необратимо!')) return;
-
     closeDeleteAllModal();
-
-    // Удаляем все разделы базы данных
     await Promise.all([
-      remove(stockRef),
-      remove(shiftRef),
-      remove(priceRef),
-      remove(historyRef)
+      remove(stockRef), remove(shiftRef), remove(priceRef), remove(historyRef)
     ]);
-
-    // Показываем окно успеха
     document.getElementById('successModal').classList.add('active');
   };
-
   window.closeSuccessModal = function() {
     document.getElementById('successModal').classList.remove('active');
   };
-</script>
-</body>
+</script></body>
 </html>

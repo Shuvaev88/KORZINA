@@ -60,9 +60,6 @@
     box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
   }
 
-  /* ═══════════════════════════════════════
-     ГЛАВНЫЙ БЛОК ПРИБЫЛИ (ВВЕРХУ)
-     ═══════════════════════════════════════ */
   .profit-hero {
     background: linear-gradient(135deg, #10b981, #059669, #047857);
     border-radius: 24px;
@@ -106,24 +103,14 @@
     border-top: 2px solid rgba(255,255,255,0.2);
     font-size: 13px;
   }
-  .profit-breakdown-item {
-    text-align: center;
-  }
-  .profit-breakdown-label {
-    opacity: 0.8;
-    font-size: 11px;
-    margin-bottom: 4px;
-  }
-  .profit-breakdown-value {
-    font-size: 18px;
-    font-weight: 800;
-  }
+  .profit-breakdown-item { text-align: center; }
+  .profit-breakdown-label { opacity: 0.8; font-size: 11px; margin-bottom: 4px; }
+  .profit-breakdown-value { font-size: 18px; font-weight: 800; }
   .profit-negative {
     background: linear-gradient(135deg, #ef4444, #dc2626, #b91c1c);
     box-shadow: 0 12px 40px rgba(239, 68, 68, 0.4);
   }
 
-  /* ── Стеклянные карточки ── */
   .glass {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(10px);
@@ -133,7 +120,6 @@
     box-shadow: 0 8px 32px rgba(14, 165, 233, 0.15);
   }
 
-  /* ── Цены ── */
   .settings-row { 
     display: flex; 
     gap: 10px; 
@@ -170,17 +156,13 @@
     font-weight: 800;
   }
 
-  /* ── Карточки продавцов ── */
   .sellers-grid { 
     display: grid; 
     grid-template-columns: 1fr 1fr; 
     gap: 12px; 
     margin-bottom: 16px; 
   }
-  .card {
-    padding: 16px;
-    text-align: center;
-  }
+  .card { padding: 16px; text-align: center; }
   .seller-name { 
     font-weight: 700; 
     font-size: 15px; 
@@ -219,7 +201,6 @@
     box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
   }
 
-  /* ── Кнопка "Для себя" ── */
   .btn-self-take {
     background: linear-gradient(135deg, #f59e0b, #d97706);
     border: none;
@@ -232,11 +213,9 @@
     cursor: pointer;
     margin-bottom: 16px;
     box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
-    transition: transform 0.1s;
   }
   .btn-self-take:active { transform: scale(0.97); }
 
-  /* ── Расход ── */
   .btn-add-expense {
     background: linear-gradient(135deg, #ef4444, #dc2626);
     border: none;
@@ -249,11 +228,9 @@
     cursor: pointer;
     margin-bottom: 16px;
     box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
-    transition: transform 0.1s;
   }
   .btn-add-expense:active { transform: scale(0.97); }
 
-  /* ── Сохранить ── */
   .btn-save-day {
     width: 100%;
     padding: 16px;
@@ -264,22 +241,15 @@
     border-radius: 16px;
     margin-bottom: 20px;
     box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
-    transition: transform 0.1s;
   }
   .btn-save-day:active { transform: scale(0.97); }
 
-  /* ═══════════════════════════════════════
-     СКЛАД (ВНИЗУ)
-     ═══════════════════════════════════════ */
   .stock-section {
     margin-top: 24px;
     padding-top: 20px;
     border-top: 2px dashed rgba(14, 165, 233, 0.3);
   }
-  .stock-display {
-    padding: 20px;
-    text-align: center;
-  }
+  .stock-display { padding: 20px; text-align: center; }
   .stock-label { 
     font-size: 12px; 
     opacity: 0.7; 
@@ -314,11 +284,9 @@
     font-weight: 700;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
-    transition: transform 0.1s;
   }
   .btn-add-stock:active { transform: scale(0.97); }
 
-  /* ── История ── */
   .history-title { 
     font-size: 15px; 
     opacity: 0.7; 
@@ -339,24 +307,10 @@
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.8);
   }
-  .h-date { 
-    color: #64748b;
-    font-weight: 600;
-  }
-  .h-detail { 
-    color: #94a3b8; 
-    font-size: 11px;
-    margin-top: 2px;
-  }
-  .h-sum { 
-    font-weight: 800; 
-    color: #059669; 
-    font-size: 16px;
-  }
+  .h-date { color: #64748b; font-weight: 600; }
+  .h-detail { color: #94a3b8; font-size: 11px; margin-top: 2px; }
+  .h-sum { font-weight: 800; color: #059669; font-size: 16px; }
 
-  /* ══════════════════════════════════════════
-     МОДАЛЬНЫЕ ОКНА
-     ══════════════════════════════════════════ */
   .modal-overlay {
     display: none;
     position: fixed;
@@ -508,7 +462,6 @@
     <div class="status">● ONLINE</div>
   </header>
 
-  <!-- ═══ ГЛАВНЫЙ БЛОК ПРИБЫЛИ (ВВЕРХУ) ═══ -->
   <div class="profit-hero" id="profitBlock">
     <div class="profit-label">Чистая прибыль</div>
     <div class="profit-value" id="profitValue">0 ₽</div>
@@ -528,7 +481,6 @@
     </div>
   </div>
 
-  <!-- Цены -->
   <div class="settings-row">
     <div class="input-wrap">
       <label>Закупка ₽</label>
@@ -544,7 +496,6 @@
     </div>
   </div>
 
-  <!-- Продавцы -->
   <div class="sellers-grid">
     <div class="card glass">
       <div class="seller-name">👨‍🔧 Продавец 1</div>
@@ -553,12 +504,12 @@
         <span><b id="p1_money">0</b> ₽</span>
       </div>
       <div class="btn-group">
-        <button class="btn-sell-can" onclick="openSellModal(1, 'can')">🧴 Продать банки</button>
+        <button class="btn-sell-can" onclick="openSellModal(1, 'can')"> Продать банки</button>
         <button class="btn-sell-pack" onclick="openSellModal(1, 'pack')">📦 Продать упаковки</button>
       </div>
     </div>
     <div class="card glass">
-      <div class="seller-name">👩‍🔧 Продавец 2</div>
+      <div class="seller-name">👩‍ Продавец 2</div>
       <div class="stats-mini">
         <span>Продал: <b id="p2_total">0</b> шт</span>
         <span><b id="p2_money">0</b> ₽</span>
@@ -570,16 +521,10 @@
     </div>
   </div>
 
-  <!-- Кнопка "Для себя" -->
   <button class="btn-self-take" onclick="openSelfTakeModal()">🏠 ЗАЛИЛИ СЕБЕ (без денег)</button>
-
-  <!-- Расход -->
   <button class="btn-add-expense" onclick="openExpenseModal()">💸 ДОБАВИТЬ РАСХОД</button>
-
-  <!-- Сохранить -->
   <button class="btn-save-day" onclick="saveDay()">💾 СОХРАНИТЬ ИТОГИ ДНЯ</button>
 
-  <!-- ═══ СКЛАД (ВНИЗУ) ═══ -->
   <div class="stock-section">
     <div class="stock-display glass">
       <div class="stock-label">Остаток на складе</div>
@@ -590,16 +535,14 @@
       <div style="font-size:12px;opacity:0.6;margin-bottom:12px;">
         Для себя взято: <b id="selfTaken" style="color:#d97706;">0</b> шт.
       </div>
-      <button class="btn-add-stock" onclick="addStock()">🚛 ПРИХОД ТОВАРА</button>
+      <button class="btn-add-stock" onclick="addStock()"> ПРИХОД ТОВАРА</button>
     </div>
   </div>
 
-  <!-- История -->
   <div class="history-title">📜 История записей</div>
   <div id="historyList"></div>
 </div>
 
-<!-- ═══ МОДАЛЬНОЕ ОКНО ПРОДАЖИ ═══ -->
 <div class="modal-overlay" id="sellModal">
   <div class="modal-box">
     <div class="modal-title" id="modalTitle">Продажа банок</div>
@@ -617,10 +560,9 @@
   </div>
 </div>
 
-<!-- ═══ МОДАЛЬНОЕ ОКНО "ДЛЯ СЕБЯ" ═══ -->
 <div class="modal-overlay" id="selfTakeModal">
   <div class="modal-box">
-    <div class="modal-title">🏠 Залили себе</div>
+    <div class="modal-title"> Залили себе</div>
     <div class="modal-subtitle">Без начисления денег</div>
     <div class="qty-grid" id="selfQtyGrid"></div>
     <div class="qty-custom">
@@ -635,7 +577,6 @@
   </div>
 </div>
 
-<!-- ═══ МОДАЛЬНОЕ ОКНО РАСХОДОВ ═══ -->
 <div class="modal-overlay" id="expenseModal">
   <div class="modal-box">
     <div class="modal-title">💸 Добавить расход</div>
@@ -654,14 +595,15 @@
     getDatabase, ref, onValue, update, push, set
   } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
 
- apiKey: "AIzaSyC2bTgqx60mkLRk0L0583H1Zp3mw0Xf7Pw",
-  authDomain: "nezamerzaika.firebaseapp.com",
-  databaseURL: "https://nezamerzaika-default-rtdb.firebaseio.com",
-  projectId: "nezamerzaika",
-  storageBucket: "nezamerzaika.firebasestorage.app",
-  messagingSenderId: "439820881194",
-  appId: "1:439820881194:web:a00c1a93fc41b7c73d2253"
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyCN7gcsdwei8k6L05R3H12p3me0Xf7Pw",
+    authDomain: "nezamerzaika.firebaseapp.com",
+    databaseURL: "https://nezamerzaika-default-rtdb.firebaseio.com",
+    projectId: "nezamerzaika",
+    storageBucket: "nezamerzaika.firebasestorage.app",
+    messagingSenderId: "439820881194",
+    appId: "1:439820881194:web:a00c1a93fc41b7c73d2253"
+  };
 
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
@@ -679,8 +621,6 @@
   let stock = 0;
   let shift = { p1: { cans: 0, packs: 0 }, p2: { cans: 0, packs: 0 }, selfTaken: 0, spent: 0 };
   let prices = { cost: 100, can: 200, pack: 750 };
-
-  // ── Слушатели Firebase ──
 
   onValue(priceRef, s => {
     if (s.exists()) {
@@ -734,10 +674,7 @@
     });
   });
 
-  // ── Отрисовка ──
-
   function render() {
-    // Склад
     const stEl = document.getElementById('stockTotal');
     stEl.textContent = stock;
     stEl.className = 'stock-count' + (stock <= 0 ? ' empty' : stock < 20 ? ' low' : '');
@@ -745,7 +682,6 @@
     document.getElementById('stockLooseDisplay').textContent  = stock % PER_PACK;
     document.getElementById('selfTaken').textContent = shift.selfTaken;
 
-    // Продавцы
     for (const id of [1, 2]) {
       const p = shift[`p${id}`];
       const items  = p.cans + p.packs * PER_PACK;
@@ -754,13 +690,11 @@
       document.getElementById(`p${id}_money`).textContent = money.toLocaleString();
     }
 
-    // Итого
     const allItems = shift.p1.cans + shift.p1.packs * PER_PACK + shift.p2.cans + shift.p2.packs * PER_PACK;
     const allMoney = (shift.p1.cans + shift.p2.cans) * prices.can
                    + (shift.p1.packs + shift.p2.packs) * prices.pack;
     const profit = allMoney - shift.spent;
 
-    // Главный блок прибыли
     document.getElementById('profitValue').textContent = profit.toLocaleString() + ' ₽';
     document.getElementById('revenueValue').textContent = allMoney.toLocaleString() + ' ₽';
     document.getElementById('spentValue').textContent = shift.spent.toLocaleString() + ' ₽';
@@ -773,10 +707,6 @@
       profitBlock.classList.remove('profit-negative');
     }
   }
-
-  // ══════════════════════════════════════════
-  //  МОДАЛЬНОЕ ОКНО ПРОДАЖИ
-  // ══════════════════════════════════════════
 
   let modalSeller = 1;
   let modalType   = 'can';
@@ -861,10 +791,6 @@
     await update(shiftRef, { [`${sKey}/${field}`]: currentVal + modalQty });
   };
 
-  // ══════════════════════════════════════════
-  //  МОДАЛЬНОЕ ОКНО "ДЛЯ СЕБЯ"
-  // ══════════════════════════════════════════
-
   let selfQty = 1;
 
   window.openSelfTakeModal = function() {
@@ -934,10 +860,6 @@
     await update(shiftRef, { selfTaken: currentSelf + selfQty });
   };
 
-  // ══════════════════════════════════════════
-  //  МОДАЛЬНОЕ ОКНО РАСХОДОВ
-  // ══════════════════════════════════════════
-
   window.openExpenseModal = function() {
     document.getElementById('expenseAmount').value = '';
     document.getElementById('expenseModal').classList.add('active');
@@ -963,16 +885,12 @@
     await update(shiftRef, { spent: currentSpent + amount });
   };
 
-  // ── Приход товара ──
-
   window.addStock = function() {
     const n = prompt('Сколько банок привезли на склад?', '20');
     if (n && !isNaN(n) && parseInt(n) > 0) {
       set(stockRef, stock + parseInt(n));
     }
   };
-
-  // ── Сохранение итогов дня ──
 
   window.saveDay = async function() {
     const allMoney = (shift.p1.cans + shift.p2.cans) * prices.can

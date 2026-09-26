@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>❄️ ЖИЖА ПРО СЕЗОН_26-27</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-tap-highlight-color: transparent; }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: linear-gradient(180deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%);
+    color: #0c4a6e;
+    min-height: 100vh;
+    padding: 16px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+      radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.8), transparent),
+      radial-gradient(2px 2px at 60% 70%, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.9), transparent),
+      radial-gradient(2px 2px at 80% 10%, rgba(255,255,255,0.7), transparent),
+      radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,0.8), transparent),
+      radial-gradient(2px 2px at 33% 80%, rgba(255,255,255,0.6), transparent);
+    background-size: 200px 200px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  .container { 
+    max-width: 600px; 
+    margin: 0 auto; 
+    position: relative;
+    z-index: 1;
+  }
+
+  header { text-align: center; margin-bottom: 16px; }
+  h1 { 
+    font-size: 22px; 
+    color: #0369a1; 
+    margin-bottom: 6px;
+    text-shadow: 0 2px 4px rgba(255,255,255,0.8);
+    letter-spacing: 0.5px;
+  }
+  .status { 
+    font-size: 11px; 
+    color: #fff; 
+    background: #10b981; 
+    display: inline-block; 
+    padding: 4px 12px; 
+    border-radius: 12px; 
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  }
+
+  /* ═══════════════════════════════════════
+     ГЛАВНЫЙ БЛОК ПРИБЫЛИ (ВВЕРХУ)
+     ═══════════════════════════════════════ */
+  .profit-hero {
+    background: linear-gradient(135deg, #10b981, #059669, #047857);
+    border-radius: 24px;
+    padding: 24px 20px;
+    text-align: center;
+    margin-bottom: 16px;
+    box-shadow: 0 12px 40px rgba(16, 185, 129, 0.4);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .profit-hero::before {
+    content: '💰';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 80px;
+    opacity: 0.15;
+    transform: rotate(15deg);
+  }
+  .profit-label { 
+    font-size: 13px; 
+    opacity: 0.9; 
+    text-transform: uppercase; 
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .profit-value { 
+    font-size: 48px; 
+    font-weight: 900; 
+    margin: 8px 0;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    line-height: 1;
+  }
+  .profit-breakdown {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 2px solid rgba(255,255,255,0.2);
+    font-size: 13px;
+  }
+  .profit-breakdown-item {
+    text-align: center;
+  }
+  .profit-breakdown-label {
+    opacity: 0.8;
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+  .profit-breakdown-value {
+    font-size: 18px;
+    font-weight: 800;
+  }
+  .profit-negative {
+    background: linear-gradient(135deg, #ef4444, #dc2626, #b91c1c);
+    box-shadow: 0 12px 40px rgba(239, 68, 68, 0.4);
+  }
+
+  /* ── Стеклянные карточки ── */
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(14, 165, 233, 0.15);
+  }
+
+  /* ── Цены ── */
+  .settings-row { 
+    display: flex; 
+    gap: 10px; 
+    margin-bottom: 16px; 
+    flex-wrap: wrap;
+  }
+  .input-wrap {
+    flex: 1;
+    min-width: 100px;
+    padding: 12px;
+    border-radius: 14px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+  }
+  .input-wrap label { 
+    display: block; 
+    font-size: 10px; 
+    opacity: 0.7; 
+    margin-bottom: 4px;
+    color: #0369a1;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .input-wrap input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #0c4a6e;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 800;
+  }
+
+  /* ── Карточки продавцов ── */
+  .sellers-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 12px; 
+    margin-bottom: 16px; 
+  }
+  .card {
+    padding: 16px;
+    text-align: center;
+  }
+  .seller-name { 
+    font-weight: 700; 
+    font-size: 15px; 
+    margin-bottom: 12px; 
+    color: #0369a1;
+  }
+  .stats-mini {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 14px;
+    padding: 0 4px;
+  }
+  .stats-mini b { color: #0c4a6e; font-size: 14px; }
+
+  .btn-group { display: flex; flex-direction: column; gap: 8px; }
+  button {
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    color: white;
+    transition: transform 0.1s;
+  }
+  button:active { transform: scale(0.96); }
+
+  .btn-sell-can { 
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+  }
+  .btn-sell-pack { 
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  }
+
+  /* ── Кнопка "Для себя" ── */
+  .btn-self-take {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border: none;
+    color: #fff;
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    transition: transform 0.1s;
+  }
+  .btn-self-take:active { transform: scale(0.97); }
+
+  /* ── Расход ── */
+  .btn-add-expense {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border: none;
+    color: #fff;
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    transition: transform 0.1s;
+  }
+  .btn-add-expense:active { transform: scale(0.97); }
+
+  /* ── Сохранить ── */
+  .btn-save-day {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+    transition: transform 0.1s;
+  }
+  .btn-save-day:active { transform: scale(0.97); }
+
+  /* ═══════════════════════════════════════
+     СКЛАД (ВНИЗУ)
+     ═══════════════════════════════════════ */
+  .stock-section {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 2px dashed rgba(14, 165, 233, 0.3);
+  }
+  .stock-display {
+    padding: 20px;
+    text-align: center;
+  }
+  .stock-label { 
+    font-size: 12px; 
+    opacity: 0.7; 
+    text-transform: uppercase; 
+    letter-spacing: 1.5px; 
+    color: #0369a1;
+    font-weight: 600;
+  }
+  .stock-count { 
+    font-size: 56px; 
+    font-weight: 800; 
+    color: #059669; 
+    margin: 8px 0;
+    text-shadow: 0 2px 8px rgba(5, 150, 105, 0.2);
+  }
+  .stock-count.low { color: #d97706; }
+  .stock-count.empty { color: #dc2626; }
+  .stock-details { 
+    font-size: 13px; 
+    opacity: 0.6; 
+    margin-bottom: 14px;
+    color: #0c4a6e;
+  }
+  .btn-add-stock {
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
+    border: none;
+    color: #fff;
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+    transition: transform 0.1s;
+  }
+  .btn-add-stock:active { transform: scale(0.97); }
+
+  /* ── История ── */
+  .history-title { 
+    font-size: 15px; 
+    opacity: 0.7; 
+    margin: 24px 0 12px 0; 
+    text-align: center;
+    font-weight: 700;
+    color: #0369a1;
+  }
+  .h-item {
+    padding: 14px;
+    border-radius: 14px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+  }
+  .h-date { 
+    color: #64748b;
+    font-weight: 600;
+  }
+  .h-detail { 
+    color: #94a3b8; 
+    font-size: 11px;
+    margin-top: 2px;
+  }
+  .h-sum { 
+    font-weight: 800; 
+    color: #059669; 
+    font-size: 16px;
+  }
+
+  /* ══════════════════════════════════════════
+     МОДАЛЬНЫЕ ОКНА
+     ══════════════════════════════════════════ */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(14, 165, 233, 0.3);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .modal-overlay.active { display: flex; }
+
+  .modal-box {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 28px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0 20px 60px rgba(14, 165, 233, 0.3);
+    border: 1px solid rgba(255, 255, 255, 1);
+  }
+  .modal-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #0369a1;
+  }
+  .modal-subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 20px;
+  }
+
+  .qty-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .qty-btn {
+    background: #e0f2fe;
+    border: 2px solid transparent;
+    color: #0369a1;
+    font-size: 24px;
+    font-weight: 800;
+    padding: 18px 0;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.15s;
+  }
+  .qty-btn:active, .qty-btn.selected {
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
+    color: #fff;
+    border-color: #0ea5e9;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4);
+  }
+
+  .qty-custom {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    background: #f0f9ff;
+    padding: 12px 16px;
+    border-radius: 12px;
+  }
+  .qty-custom label { 
+    font-size: 14px; 
+    color: #64748b; 
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  .qty-custom input {
+    flex: 1;
+    background: #fff;
+    border: 2px solid #bae6fd;
+    color: #0c4a6e;
+    font-size: 24px;
+    font-weight: 800;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    width: 80px;
+  }
+
+  .modal-info {
+    text-align: center;
+    font-size: 14px;
+    color: #0369a1;
+    margin-bottom: 20px;
+    padding: 12px;
+    background: #fef3c7;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .modal-info.error { 
+    color: #dc2626; 
+    background: #fee2e2;
+  }
+
+  .modal-buttons { display: flex; gap: 10px; }
+  .btn-cancel {
+    flex: 1;
+    background: #e2e8f0;
+    color: #64748b;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .btn-confirm {
+    flex: 2;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #fff;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 800;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  }
+  .btn-confirm:disabled {
+    background: #cbd5e1;
+    color: #94a3b8;
+    box-shadow: none;
+  }
+
+  .expense-input {
+    width: 100%;
+    background: #f0f9ff;
+    border: 2px solid #bae6fd;
+    color: #0c4a6e;
+    font-size: 28px;
+    font-weight: 800;
+    text-align: center;
+    padding: 14px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>❄️ ЖИЖА ПРО СЕЗОН_26-27</h1>
+    <div class="status">● ONLINE</div>
+  </header>
+
+  <!-- ═══ ГЛАВНЫЙ БЛОК ПРИБЫЛИ (ВВЕРХУ) ═══ -->
+  <div class="profit-hero" id="profitBlock">
+    <div class="profit-label">Чистая прибыль</div>
+    <div class="profit-value" id="profitValue">0 ₽</div>
+    <div class="profit-breakdown">
+      <div class="profit-breakdown-item">
+        <div class="profit-breakdown-label">Выручка</div>
+        <div class="profit-breakdown-value" id="revenueValue">0 ₽</div>
+      </div>
+      <div class="profit-breakdown-item">
+        <div class="profit-breakdown-label">Расходы</div>
+        <div class="profit-breakdown-value" id="spentValue">0 ₽</div>
+      </div>
+      <div class="profit-breakdown-item">
+        <div class="profit-breakdown-label">Продано</div>
+        <div class="profit-breakdown-value" id="soldItemsValue">0 шт</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Цены -->
+  <div class="settings-row">
+    <div class="input-wrap">
+      <label>Закупка ₽</label>
+      <input type="number" id="priceCost" value="100">
+    </div>
+    <div class="input-wrap">
+      <label>Банка ₽</label>
+      <input type="number" id="priceCan" value="200">
+    </div>
+    <div class="input-wrap">
+      <label>Упаковка ₽</label>
+      <input type="number" id="pricePack" value="750">
+    </div>
+  </div>
+
+  <!-- Продавцы -->
+  <div class="sellers-grid">
+    <div class="card glass">
+      <div class="seller-name">👨‍🔧 Продавец 1</div>
+      <div class="stats-mini">
+        <span>Продал: <b id="p1_total">0</b> шт</span>
+        <span><b id="p1_money">0</b> ₽</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn-sell-can" onclick="openSellModal(1, 'can')">🧴 Продать банки</button>
+        <button class="btn-sell-pack" onclick="openSellModal(1, 'pack')">📦 Продать упаковки</button>
+      </div>
+    </div>
+    <div class="card glass">
+      <div class="seller-name">👩‍🔧 Продавец 2</div>
+      <div class="stats-mini">
+        <span>Продал: <b id="p2_total">0</b> шт</span>
+        <span><b id="p2_money">0</b> ₽</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn-sell-can" onclick="openSellModal(2, 'can')">🧴 Продать банки</button>
+        <button class="btn-sell-pack" onclick="openSellModal(2, 'pack')">📦 Продать упаковки</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Кнопка "Для себя" -->
+  <button class="btn-self-take" onclick="openSelfTakeModal()">🏠 ЗАЛИЛИ СЕБЕ (без денег)</button>
+
+  <!-- Расход -->
+  <button class="btn-add-expense" onclick="openExpenseModal()">💸 ДОБАВИТЬ РАСХОД</button>
+
+  <!-- Сохранить -->
+  <button class="btn-save-day" onclick="saveDay()">💾 СОХРАНИТЬ ИТОГИ ДНЯ</button>
+
+  <!-- ═══ СКЛАД (ВНИЗУ) ═══ -->
+  <div class="stock-section">
+    <div class="stock-display glass">
+      <div class="stock-label">Остаток на складе</div>
+      <div class="stock-count" id="stockTotal">0</div>
+      <div class="stock-details">
+        ≈ <span id="stockPacksDisplay">0</span> упак. + <span id="stockLooseDisplay">0</span> шт. россыпью
+      </div>
+      <div style="font-size:12px;opacity:0.6;margin-bottom:12px;">
+        Для себя взято: <b id="selfTaken" style="color:#d97706;">0</b> шт.
+      </div>
+      <button class="btn-add-stock" onclick="addStock()">🚛 ПРИХОД ТОВАРА</button>
+    </div>
+  </div>
+
+  <!-- История -->
+  <div class="history-title">📜 История записей</div>
+  <div id="historyList"></div>
+</div>
+
+<!-- ═══ МОДАЛЬНОЕ ОКНО ПРОДАЖИ ═══ -->
+<div class="modal-overlay" id="sellModal">
+  <div class="modal-box">
+    <div class="modal-title" id="modalTitle">Продажа банок</div>
+    <div class="modal-subtitle" id="modalSubtitle">Продавец 1</div>
+    <div class="qty-grid" id="qtyGrid"></div>
+    <div class="qty-custom">
+      <label>Или введите:</label>
+      <input type="number" id="customQty" value="1" min="1" max="9999" oninput="onCustomInput()">
+    </div>
+    <div class="modal-info" id="modalInfo">Со склада спишется: 1 шт.</div>
+    <div class="modal-buttons">
+      <button class="btn-cancel" onclick="closeModal()">Отмена</button>
+      <button class="btn-confirm" id="btnConfirm" onclick="confirmSell()">✅ Продать</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ МОДАЛЬНОЕ ОКНО "ДЛЯ СЕБЯ" ═══ -->
+<div class="modal-overlay" id="selfTakeModal">
+  <div class="modal-box">
+    <div class="modal-title">🏠 Залили себе</div>
+    <div class="modal-subtitle">Без начисления денег</div>
+    <div class="qty-grid" id="selfQtyGrid"></div>
+    <div class="qty-custom">
+      <label>Или введите:</label>
+      <input type="number" id="selfCustomQty" value="1" min="1" max="9999" oninput="onSelfCustomInput()">
+    </div>
+    <div class="modal-info" id="selfModalInfo">Со склада спишется: 1 шт.</div>
+    <div class="modal-buttons">
+      <button class="btn-cancel" onclick="closeSelfModal()">Отмена</button>
+      <button class="btn-confirm" id="selfBtnConfirm" onclick="confirmSelfTake()">✅ Взять</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ МОДАЛЬНОЕ ОКНО РАСХОДОВ ═══ -->
+<div class="modal-overlay" id="expenseModal">
+  <div class="modal-box">
+    <div class="modal-title">💸 Добавить расход</div>
+    <div class="modal-subtitle">Закупка, бензин и т.д.</div>
+    <input type="number" class="expense-input" id="expenseAmount" placeholder="Сумма в рублях" min="0" step="1">
+    <div class="modal-buttons">
+      <button class="btn-cancel" onclick="closeExpenseModal()">Отмена</button>
+      <button class="btn-confirm" onclick="confirmExpense()">✅ Добавить</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+  import {
+    getDatabase, ref, onValue, update, push, set
+  } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+
+ const firebaseConfig = {
+  apiKey: "AIzaSy...",
+  authDomain: "nezamerzaika.firebaseapp.com",
+  databaseURL: "https://nezamerzaika-default-rtdb.firebaseio.com",
+  projectId: "nezamerzaika",
+  storageBucket: "nezamerzaika.appspot.com",
+  messagingSenderId: "...",
+  appId: "..."
+};
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  const stockRef   = ref(db, 'stock');
+  const shiftRef   = ref(db, 'current_shift');
+  const priceRef   = ref(db, 'prices');
+  const historyRef = ref(db, 'history');
+
+  const PER_PACK = 4;
+  const QUICK_CANS = [1, 2, 3, 5, 6, 7, 9, 10, 11];
+  const QUICK_PACKS = [1, 2, 3, 4, 5, 6, 7, 8];
+  const QUICK_SELF = [1, 2, 3, 4, 5, 6, 7, 8, 10];
+
+  let stock = 0;
+  let shift = { p1: { cans: 0, packs: 0 }, p2: { cans: 0, packs: 0 }, selfTaken: 0, spent: 0 };
+  let prices = { cost: 100, can: 200, pack: 750 };
+
+  // ── Слушатели Firebase ──
+
+  onValue(priceRef, s => {
+    if (s.exists()) {
+      prices = s.val();
+      document.getElementById('priceCost').value = prices.cost || 100;
+      document.getElementById('priceCan').value  = prices.can;
+      document.getElementById('pricePack').value = prices.pack;
+      render();
+    }
+  });
+  document.getElementById('priceCost').addEventListener('change', e =>
+    update(priceRef, { cost: Math.max(0, parseInt(e.target.value) || 0) }));
+  document.getElementById('priceCan').addEventListener('change', e =>
+    update(priceRef, { can: Math.max(0, parseInt(e.target.value) || 0) }));
+  document.getElementById('pricePack').addEventListener('change', e =>
+    update(priceRef, { pack: Math.max(0, parseInt(e.target.value) || 0) }));
+
+  onValue(stockRef, s => { stock = s.exists() ? s.val() : 0; render(); });
+
+  onValue(shiftRef, s => {
+    if (s.exists()) {
+      const v = s.val();
+      shift.p1 = v.p1 || { cans: 0, packs: 0 };
+      shift.p2 = v.p2 || { cans: 0, packs: 0 };
+      shift.selfTaken = v.selfTaken || 0;
+      shift.spent = v.spent || 0;
+    }
+    render();
+  });
+
+  onValue(historyRef, s => {
+    const el = document.getElementById('historyList');
+    el.innerHTML = '';
+    if (!s.exists()) { el.innerHTML = '<div style="text-align:center;opacity:.5;font-size:13px;color:#64748b;">Пока пусто</div>'; return; }
+    const arr = [];
+    s.forEach(c => arr.push(c.val()));
+    arr.reverse().forEach(i => {
+      const d = document.createElement('div');
+      d.className = 'h-item';
+      const profit = i.totalSum - (i.spent || 0);
+      d.innerHTML = `
+        <div>
+          <div class="h-date">${i.date}</div>
+          <div class="h-detail">Б:${i.tCans || 0} У:${i.tPacks || 0} | Себе: ${i.selfTaken || 0}</div>
+        </div>
+        <div>
+          <div class="h-sum">${Number(i.totalSum).toLocaleString()} ₽</div>
+          <div style="font-size:11px;color:${profit >= 0 ? '#059669' : '#dc2626'};text-align:right;font-weight:700;">Прибыль: ${profit.toLocaleString()} ₽</div>
+        </div>`;
+      el.appendChild(d);
+    });
+  });
+
+  // ── Отрисовка ──
+
+  function render() {
+    // Склад
+    const stEl = document.getElementById('stockTotal');
+    stEl.textContent = stock;
+    stEl.className = 'stock-count' + (stock <= 0 ? ' empty' : stock < 20 ? ' low' : '');
+    document.getElementById('stockPacksDisplay').textContent  = Math.floor(stock / PER_PACK);
+    document.getElementById('stockLooseDisplay').textContent  = stock % PER_PACK;
+    document.getElementById('selfTaken').textContent = shift.selfTaken;
+
+    // Продавцы
+    for (const id of [1, 2]) {
+      const p = shift[`p${id}`];
+      const items  = p.cans + p.packs * PER_PACK;
+      const money  = p.cans * prices.can + p.packs * prices.pack;
+      document.getElementById(`p${id}_total`).textContent = items;
+      document.getElementById(`p${id}_money`).textContent = money.toLocaleString();
+    }
+
+    // Итого
+    const allItems = shift.p1.cans + shift.p1.packs * PER_PACK + shift.p2.cans + shift.p2.packs * PER_PACK;
+    const allMoney = (shift.p1.cans + shift.p2.cans) * prices.can
+                   + (shift.p1.packs + shift.p2.packs) * prices.pack;
+    const profit = allMoney - shift.spent;
+
+    // Главный блок прибыли
+    document.getElementById('profitValue').textContent = profit.toLocaleString() + ' ₽';
+    document.getElementById('revenueValue').textContent = allMoney.toLocaleString() + ' ₽';
+    document.getElementById('spentValue').textContent = shift.spent.toLocaleString() + ' ₽';
+    document.getElementById('soldItemsValue').textContent = allItems + ' шт';
+    
+    const profitBlock = document.getElementById('profitBlock');
+    if (profit < 0) {
+      profitBlock.classList.add('profit-negative');
+    } else {
+      profitBlock.classList.remove('profit-negative');
+    }
+  }
+
+  // ══════════════════════════════════════════
+  //  МОДАЛЬНОЕ ОКНО ПРОДАЖИ
+  // ══════════════════════════════════════════
+
+  let modalSeller = 1;
+  let modalType   = 'can';
+  let modalQty    = 1;
+
+  window.openSellModal = function(seller, type) {
+    modalSeller = seller;
+    modalType   = type;
+    modalQty    = 1;
+
+    const isPack = type === 'pack';
+    document.getElementById('modalTitle').textContent    = isPack ? '📦 Продажа упаковок' : '🧴 Продажа банок';
+    document.getElementById('modalSubtitle').textContent = `Продавец ${seller}`;
+    document.getElementById('customQty').value           = 1;
+
+    const grid = document.getElementById('qtyGrid');
+    grid.innerHTML = '';
+    const options = isPack ? QUICK_PACKS : QUICK_CANS;
+    
+    options.forEach(num => {
+      const btn = document.createElement('button');
+      btn.className = 'qty-btn' + (num === 1 ? ' selected' : '');
+      btn.textContent = num;
+      btn.onclick = () => pickQty(num);
+      grid.appendChild(btn);
+    });
+
+    updateModalInfo();
+    document.getElementById('sellModal').classList.add('active');
+  };
+
+  window.pickQty = function(n) {
+    modalQty = n;
+    document.getElementById('customQty').value = n;
+    document.querySelectorAll('#qtyGrid .qty-btn').forEach(b => 
+      b.classList.toggle('selected', parseInt(b.textContent) === n));
+    updateModalInfo();
+  };
+
+  window.onCustomInput = function() {
+    const v = parseInt(document.getElementById('customQty').value) || 0;
+    modalQty = Math.max(1, v);
+    document.querySelectorAll('#qtyGrid .qty-btn').forEach(b => 
+      b.classList.toggle('selected', parseInt(b.textContent) === modalQty));
+    updateModalInfo();
+  };
+
+  function updateModalInfo() {
+    const infoEl  = document.getElementById('modalInfo');
+    const confBtn = document.getElementById('btnConfirm');
+    const pieces  = modalType === 'pack' ? modalQty * PER_PACK : modalQty;
+    const label   = modalType === 'pack' ? 'упак.' : 'бан.';
+
+    if (pieces > stock) {
+      infoEl.textContent  = `⚠️ Не хватает! На складе ${stock} шт., нужно ${pieces} шт.`;
+      infoEl.className    = 'modal-info error';
+      confBtn.disabled    = true;
+    } else {
+      const money = modalType === 'pack' ? modalQty * prices.pack : modalQty * prices.can;
+      infoEl.textContent  = `Спишется ${pieces} шт. (${modalQty} ${label}) · Выручка: ${money.toLocaleString()} ₽`;
+      infoEl.className    = 'modal-info';
+      confBtn.disabled    = false;
+    }
+  }
+
+  window.closeModal = function() {
+    document.getElementById('sellModal').classList.remove('active');
+  };
+
+  window.confirmSell = async function() {
+    const pieces = modalType === 'pack' ? modalQty * PER_PACK : modalQty;
+    if (pieces > stock) { alert('Недостаточно товара!'); return; }
+
+    closeModal();
+
+    const newStock = Math.max(0, stock - pieces);
+    await set(stockRef, newStock);
+
+    const sKey = `p${modalSeller}`;
+    const field = modalType === 'pack' ? 'packs' : 'cans';
+    const currentVal = shift[sKey][field] || 0;
+    await update(shiftRef, { [`${sKey}/${field}`]: currentVal + modalQty });
+  };
+
+  // ══════════════════════════════════════════
+  //  МОДАЛЬНОЕ ОКНО "ДЛЯ СЕБЯ"
+  // ══════════════════════════════════════════
+
+  let selfQty = 1;
+
+  window.openSelfTakeModal = function() {
+    selfQty = 1;
+    document.getElementById('selfCustomQty').value = 1;
+
+    const grid = document.getElementById('selfQtyGrid');
+    grid.innerHTML = '';
+    
+    QUICK_SELF.forEach(num => {
+      const btn = document.createElement('button');
+      btn.className = 'qty-btn' + (num === 1 ? ' selected' : '');
+      btn.textContent = num;
+      btn.onclick = () => pickSelfQty(num);
+      grid.appendChild(btn);
+    });
+
+    updateSelfModalInfo();
+    document.getElementById('selfTakeModal').classList.add('active');
+  };
+
+  window.pickSelfQty = function(n) {
+    selfQty = n;
+    document.getElementById('selfCustomQty').value = n;
+    document.querySelectorAll('#selfQtyGrid .qty-btn').forEach(b => 
+      b.classList.toggle('selected', parseInt(b.textContent) === n));
+    updateSelfModalInfo();
+  };
+
+  window.onSelfCustomInput = function() {
+    const v = parseInt(document.getElementById('selfCustomQty').value) || 0;
+    selfQty = Math.max(1, v);
+    document.querySelectorAll('#selfQtyGrid .qty-btn').forEach(b => 
+      b.classList.toggle('selected', parseInt(b.textContent) === selfQty));
+    updateSelfModalInfo();
+  };
+
+  function updateSelfModalInfo() {
+    const infoEl  = document.getElementById('selfModalInfo');
+    const confBtn = document.getElementById('selfBtnConfirm');
+
+    if (selfQty > stock) {
+      infoEl.textContent  = `⚠️ Не хватает! На складе ${stock} шт., нужно ${selfQty} шт.`;
+      infoEl.className    = 'modal-info error';
+      confBtn.disabled    = true;
+    } else {
+      infoEl.textContent  = `Спишется ${selfQty} шт. со склада (без денег)`;
+      infoEl.className    = 'modal-info';
+      confBtn.disabled    = false;
+    }
+  }
+
+  window.closeSelfModal = function() {
+    document.getElementById('selfTakeModal').classList.remove('active');
+  };
+
+  window.confirmSelfTake = async function() {
+    if (selfQty > stock) { alert('Недостаточно товара!'); return; }
+    if (!confirm(`Взять ${selfQty} шт. для себя?\nДеньги не начисляются.`)) return;
+
+    closeSelfModal();
+
+    const newStock = Math.max(0, stock - selfQty);
+    await set(stockRef, newStock);
+
+    const currentSelf = shift.selfTaken || 0;
+    await update(shiftRef, { selfTaken: currentSelf + selfQty });
+  };
+
+  // ══════════════════════════════════════════
+  //  МОДАЛЬНОЕ ОКНО РАСХОДОВ
+  // ══════════════════════════════════════════
+
+  window.openExpenseModal = function() {
+    document.getElementById('expenseAmount').value = '';
+    document.getElementById('expenseModal').classList.add('active');
+    setTimeout(() => document.getElementById('expenseAmount').focus(), 100);
+  };
+
+  window.closeExpenseModal = function() {
+    document.getElementById('expenseModal').classList.remove('active');
+  };
+
+  window.confirmExpense = async function() {
+    const amount = parseInt(document.getElementById('expenseAmount').value);
+    if (!amount || amount <= 0) {
+      alert('Введите сумму расхода');
+      return;
+    }
+
+    if (!confirm(`Добавить расход ${amount.toLocaleString()} ₽?`)) return;
+
+    closeExpenseModal();
+
+    const currentSpent = shift.spent || 0;
+    await update(shiftRef, { spent: currentSpent + amount });
+  };
+
+  // ── Приход товара ──
+
+  window.addStock = function() {
+    const n = prompt('Сколько банок привезли на склад?', '20');
+    if (n && !isNaN(n) && parseInt(n) > 0) {
+      set(stockRef, stock + parseInt(n));
+    }
+  };
+
+  // ── Сохранение итогов дня ──
+
+  window.saveDay = async function() {
+    const allMoney = (shift.p1.cans + shift.p2.cans) * prices.can
+                   + (shift.p1.packs + shift.p2.packs) * prices.pack;
+    const profit = allMoney - shift.spent;
+    
+    if (allMoney === 0 && shift.selfTaken === 0 && shift.spent === 0) { 
+      alert('Ничего не продавали, не брали себе и не тратили — сохранять нечего.'); 
+      return; 
+    }
+
+    const tCans  = shift.p1.cans + shift.p2.cans;
+    const tPacks = shift.p1.packs + shift.p2.packs;
+
+    if (!confirm(`Сохранить итоги дня?\n\nВыручка: ${allMoney.toLocaleString()} ₽\nРасходы: ${shift.spent.toLocaleString()} ₽\nЧистая прибыль: ${profit.toLocaleString()} ₽\n\nБанок продано: ${tCans}\nУпаковок продано: ${tPacks}\nДля себя взято: ${shift.selfTaken} шт.\nОстаток склада: ${stock} шт.`)) return;
+
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('ru-RU') + ' ' + now.toLocaleTimeString('ru-RU').slice(0, 5);
+
+    await push(historyRef, {
+      date: dateStr,
+      totalSum: allMoney,
+      spent: shift.spent,
+      profit: profit,
+      tCans, tPacks,
+      selfTaken: shift.selfTaken,
+      p1: shift.p1,
+      p2: shift.p2,
+      stockLeft: stock
+    });
+
+    await set(shiftRef, { 
+      p1: { cans: 0, packs: 0 }, 
+      p2: { cans: 0, packs: 0 },
+      selfTaken: 0,
+      spent: 0
+    });
+  };
+</script>
+</body>
+</html>

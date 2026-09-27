@@ -166,25 +166,52 @@
   .seller-name { 
     font-weight: 700; 
     font-size: 15px; 
-    margin-bottom: 12px; 
+    margin-bottom: 8px; 
     color: #0369a1;
   }
+  
+  /* Багажник */
+  .trunk-info {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border: 2px solid #f59e0b;
+    border-radius: 12px;
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: #92400e;
+    font-weight: 700;
+  }
+  .trunk-info .trunk-count {
+    font-size: 20px;
+    color: #d97706;
+    display: block;
+    margin-top: 2px;
+  }
+  .trunk-info.empty {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    border-color: #ef4444;
+    color: #991b1b;
+  }
+  .trunk-info.empty .trunk-count {
+    color: #dc2626;
+  }
+
   .stats-mini {
     display: flex;
     justify-content: space-between;
     font-size: 12px;
     color: #64748b;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
     padding: 0 4px;
   }
   .stats-mini b { color: #0c4a6e; font-size: 14px; }
 
-  .btn-group { display: flex; flex-direction: column; gap: 8px; }
+  .btn-group { display: flex; flex-direction: column; gap: 6px; }
   button {
     border: none;
-    border-radius: 12px;
-    padding: 14px;
-    font-size: 14px;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 13px;
     font-weight: 700;
     cursor: pointer;
     color: white;
@@ -192,13 +219,19 @@
   }
   button:active { transform: scale(0.96); }
 
+  .btn-load { 
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    box-shadow: 0 3px 10px rgba(245, 158, 11, 0.3);
+    font-size: 12px;
+    padding: 10px;
+  }
   .btn-sell-can { 
     background: linear-gradient(135deg, #0ea5e9, #0284c7);
-    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+    box-shadow: 0 3px 10px rgba(14, 165, 233, 0.3);
   }
   .btn-sell-pack { 
     background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 3px 10px rgba(139, 92, 246, 0.3);
   }
 
   .btn-self-take {
@@ -321,9 +354,7 @@
     cursor: pointer;
     margin-left: 8px;
   }
-  .h-delete:active { transform: scale(0.95); }
 
-  /* Кнопка полного сброса */
   .btn-danger-zone {
     margin-top: 30px;
     padding-top: 20px;
@@ -347,7 +378,6 @@
     box-shadow: 0 4px 12px rgba(127, 29, 29, 0.3);
     border: 2px solid #dc2626;
   }
-  .btn-delete-all:active { transform: scale(0.97); }
 
   .modal-overlay {
     display: none;
@@ -453,6 +483,10 @@
     color: #dc2626; 
     background: #fee2e2;
   }
+  .modal-info.trunk-warn {
+    color: #d97706;
+    background: #fef3c7;
+  }
 
   .modal-buttons { display: flex; gap: 10px; }
   .btn-cancel {
@@ -476,6 +510,10 @@
     background: #cbd5e1;
     color: #94a3b8;
     box-shadow: none;
+  }
+  .btn-confirm-load {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
   }
 
   .expense-input, .password-input {
@@ -520,13 +558,25 @@
     font-size: 14px;
     font-weight: 700;
   }
+
+  .trunk-status-line {
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 12px;
+    padding: 6px 10px;
+    background: #f0f9ff;
+    border-radius: 8px;
+  }
+  .trunk-status-line b {
+    color: #0369a1;
+  }
 </style>
 </head>
 <body>
 
 <div class="container">
   <header>
-    <h1>❄️ ЖИЖА ПРО СЕЗОН_26-27</h1>
+    <h1>️ ЖИЖА ПРО СЕЗОН_26-27</h1>
     <div class="status">● ONLINE</div>
   </header>
 
@@ -566,25 +616,44 @@
 
   <div class="sellers-grid">
     <div class="card glass">
-      <div class="seller-name">👨‍🔧 Никита </div>
+      <div class="seller-name">👨‍🔧 Никита</div>
+      
+      <!-- Багажник Никиты -->
+      <div class="trunk-info" id="trunk1">
+        🚗 В багажнике
+        <span class="trunk-count" id="trunk1_count">0 шт.</span>
+      </div>
+      
       <div class="stats-mini">
         <span>Продал: <b id="p1_total">0</b> шт</span>
         <span><b id="p1_money">0</b> ₽</span>
       </div>
+      
       <div class="btn-group">
+        <button class="btn-load" onclick="openLoadModal(1)">🚗 Загрузить в багажник</button>
         <button class="btn-sell-can" onclick="openSellModal(1, 'can')">🧴 Продать банки</button>
         <button class="btn-sell-pack" onclick="openSellModal(1, 'pack')">📦 Продать упаковки</button>
       </div>
     </div>
+    
     <div class="card glass">
-      <div class="seller-name">👩‍🔧 Максим </div>
+      <div class="seller-name">👩‍🔧 Максим</div>
+      
+      <!-- Багажник Максима -->
+      <div class="trunk-info" id="trunk2">
+        🚗 В багажнике
+        <span class="trunk-count" id="trunk2_count">0 шт.</span>
+      </div>
+      
       <div class="stats-mini">
         <span>Продал: <b id="p2_total">0</b> шт</span>
         <span><b id="p2_money">0</b> ₽</span>
       </div>
+      
       <div class="btn-group">
+        <button class="btn-load" onclick="openLoadModal(2)">🚗 Загрузить в багажник</button>
         <button class="btn-sell-can" onclick="openSellModal(2, 'can')">🧴 Продать банки</button>
-        <button class="btn-sell-pack" onclick="openSellModal(2, 'pack')">📦 Продать упаковки</button>
+        <button class="btn-sell-pack" onclick="openSellModal(2, 'pack')"> Продать упаковки</button>
       </div>
     </div>
   </div>
@@ -610,10 +679,32 @@
   <div class="history-title">📜 История записей</div>
   <div id="historyList"></div>
 
-  <!-- ═══ ОПАСНАЯ ЗОНА ═══ -->
   <div class="btn-danger-zone">
-    <p>️ Эта кнопка удалит ВСЕ данные без возможности восстановления</p>
+    <p>⚠️ Эта кнопка удалит ВСЕ данные без возможности восстановления</p>
     <button class="btn-delete-all" onclick="openDeleteAllModal()">🗑 УДАЛИТЬ ВСЕ ДАННЫЕ</button>
+  </div>
+</div>
+
+<!-- ═══ МОДАЛЬНОЕ ОКНО ЗАГРУЗКИ В БАГАЖНИК ═══ -->
+<div class="modal-overlay" id="loadModal">
+  <div class="modal-box">
+    <div class="modal-title">🚗 Загрузить в багажник</div>
+    <div class="modal-subtitle" id="loadSubtitle">Продавец 1</div>
+    
+    <div class="trunk-status-line">
+      На складе: <b id="loadStockInfo">0</b> шт. | В багажнике сейчас: <b id="loadTrunkInfo">0</b> шт.
+    </div>
+    
+    <div class="qty-grid" id="loadQtyGrid"></div>
+    <div class="qty-custom">
+      <label>Или введите:</label>
+      <input type="number" id="loadCustomQty" value="10" min="1" max="9999" oninput="onLoadCustomInput()">
+    </div>
+    <div class="modal-info" id="loadModalInfo">Со склада спишется: 10 шт.</div>
+    <div class="modal-buttons">
+      <button class="btn-cancel" onclick="closeLoadModal()">Отмена</button>
+      <button class="btn-confirm btn-confirm-load" id="loadBtnConfirm" onclick="confirmLoad()">🚗 Загрузить</button>
+    </div>
   </div>
 </div>
 
@@ -621,13 +712,18 @@
 <div class="modal-overlay" id="sellModal">
   <div class="modal-box">
     <div class="modal-title" id="modalTitle">Продажа банок</div>
-    <div class="modal-subtitle" id="modalSubtitle">Никита </div>
+    <div class="modal-subtitle" id="modalSubtitle">Продавец 1</div>
+    
+    <div class="trunk-status-line">
+      В багажнике: <b id="sellTrunkInfo">0</b> шт.
+    </div>
+    
     <div class="qty-grid" id="qtyGrid"></div>
     <div class="qty-custom">
       <label>Или введите:</label>
       <input type="number" id="customQty" value="1" min="1" max="9999" oninput="onCustomInput()">
     </div>
-    <div class="modal-info" id="modalInfo">Со склада спишется: 1 шт.</div>
+    <div class="modal-info" id="modalInfo">Спишется из багажника: 1 шт.</div>
     <div class="modal-buttons">
       <button class="btn-cancel" onclick="closeModal()">Отмена</button>
       <button class="btn-confirm" id="btnConfirm" onclick="confirmSell()">✅ Продать</button>
@@ -635,11 +731,14 @@
   </div>
 </div>
 
-<!-- ═══ МОДАЛЬНОЕ ОКНО "ДЛЯ СЕБЯ" ═══ -->
+<!-- ══ МОДАЛЬНОЕ ОКНО "ДЛЯ СЕБЯ" ═══ -->
 <div class="modal-overlay" id="selfTakeModal">
   <div class="modal-box">
-    <div class="modal-title"> Залили себе</div>
+    <div class="modal-title">🏠 Залили себе</div>
     <div class="modal-subtitle">Без начисления денег</div>
+    <div class="trunk-status-line">
+      На складе: <b id="selfStockInfo">0</b> шт.
+    </div>
     <div class="qty-grid" id="selfQtyGrid"></div>
     <div class="qty-custom">
       <label>Или введите:</label>
@@ -666,7 +765,7 @@
   </div>
 </div>
 
-<!-- ═══ МОДАЛЬНОЕ ОКНО ПОЛНОГО УДАЛЕНИЯ ═══ -->
+<!-- ═══ МОДАЛЬНОЕ ОКНО ПОЛНОГО УДАЛЕНИЯ ══ -->
 <div class="modal-overlay" id="deleteAllModal">
   <div class="modal-box">
     <div class="modal-title" style="color:#dc2626;">🗑 Удалить всё?</div>
@@ -674,6 +773,7 @@
       <span class="emoji">⚠️</span>
       Это действие удалит:<br>
       • Остаток на складе<br>
+      • Багажники продавцов<br>
       • Текущие продажи<br>
       • Всю историю записей<br>
       • Настройки цен<br><br>
@@ -735,23 +835,29 @@
   const QUICK_CANS = [1, 2, 3, 5, 6, 7, 9, 10, 11];
   const QUICK_PACKS = [1, 2, 3, 4, 5, 6, 7, 8];
   const QUICK_SELF = [1, 2, 3, 4, 5, 6, 7, 8, 10];
+  const QUICK_LOAD = [5, 10, 15, 20, 25, 30, 40, 50, 100];
 
   let stock = 0;
-  let shift = { p1: { cans: 0, packs: 0 }, p2: { cans: 0, packs: 0 }, selfTaken: 0, spent: 0 };
+  let shift = { 
+    p1: { cans: 0, packs: 0, trunk: 0 }, 
+    p2: { cans: 0, packs: 0, trunk: 0 }, 
+    selfTaken: 0, 
+    spent: 0 
+  };
   let prices = { cost: 100, can: 200, pack: 750 };
 
   // ═══════════════════════════════════════════
-  //  НОРМАЛИЗАЦИЯ ДАННЫХ (защита от NaN)
+  //  НОРМАЛИЗАЦИЯ ДАННЫХ
   // ═══════════════════════════════════════════
   function normalizeShift(v) {
-    // Если p1/p2 — это число (старый формат), конвертируем в объект
     function fixPerson(p) {
       if (!p || typeof p !== 'object') {
-        return { cans: 0, packs: 0 };
+        return { cans: 0, packs: 0, trunk: 0 };
       }
       return {
         cans:  parseInt(p.cans)  || 0,
-        packs: parseInt(p.packs) || 0
+        packs: parseInt(p.packs) || 0,
+        trunk: parseInt(p.trunk) || 0
       };
     }
     return {
@@ -770,7 +876,7 @@
     };
   }
 
-  // ─ Слушатели Firebase ──
+  // ── Слушатели Firebase ──
 
   onValue(priceRef, s => {
     if (s.exists()) {
@@ -797,17 +903,23 @@
   onValue(shiftRef, s => {
     if (s.exists()) {
       shift = normalizeShift(s.val());
-      // Если данные были в старом формате — сразу исправляем их в базе
       const raw = s.val();
       const needsFix = !raw.p1 || typeof raw.p1 !== 'object' 
                     || !raw.p2 || typeof raw.p2 !== 'object'
+                    || raw.p1.trunk === undefined 
+                    || raw.p2.trunk === undefined
                     || raw.selfTaken === undefined 
                     || raw.spent === undefined;
       if (needsFix) {
         set(shiftRef, shift);
       }
     } else {
-      shift = { p1: { cans: 0, packs: 0 }, p2: { cans: 0, packs: 0 }, selfTaken: 0, spent: 0 };
+      shift = { 
+        p1: { cans: 0, packs: 0, trunk: 0 }, 
+        p2: { cans: 0, packs: 0, trunk: 0 }, 
+        selfTaken: 0, 
+        spent: 0 
+      };
     }
     render();
   });
@@ -846,7 +958,7 @@
     });
   });
 
-  // ─ Отрисовка (с защитой от NaN) ──
+  // ── Отрисовка ──
 
   function render() {
     const stEl = document.getElementById('stockTotal');
@@ -857,17 +969,31 @@
     document.getElementById('selfTaken').textContent = shift.selfTaken || 0;
 
     for (const id of [1, 2]) {
-      const p = shift[`p${id}`] || { cans: 0, packs: 0 };
+      const p = shift[`p${id}`] || { cans: 0, packs: 0, trunk: 0 };
       const cans  = parseInt(p.cans)  || 0;
       const packs = parseInt(p.packs) || 0;
+      const trunk = parseInt(p.trunk) || 0;
       const items = cans + packs * PER_PACK;
       const money = cans * prices.can + packs * prices.pack;
+      
       document.getElementById(`p${id}_total`).textContent = items;
       document.getElementById(`p${id}_money`).textContent = money.toLocaleString();
+      
+      // Обновляем багажник
+      const trunkEl = document.getElementById(`trunk${id}`);
+      const trunkCountEl = document.getElementById(`trunk${id}_count`);
+      trunkCountEl.textContent = trunk + ' шт.';
+      if (trunk === 0) {
+        trunkEl.classList.add('empty');
+        trunkEl.innerHTML = `🚗 В багажнике<span class="trunk-count" id="trunk${id}_count">пусто</span>`;
+      } else {
+        trunkEl.classList.remove('empty');
+        trunkEl.innerHTML = `🚗 В багажнике<span class="trunk-count" id="trunk${id}_count">${trunk} шт.</span>`;
+      }
     }
 
-    const p1 = shift.p1 || { cans: 0, packs: 0 };
-    const p2 = shift.p2 || { cans: 0, packs: 0 };
+    const p1 = shift.p1 || { cans: 0, packs: 0, trunk: 0 };
+    const p2 = shift.p2 || { cans: 0, packs: 0, trunk: 0 };
     const p1c = parseInt(p1.cans)  || 0, p1p = parseInt(p1.packs) || 0;
     const p2c = parseInt(p2.cans)  || 0, p2p = parseInt(p2.packs) || 0;
     
@@ -885,21 +1011,106 @@
     profitBlock.classList.toggle('profit-negative', profit < 0);
   }
 
-  // ── Удаление одной записи ──
+  // ─ Удаление одной записи ──
   window.deleteHistoryItem = async function(key) {
     if (!confirm('Удалить эту запись из истории?')) return;
     await remove(ref(db, `history/${key}`));
   };
 
-  // ═══ МОДАЛКА ПРОДАЖИ ═══
+  // ══════════════════════════════════════════
+  //  МОДАЛКА ЗАГРУЗКИ В БАГАЖНИК
+  // ═════════════════════════════════════════
+  let loadSeller = 1;
+  let loadQty = 10;
+
+  window.openLoadModal = function(seller) {
+    loadSeller = seller;
+    loadQty = 10;
+    
+    document.getElementById('loadSubtitle').textContent = `Продавец ${seller}`;
+    document.getElementById('loadStockInfo').textContent = stock;
+    document.getElementById('loadTrunkInfo').textContent = parseInt(shift[`p${seller}`].trunk) || 0;
+    document.getElementById('loadCustomQty').value = 10;
+    
+    const grid = document.getElementById('loadQtyGrid');
+    grid.innerHTML = '';
+    QUICK_LOAD.forEach(num => {
+      const btn = document.createElement('button');
+      btn.className = 'qty-btn' + (num === 10 ? ' selected' : '');
+      btn.textContent = num;
+      btn.onclick = () => pickLoadQty(num);
+      grid.appendChild(btn);
+    });
+    
+    updateLoadModalInfo();
+    document.getElementById('loadModal').classList.add('active');
+  };
+
+  window.pickLoadQty = function(n) {
+    loadQty = n;
+    document.getElementById('loadCustomQty').value = n;
+    document.querySelectorAll('#loadQtyGrid .qty-btn').forEach(b => 
+      b.classList.toggle('selected', parseInt(b.textContent) === n));
+    updateLoadModalInfo();
+  };
+
+  window.onLoadCustomInput = function() {
+    const v = parseInt(document.getElementById('loadCustomQty').value) || 0;
+    loadQty = Math.max(1, v);
+    document.querySelectorAll('#loadQtyGrid .qty-btn').forEach(b => 
+      b.classList.toggle('selected', parseInt(b.textContent) === loadQty));
+    updateLoadModalInfo();
+  };
+
+  function updateLoadModalInfo() {
+    const infoEl = document.getElementById('loadModalInfo');
+    const confBtn = document.getElementById('loadBtnConfirm');
+    
+    if (loadQty > stock) {
+      infoEl.textContent = `️ Не хватает! На складе ${stock} шт., нужно ${loadQty} шт.`;
+      infoEl.className = 'modal-info error';
+      confBtn.disabled = true;
+    } else {
+      const currentTrunk = parseInt(shift[`p${loadSeller}`].trunk) || 0;
+      infoEl.textContent = `Со склада: −${loadQty} шт. | В багажнике станет: ${currentTrunk + loadQty} шт.`;
+      infoEl.className = 'modal-info';
+      confBtn.disabled = false;
+    }
+  }
+
+  window.closeLoadModal = function() { 
+    document.getElementById('loadModal').classList.remove('active'); 
+  };
+
+  window.confirmLoad = async function() {
+    if (loadQty > stock) { alert('Недостаточно товара на складе!'); return; }
+    if (!confirm(`Загрузить ${loadQty} шт. в багажник?\nСо склада спишется ${loadQty} шт.`)) return;
+    
+    closeLoadModal();
+    
+    // Списываем со склада
+    await set(stockRef, Math.max(0, stock - loadQty));
+    
+    // Добавляем в багажник
+    const currentTrunk = parseInt(shift[`p${loadSeller}`].trunk) || 0;
+    await update(shiftRef, { [`p${loadSeller}/trunk`]: currentTrunk + loadQty });
+  };
+
+  // ═════════════════════════════════════════
+  //  МОДАЛКА ПРОДАЖИ (теперь из багажника)
+  // ══════════════════════════════════════════
   let modalSeller = 1, modalType = 'can', modalQty = 1;
 
   window.openSellModal = function(seller, type) {
     modalSeller = seller; modalType = type; modalQty = 1;
     const isPack = type === 'pack';
-    document.getElementById('modalTitle').textContent = isPack ? '📦 Продажа упаковок' : '🧴 Продажа банок';
+    document.getElementById('modalTitle').textContent = isPack ? ' Продажа упаковок' : '🧴 Продажа банок';
     document.getElementById('modalSubtitle').textContent = `Продавец ${seller}`;
     document.getElementById('customQty').value = 1;
+    
+    const trunk = parseInt(shift[`p${seller}`].trunk) || 0;
+    document.getElementById('sellTrunkInfo').textContent = trunk;
+    
     const grid = document.getElementById('qtyGrid');
     grid.innerHTML = '';
     const options = isPack ? QUICK_PACKS : QUICK_CANS;
@@ -935,13 +1146,15 @@
     const confBtn = document.getElementById('btnConfirm');
     const pieces = modalType === 'pack' ? modalQty * PER_PACK : modalQty;
     const label = modalType === 'pack' ? 'упак.' : 'бан.';
-    if (pieces > stock) {
-      infoEl.textContent = `⚠️ Не хватает! На складе ${stock} шт., нужно ${pieces} шт.`;
+    const trunk = parseInt(shift[`p${modalSeller}`].trunk) || 0;
+    
+    if (pieces > trunk) {
+      infoEl.textContent = `⚠️ В багажнике только ${trunk} шт.! Нужно ${pieces} шт. Загрузите ещё.`;
       infoEl.className = 'modal-info error';
       confBtn.disabled = true;
     } else {
       const money = modalType === 'pack' ? modalQty * prices.pack : modalQty * prices.can;
-      infoEl.textContent = `Спишется ${pieces} шт. (${modalQty} ${label}) · Выручка: ${money.toLocaleString()} ₽`;
+      infoEl.textContent = `Спишется из багажника: ${pieces} шт. (${modalQty} ${label}) · Выручка: ${money.toLocaleString()} ₽`;
       infoEl.className = 'modal-info';
       confBtn.disabled = false;
     }
@@ -951,21 +1164,34 @@
 
   window.confirmSell = async function() {
     const pieces = modalType === 'pack' ? modalQty * PER_PACK : modalQty;
-    if (pieces > stock) { alert('Недостаточно товара!'); return; }
+    const trunk = parseInt(shift[`p${modalSeller}`].trunk) || 0;
+    
+    if (pieces > trunk) { 
+      alert(`В багажнике только ${trunk} шт.! Сначала загрузите товар.`); 
+      return; 
+    }
+    
     closeModal();
-    await set(stockRef, Math.max(0, stock - pieces));
-    const sKey = `p${modalSeller}`;
+    
+    // Списываем из багажника
+    const newTrunk = Math.max(0, trunk - pieces);
+    await update(shiftRef, { [`p${modalSeller}/trunk`]: newTrunk });
+    
+    // Начисляем продажу
     const field = modalType === 'pack' ? 'packs' : 'cans';
-    const currentVal = parseInt(shift[sKey][field]) || 0;
-    await update(shiftRef, { [`${sKey}/${field}`]: currentVal + modalQty });
+    const currentVal = parseInt(shift[`p${modalSeller}`][field]) || 0;
+    await update(shiftRef, { [`p${modalSeller}/${field}`]: currentVal + modalQty });
   };
 
-  // ═══ МОДАЛКА "ДЛЯ СЕБЯ" ═══
+  // ══════════════════════════════════════════
+  //  МОДАЛКА "ДЛЯ СЕБЯ" (со склада)
+  // ══════════════════════════════════════════
   let selfQty = 1;
 
   window.openSelfTakeModal = function() {
     selfQty = 1;
     document.getElementById('selfCustomQty').value = 1;
+    document.getElementById('selfStockInfo').textContent = stock;
     const grid = document.getElementById('selfQtyGrid');
     grid.innerHTML = '';
     QUICK_SELF.forEach(num => {
@@ -1003,7 +1229,7 @@
       infoEl.className = 'modal-info error';
       confBtn.disabled = true;
     } else {
-      infoEl.textContent = `Спишется ${selfQty} шт. со склада (без денег)`;
+      infoEl.textContent = `Спишется со склада: ${selfQty} шт. (без денег)`;
       infoEl.className = 'modal-info';
       confBtn.disabled = false;
     }
@@ -1020,7 +1246,9 @@
     await update(shiftRef, { selfTaken: currentSelf + selfQty });
   };
 
-  // ═══ МОДАЛКА РАСХОДОВ ═══
+  // ═════════════════════════════════════════
+  //  МОДАЛКА РАСХОДОВ
+  // ══════════════════════════════════════════
   window.openExpenseModal = function() {
     document.getElementById('expenseAmount').value = '';
     document.getElementById('expenseModal').classList.add('active');
@@ -1044,8 +1272,8 @@
   };
 
   window.saveDay = async function() {
-    const p1 = shift.p1 || { cans: 0, packs: 0 };
-    const p2 = shift.p2 || { cans: 0, packs: 0 };
+    const p1 = shift.p1 || { cans: 0, packs: 0, trunk: 0 };
+    const p2 = shift.p2 || { cans: 0, packs: 0, trunk: 0 };
     const p1c = parseInt(p1.cans) || 0, p1p = parseInt(p1.packs) || 0;
     const p2c = parseInt(p2.cans) || 0, p2p = parseInt(p2.packs) || 0;
     
@@ -1071,14 +1299,16 @@
       stockLeft: stock
     });
     await set(shiftRef, { 
-      p1: { cans: 0, packs: 0 }, 
-      p2: { cans: 0, packs: 0 }, 
+      p1: { cans: 0, packs: 0, trunk: 0 }, 
+      p2: { cans: 0, packs: 0, trunk: 0 }, 
       selfTaken: 0, 
       spent: 0 
     });
   };
 
-  // ═══ ПОЛНОЕ УДАЛЕНИЕ ═══
+  // ══════════════════════════════════════════
+  //  ПОЛНОЕ УДАЛЕНИЕ
+  // ══════════════════════════════════════════
   window.openDeleteAllModal = function() {
     document.getElementById('deletePassword').value = '';
     document.getElementById('deleteError').style.display = 'none';
@@ -1106,5 +1336,6 @@
   window.closeSuccessModal = function() {
     document.getElementById('successModal').classList.remove('active');
   };
-</script></body>
+</script>
+</body>
 </html>

@@ -42,12 +42,12 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-bottom: 90px; /* увеличено под более крупные таб-кнопки */
+    padding-bottom: 90px;
     overflow-y: auto;
     overflow-x: hidden;
   }
 
-  /* ═══ ШАПКА С КНОПКОЙ НАЗАД ═══ */
+  /* ═══ ШАПКА ═══ */
   .top-bar {
     padding: 14px 16px 10px;
     display: flex;
@@ -122,7 +122,7 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ═══ BENTO: СКЛАД + ПРИБЫЛЬ ═══ */
+  /* ═══ BENTO ═══ */
   .bento-row {
     display: grid;
     grid-template-columns: 1fr 1.3fr;
@@ -269,7 +269,6 @@
   .seller-stats { display: flex; justify-content: space-between; font-size: 11px; color: #555; margin-bottom: 12px; }
   .seller-stats b { color: #fff; font-size: 14px; }
 
-  /* ═══ КРУПНЫЕ КНОПКИ ДЕЙСТВИЙ ПРОдавца ═══ */
   .seller-actions { display: flex; flex-direction: column; gap: 8px; }
   .seller-actions button {
     border: none;
@@ -292,7 +291,7 @@
   .btn-sell-can { background: linear-gradient(135deg, #3a86ff, #0066ff); box-shadow: 0 4px 12px rgba(58, 134, 255, 0.3); }
   .btn-sell-pack { background: linear-gradient(135deg, #8338ec, #6a0dad); box-shadow: 0 4px 12px rgba(131, 56, 236, 0.3); }
 
-  /* ═══ БОЛЬШАЯ СЕТКА ДЕЙСТВИЙ ═══ */
+  /* ═══ СЕТКА ДЕЙСТВИЙ ═══ */
   .actions-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -408,7 +407,9 @@
   .empty-state .emoji { font-size: 64px; margin-bottom: 16px; }
   .empty-state .msg { font-size: 14px; color: #555; }
 
-  /* ═══ БЛОКНОТ ЗАКАЗОВ ═══ */
+  /* ═══════════════════════════════════════
+     КОМПАКТНЫЙ БЛОКНОТ ЗАКАЗОВ
+     ═══════════════════════════════════════ */
   .orders-fab {
     position: fixed;
     bottom: 110px;
@@ -430,88 +431,210 @@
   .orders-fab:active { transform: scale(0.9); }
   .orders-fab.visible { display: flex; }
 
+  /* Компактная карточка заказа */
   .order-card {
-    background: linear-gradient(135deg, #151515, #0f0f0f);
+    background: #111;
     border: 1px solid #222;
-    border-radius: 16px;
-    padding: 16px;
-    margin-bottom: 12px;
+    border-left: 4px solid #ffbe0b;
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
     position: relative;
+    transition: all 0.15s;
   }
-  .order-card.status-done { border-color: rgba(0, 255, 136, 0.3); }
-  .order-card.status-pending { border-color: rgba(255, 190, 11, 0.3); }
-  .order-card.status-cancelled { border-color: rgba(255, 0, 0, 0.3); opacity: 0.6; }
-  
-  .order-header {
+  .order-card.status-done { 
+    border-left-color: #00ff88; 
+    opacity: 0.55;
+  }
+  .order-card.status-cancelled { 
+    border-left-color: #ff0000; 
+    opacity: 0.4;
+  }
+  .order-card.status-pending {
+    border-left-color: #ffbe0b;
+  }
+
+  /* Верхняя строка: имя + кол-во + статус */
+  .order-top {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 10px;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .order-client-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
   }
   .order-client {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 800;
     color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-  .order-phone {
-    font-size: 13px;
-    color: #3a86ff;
-    text-decoration: none;
-    margin-top: 2px;
-    display: inline-block;
-  }
-  .order-status-badge {
-    font-size: 10px;
-    font-weight: 800;
-    padding: 4px 10px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .order-status-badge.pending { background: rgba(255,190,11,0.15); color: #ffbe0b; border: 1px solid rgba(255,190,11,0.3); }
-  .order-status-badge.done { background: rgba(0,255,136,0.15); color: #00ff88; border: 1px solid rgba(0,255,136,0.3); }
-  .order-status-badge.cancelled { background: rgba(255,0,0,0.15); color: #ff0000; border: 1px solid rgba(255,0,0,0.3); }
-  
-  .order-body {
-    font-size: 13px;
-    color: #aaa;
-    line-height: 1.5;
-    margin-bottom: 12px;
-    word-break: break-word;
-  }
-  .order-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 10px;
-    border-top: 1px solid #1f1f1f;
+  .order-qty-tag {
     font-size: 11px;
-    color: #555;
-  }
-  .order-qty {
     font-weight: 800;
     color: #a78bfa;
-    font-size: 13px;
+    background: rgba(131, 56, 236, 0.15);
+    padding: 1px 6px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .order-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .order-status-dot.pending { background: #ffbe0b; box-shadow: 0 0 6px #ffbe0b; }
+  .order-status-dot.done { background: #00ff88; }
+  .order-status-dot.cancelled { background: #ff0000; }
+
+  /* Вторая строка: продукт + телефон */
+  .order-mid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 4px;
+  }
+  .order-product {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+  }
+  .order-phone-link {
+    color: #3a86ff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 11px;
+    flex-shrink: 0;
+    padding: 2px 6px;
+    background: rgba(58, 134, 255, 0.1);
+    border-radius: 6px;
+  }
+
+  /* Комментарий (одна строка с обрезкой) */
+  .order-note {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.3;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Нижняя строка: дата + действия */
+  .order-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .order-time {
+    font-size: 10px;
+    color: #555;
+    font-weight: 600;
   }
   .order-actions {
     display: flex;
-    gap: 8px;
+    gap: 4px;
   }
   .order-action-btn {
     background: #1a1a1a;
     border: 1px solid #2a2a2a;
-    color: #888;
-    padding: 6px 10px;
-    border-radius: 8px;
+    color: #aaa;
+    padding: 4px 8px;
+    border-radius: 6px;
     font-size: 11px;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.15s;
+    transition: all 0.1s;
+    display: flex;
+    align-items: center;
+    gap: 3px;
   }
   .order-action-btn:active { transform: scale(0.95); }
-  .order-action-btn.complete { color: #00ff88; border-color: rgba(0,255,136,0.3); }
-  .order-action-btn.cancel { color: #ff0000; border-color: rgba(255,0,0,0.3); }
-  .order-action-btn.delete { color: #ff0000; }
+  .order-action-btn.complete { color: #00ff88; border-color: rgba(0,255,136,0.3); background: rgba(0,255,136,0.08); }
+  .order-action-btn.cancel { color: #ff0000; border-color: rgba(255,0,0,0.3); background: rgba(255,0,0,0.08); }
+  .order-action-btn.delete { color: #888; }
+  .order-action-btn.restore { color: #3a86ff; border-color: rgba(58,134,255,0.3); }
+
+  /* Группировка по статусам */
+  .orders-group-title {
+    font-size: 10px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 800;
+    margin: 14px 0 8px 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .orders-group-title .count {
+    background: #222;
+    color: #888;
+    padding: 1px 6px;
+    border-radius: 8px;
+    font-size: 10px;
+  }
+  .orders-group-title.pending { color: #ffbe0b; }
+  .orders-group-title.done { color: #00ff88; }
+  .orders-group-title.cancelled { color: #ff0000; }
+
+  /* Быстрая форма (встроенная в вкладку) */
+  .quick-order-form {
+    background: linear-gradient(135deg, #151515, #0f0f0f);
+    border: 1px solid #2a2a2a;
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 14px;
+  }
+  .qof-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .qof-input {
+    flex: 1;
+    background: #0a0a0a;
+    border: 1px solid #2a2a2a;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 10px;
+    min-width: 0;
+  }
+  .qof-input.small {
+    flex: 0 0 70px;
+    text-align: center;
+  }
+  .qof-submit {
+    width: 100%;
+    background: linear-gradient(135deg, #00ff88, #00cc6a);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .qof-submit:active { transform: scale(0.98); }
 
   /* ═══ НАСТРОЙКИ ═══ */
   .settings-group {
@@ -551,7 +674,7 @@
   }
   .danger-btn:active { transform: scale(0.98); }
 
-  /* ═══ НИЖНЯЯ НАВИГАЦИЯ (БОЛЕЕ КРУПНАЯ) ═══ */
+  /* ═══ НИЖНЯЯ НАВИГАЦИЯ ═══ */
   .bottom-nav {
     position: fixed;
     bottom: 0; left: 0; right: 0;
@@ -574,6 +697,7 @@
     background: transparent;
     color: #555;
     border-radius: 12px;
+    position: relative;
   }
   .nav-item:active { transform: scale(0.95); }
   .nav-item.active { 
@@ -584,8 +708,8 @@
   .nav-item .nav-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
   .nav-item .nav-badge {
     position: absolute;
-    top: 4px;
-    right: calc(50% - 22px);
+    top: 2px;
+    right: calc(50% - 28px);
     background: #00ff88;
     color: #000;
     font-size: 9px;
@@ -823,7 +947,6 @@
     font-weight: 700;
   }
 
-  /* Форма заказа */
   .order-form-field {
     margin-bottom: 16px;
   }
@@ -865,7 +988,6 @@
 <body>
 
 <div class="app">
-  <!-- ШАПКА С КНОПКОЙ НАЗАД -->
   <div class="top-bar">
     <button class="back-btn" id="backBtn" onclick="goBack()">←</button>
     <div class="page-title" id="pageTitle"><span class="logo-small">❄️ ЖИЖА ПРО 26-27</span></div>
@@ -1014,10 +1136,32 @@
     </div>
   </div>
 
-  <!-- ═══ TAB: ЗАКАЗЫ (БЛОКНОТ) ═══ -->
+  <!-- ═══ TAB: ЗАКАЗЫ (КОМПАКТНЫЙ БЛОКНОТ) ═══ -->
   <div class="tab-content" id="tab-orders">
+    
+    <!-- Быстрая форма добавления (всегда видна сверху) -->
+    <div class="quick-order-form">
+      <div class="qof-row">
+        <input type="text" class="qof-input" id="qofClient" placeholder="Имя клиента *" maxlength="30">
+        <input type="number" class="qof-input small" id="qofQty" placeholder="шт" min="0">
+      </div>
+      <div class="qof-row">
+        <input type="tel" class="qof-input" id="qofPhone" placeholder="Телефон" maxlength="20">
+        <select class="qof-input" id="qofProduct" style="flex: 0 0 110px;">
+          <option value="Банки">🧴 Банки</option>
+          <option value="Упаковка">📦 Упак.</option>
+          <option value="Опт">📦 Опт</option>
+          <option value="Другое">✏️ Другое</option>
+        </select>
+      </div>
+      <div class="qof-row">
+        <input type="text" class="qof-input" id="qofNote" placeholder="Комментарий (адрес, время...)" maxlength="100">
+      </div>
+      <button class="qof-submit" onclick="addQuickOrder()">➕ Добавить заказ</button>
+    </div>
+
     <div class="section-title">
-      <span>📝 Заказы клиентов</span>
+      <span>📝 Список заказов</span>
       <span class="hint" id="ordersCount">0 активных</span>
     </div>
     <div id="ordersList"></div>
@@ -1052,13 +1196,12 @@
       <button class="danger-btn" onclick="openDeleteAllModal()">🗑 Удалить все данные</button>
     </div>
     <div style="text-align: center; color: #333; font-size: 11px; margin-top: 30px; padding: 20px;">
-      ЖИЖА ПРО СЕЗОН_26-27<br>v2.3 · Firebase Sync
+      ЖИЖА ПРО СЕЗОН_26-27<br>v2.4 · Firebase Sync
     </div>
   </div>
 </div>
 
-<!-- FAB кнопка добавления заказа (видна только на вкладке заказов) -->
-<button class="orders-fab" id="ordersFab" onclick="openOrderForm()">+</button>
+<!-- FAB больше не нужен — форма встроена вверху -->
 
 <!-- НИЖНЯЯ НАВИГАЦИЯ -->
 <div class="bottom-nav">
@@ -1066,7 +1209,7 @@
     <div class="nav-icon">🏠</div>
     <div class="nav-label">Главная</div>
   </button>
-  <button class="nav-item" onclick="switchTab('orders', this)" style="position:relative;">
+  <button class="nav-item" onclick="switchTab('orders', this)">
     <div class="nav-icon">📝</div>
     <div class="nav-label">Заказы</div>
     <div class="nav-badge" id="ordersNavBadge" style="display:none;">0</div>
@@ -1220,50 +1363,6 @@
   </div>
 </div>
 
-<!-- ═══ МОДАЛКА: ФОРМА ЗАКАЗА ═══ -->
-<div class="modal-overlay" id="orderFormModal">
-  <div class="modal-box">
-    <div class="modal-handle"></div>
-    <div class="modal-title">📝 Новый заказ</div>
-    <div class="modal-subtitle">Запись клиента / заявки</div>
-    
-    <div class="order-form-field">
-      <label>Имя клиента *</label>
-      <input type="text" id="orderClient" placeholder="Например: Иван Петрович" maxlength="50">
-    </div>
-    
-    <div class="order-form-field">
-      <label>Телефон</label>
-      <input type="tel" id="orderPhone" placeholder="+7 ___ ___ __ __" maxlength="20">
-    </div>
-    
-    <div class="order-form-field">
-      <label>Что нужно</label>
-      <select id="orderProduct">
-        <option value="Незамерзайка">🧴 Незамерзайка (банки)</option>
-        <option value="Упаковка">📦 Упаковка (4 шт)</option>
-        <option value="Опт">📦 Опт (много)</option>
-        <option value="Другое">✏️ Другое</option>
-      </select>
-    </div>
-    
-    <div class="order-form-field">
-      <label>Количество</label>
-      <input type="number" id="orderQty" placeholder="0" min="0" step="1">
-    </div>
-    
-    <div class="order-form-field">
-      <label>Комментарий</label>
-      <textarea id="orderNote" placeholder="Детали заказа, адрес, время..." maxlength="300"></textarea>
-    </div>
-    
-    <div class="modal-buttons">
-      <button class="btn-cancel" onclick="closeOrderForm()">Отмена</button>
-      <button class="btn-confirm" onclick="saveOrder()">💾 Сохранить заказ</button>
-    </div>
-  </div>
-</div>
-
 <!-- ═══ МОДАЛКА: УДАЛИТЬ ВСЁ ═══ -->
 <div class="modal-overlay" id="deleteAllModal">
   <div class="modal-box">
@@ -1314,7 +1413,7 @@
   const shiftRef = ref(db, 'current_shift');
   const priceRef = ref(db, 'prices');
   const historyRef = ref(db, 'history');
-  const ordersRef = ref(db, 'orders'); // НОВОЕ: блокнот заказов
+  const ordersRef = ref(db, 'orders');
 
   const PER_PACK = 4;
   const QUICK_CANS = [1, 2, 3, 5, 6, 7, 9, 10, 11];
@@ -1415,12 +1514,12 @@
     });
   });
 
-  // ═══ СЛУШАТЕЛЬ ЗАКАЗОВ ═══
+  // ═══ СЛУШАТЕЛЬ ЗАКАЗОВ (КОМПАКТНЫЙ СПИСОК) ═══
   onValue(ordersRef, s => {
     const el = document.getElementById('ordersList');
     el.innerHTML = '';
     if (!s.exists()) {
-      el.innerHTML = '<div class="empty-state"><div class="emoji">📝</div><div class="msg">Нет заказов<br>Нажмите + чтобы добавить</div></div>';
+      el.innerHTML = '<div class="empty-state"><div class="emoji">📝</div><div class="msg">Нет заказов<br>Заполните форму выше ↑</div></div>';
       updateOrdersBadge(0);
       return;
     }
@@ -1428,51 +1527,76 @@
     s.forEach(c => arr.push({ key: c.key, val: c.val() }));
     arr.sort((a,b) => (b.val.createdAt||0) - (a.val.createdAt||0));
     
-    let pendingCount = 0;
-    arr.forEach(item => {
-      const o = item.val;
-      if (o.status !== 'done' && o.status !== 'cancelled') pendingCount++;
-      
-      const statusClass = o.status === 'done' ? 'status-done' : 
-                          o.status === 'cancelled' ? 'status-cancelled' : 'status-pending';
-      const badgeText = o.status === 'done' ? '✓ Выполнен' : 
-                        o.status === 'cancelled' ? '✕ Отменён' : '⏳ Ожидает';
-      const badgeClass = o.status === 'done' ? 'done' : 
-                         o.status === 'cancelled' ? 'cancelled' : 'pending';
-      
-      const phoneHtml = o.phone ? `<a href="tel:${o.phone}" class="order-phone">📞 ${o.phone}</a>` : '';
-      const qtyHtml = o.qty > 0 ? `<span class="order-qty">${o.qty} шт</span>` : '';
-      const noteHtml = o.note ? `<div class="order-body">${escapeHtml(o.note)}</div>` : '';
-      
-      const actionsHtml = o.status === 'pending' 
-        ? `<button class="order-action-btn complete" onclick="markOrderDone('${item.key}')">✓ Выполнить</button>
-           <button class="order-action-btn cancel" onclick="markOrderCancelled('${item.key}')">✕ Отменить</button>`
-        : '';
-      
-      const d = document.createElement('div');
-      d.className = `order-card ${statusClass}`;
-      d.innerHTML = `
-        <div class="order-header">
-          <div>
-            <div class="order-client">${escapeHtml(o.client)} ${qtyHtml}</div>
-            ${phoneHtml}
-          </div>
-          <span class="order-status-badge ${badgeClass}">${badgeText}</span>
-        </div>
-        <div style="font-size:12px;color:#888;margin-bottom:8px;">${o.product||''}</div>
-        ${noteHtml}
-        <div class="order-meta">
-          <span>${new Date(o.createdAt).toLocaleDateString('ru-RU')} ${new Date(o.createdAt).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})}</span>
-          <div class="order-actions">
-            ${actionsHtml}
-            <button class="order-action-btn delete" onclick="deleteOrder('${item.key}')">🗑</button>
-          </div>
-        </div>`;
-      el.appendChild(d);
-    });
+    // Разделяем по статусам
+    const pending = arr.filter(x => x.val.status !== 'done' && x.val.status !== 'cancelled');
+    const done = arr.filter(x => x.val.status === 'done');
+    const cancelled = arr.filter(x => x.val.status === 'cancelled');
     
-    updateOrdersBadge(pendingCount);
+    let html = '';
+    
+    if (pending.length > 0) {
+      html += `<div class="orders-group-title pending">⏳ Активные <span class="count">${pending.length}</span></div>`;
+      pending.forEach(item => { html += renderOrderCard(item); });
+    }
+    if (done.length > 0) {
+      html += `<div class="orders-group-title done">✓ Выполнены <span class="count">${done.length}</span></div>`;
+      done.forEach(item => { html += renderOrderCard(item); });
+    }
+    if (cancelled.length > 0) {
+      html += `<div class="orders-group-title cancelled">✕ Отменены <span class="count">${cancelled.length}</span></div>`;
+      cancelled.forEach(item => { html += renderOrderCard(item); });
+    }
+    
+    el.innerHTML = html;
+    updateOrdersBadge(pending.length);
   });
+
+  function renderOrderCard(item) {
+    const o = item.val;
+    const statusClass = o.status === 'done' ? 'status-done' : 
+                        o.status === 'cancelled' ? 'status-cancelled' : 'status-pending';
+    const dotClass = o.status === 'done' ? 'done' : 
+                     o.status === 'cancelled' ? 'cancelled' : 'pending';
+    
+    const qtyTag = o.qty > 0 ? `<span class="order-qty-tag">${o.qty} шт</span>` : '';
+    const phoneLink = o.phone ? `<a href="tel:${o.phone}" class="order-phone-link">📞 ${o.phone}</a>` : '';
+    const noteLine = o.note ? `<div class="order-note">💬 ${escapeHtml(o.note)}</div>` : '';
+    
+    let actions = '';
+    if (o.status === 'pending' || !o.status) {
+      actions = `
+        <button class="order-action-btn complete" onclick="markOrderDone('${item.key}')">✓</button>
+        <button class="order-action-btn cancel" onclick="markOrderCancelled('${item.key}')">✕</button>
+        <button class="order-action-btn delete" onclick="deleteOrder('${item.key}')">🗑</button>`;
+    } else {
+      actions = `
+        <button class="order-action-btn restore" onclick="restoreOrder('${item.key}')">↺</button>
+        <button class="order-action-btn delete" onclick="deleteOrder('${item.key}')">🗑</button>`;
+    }
+    
+    const timeStr = new Date(o.createdAt).toLocaleDateString('ru-RU', {day:'2-digit', month:'2-digit'}) + ' ' + 
+                    new Date(o.createdAt).toLocaleTimeString('ru-RU', {hour:'2-digit', minute:'2-digit'});
+    
+    return `
+      <div class="order-card ${statusClass}">
+        <div class="order-top">
+          <div class="order-client-wrap">
+            <span class="order-status-dot ${dotClass}"></span>
+            <span class="order-client">${escapeHtml(o.client)}</span>
+            ${qtyTag}
+          </div>
+          <span style="font-size:10px;color:#666;font-weight:700;">${o.product||''}</span>
+        </div>
+        <div class="order-mid">
+          <span class="order-product">${phoneLink || ''}</span>
+        </div>
+        ${noteLine}
+        <div class="order-bottom">
+          <span class="order-time">${timeStr}</span>
+          <div class="order-actions">${actions}</div>
+        </div>
+      </div>`;
+  }
 
   function escapeHtml(str) {
     return String(str||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]);
@@ -1571,7 +1695,7 @@
     }
   }
 
-  // ═══ НАВИГАЦИЯ МЕЖДУ ТАБАМИ + ВОЗВРАТ ═══
+  // ═══ НАВИГАЦИЯ ═══
   window.switchTab = function(name, btn) {
     currentTab = name;
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -1580,15 +1704,12 @@
     if (btn) btn.classList.add('active');
     document.querySelector('.app').scrollTop = 0;
     
-    // Показываем кнопку "назад" если не на главной
     const backBtn = document.getElementById('backBtn');
     const pageTitle = document.getElementById('pageTitle');
-    const fab = document.getElementById('ordersFab');
     
     if (name === 'main') {
       backBtn.classList.remove('visible');
       pageTitle.innerHTML = '<span class="logo-small">❄️ ЖИЖА ПРО 26-27</span>';
-      fab.classList.remove('visible');
     } else {
       backBtn.classList.add('visible');
       const titles = {
@@ -1597,7 +1718,6 @@
         'settings': '⚙️ Настройки'
       };
       pageTitle.textContent = titles[name] || name;
-      fab.classList.toggle('visible', name === 'orders');
     }
   };
 
@@ -1610,34 +1730,45 @@
     await remove(ref(db, `history/${key}`));
   };
 
-  // ═══ ЗАКАЗЫ: CRUD ═══
-  window.openOrderForm = function() {
-    document.getElementById('orderClient').value = '';
-    document.getElementById('orderPhone').value = '';
-    document.getElementById('orderProduct').value = 'Незамерзайка';
-    document.getElementById('orderQty').value = '';
-    document.getElementById('orderNote').value = '';
-    document.getElementById('orderFormModal').classList.add('active');
-    setTimeout(() => document.getElementById('orderClient').focus(), 100);
-  };
-  window.closeOrderForm = () => document.getElementById('orderFormModal').classList.remove('active');
-  window.saveOrder = async function() {
-    const client = document.getElementById('orderClient').value.trim();
-    if (!client) { alert('Введите имя клиента!'); return; }
+  // ═══ ЗАКАЗЫ: ДОБАВЛЕНИЕ ИЗ БЫСТРОЙ ФОРМЫ ═══
+  window.addQuickOrder = async function() {
+    const client = document.getElementById('qofClient').value.trim();
+    if (!client) { 
+      alert('Введите имя клиента!'); 
+      document.getElementById('qofClient').focus();
+      return; 
+    }
     
     const order = {
       client,
-      phone: document.getElementById('orderPhone').value.trim(),
-      product: document.getElementById('orderProduct').value,
-      qty: parseInt(document.getElementById('orderQty').value)||0,
-      note: document.getElementById('orderNote').value.trim(),
+      phone: document.getElementById('qofPhone').value.trim(),
+      product: document.getElementById('qofProduct').value,
+      qty: parseInt(document.getElementById('qofQty').value)||0,
+      note: document.getElementById('qofNote').value.trim(),
       status: 'pending',
       createdAt: Date.now()
     };
     
-    closeOrderForm();
-    await push(ordersRef, order);
+    try {
+      await push(ordersRef, order);
+      
+      // Очищаем поля (кроме продукта — оставляем выбранным)
+      document.getElementById('qofClient').value = '';
+      document.getElementById('qofPhone').value = '';
+      document.getElementById('qofQty').value = '';
+      document.getElementById('qofNote').value = '';
+      
+      // Возвращаем фокус на поле имени для быстрого ввода следующего
+      document.getElementById('qofClient').focus();
+      
+      // Короткая вибрация (если поддерживается)
+      if (navigator.vibrate) navigator.vibrate(30);
+    } catch (err) {
+      console.error('Ошибка при сохранении заказа:', err);
+      alert('Не удалось сохранить заказ. Проверьте интернет.');
+    }
   };
+
   window.markOrderDone = async function(key) {
     await update(ref(db, `orders/${key}`), { status: 'done' });
   };
@@ -1645,12 +1776,15 @@
     if (!confirm('Отменить этот заказ?')) return;
     await update(ref(db, `orders/${key}`), { status: 'cancelled' });
   };
+  window.restoreOrder = async function(key) {
+    await update(ref(db, `orders/${key}`), { status: 'pending' });
+  };
   window.deleteOrder = async function(key) {
     if (!confirm('Удалить заказ навсегда?')) return;
     await remove(ref(db, `orders/${key}`));
   };
 
-  // ═══ 🚛 ПРИХОД НА СКЛАД ═══
+  // ═══  ПРИХОД НА СКЛАД ═══
   let stockQty = 50;
   window.openStockModal = function() {
     stockQty = 50;

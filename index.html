@@ -42,39 +42,63 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-bottom: 80px;
+    padding-bottom: 90px; /* увеличено под более крупные таб-кнопки */
     overflow-y: auto;
     overflow-x: hidden;
   }
 
+  /* ═══ ШАПКА С КНОПКОЙ НАЗАД ═══ */
   .top-bar {
-    padding: 16px 20px 12px;
+    padding: 14px 16px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 56px;
   }
-  .logo {
-    font-size: 18px;
+  .back-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #2a2a2a;
+    color: #fff;
+    width: 44px; height: 44px;
+    border-radius: 14px;
+    font-size: 22px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+  .back-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.1); }
+  .back-btn.visible { display: flex; }
+  
+  .page-title {
+    font-size: 17px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 0.3px;
+  }
+  .logo-small {
+    font-size: 16px;
     font-weight: 900;
     background: linear-gradient(135deg, #ff006e, #8338ec);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: 0.5px;
   }
-  .status {
+  .status-pill {
     font-size: 10px;
     color: #00ff88;
     background: rgba(0, 255, 136, 0.1);
     border: 1px solid rgba(0, 255, 136, 0.3);
-    padding: 4px 10px;
+    padding: 5px 10px;
     border-radius: 20px;
     font-weight: 700;
     letter-spacing: 1px;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
   }
-  .status::before {
+  .status-pill::before {
     content: '';
     width: 6px; height: 6px;
     background: #00ff88;
@@ -89,7 +113,7 @@
 
   .tab-content {
     display: none;
-    padding: 0 16px 20px;
+    padding: 0 14px 20px;
     animation: fadeIn 0.3s;
   }
   .tab-content.active { display: block; }
@@ -103,7 +127,7 @@
     display: grid;
     grid-template-columns: 1fr 1.3fr;
     gap: 12px;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
   }
   .bento-card {
     background: linear-gradient(135deg, #151515, #0f0f0f);
@@ -166,62 +190,62 @@
   .profit-card .stat .stat-value { color: #fff; font-weight: 700; font-size: 12px; }
 
   .section-title {
-    font-size: 12px;
-    color: #666;
+    font-size: 13px;
+    color: #888;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     font-weight: 700;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  .section-title .hint { font-size: 10px; color: #444; text-transform: none; letter-spacing: 0; }
+  .section-title .hint { font-size: 11px; color: #555; text-transform: none; letter-spacing: 0; font-weight: 600; }
 
   /* ═══ ПРОДАВЦЫ ═══ */
   .sellers-scroll {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 16px;
+    gap: 12px;
+    margin-bottom: 18px;
   }
   .seller-card {
     background: linear-gradient(135deg, #151515, #0f0f0f);
     border: 1px solid #222;
-    border-radius: 16px;
-    padding: 12px;
+    border-radius: 18px;
+    padding: 14px;
   }
-  .seller-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .seller-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
   .seller-avatar {
-    width: 32px; height: 32px;
-    border-radius: 10px;
+    width: 38px; height: 38px;
+    border-radius: 12px;
     background: linear-gradient(135deg, #3a86ff, #0066ff);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: 20px;
     flex-shrink: 0;
   }
   .seller-card:nth-child(2) .seller-avatar { background: linear-gradient(135deg, #8338ec, #6a0dad); }
-  .seller-name { font-size: 13px; font-weight: 800; color: #fff; }
-  .seller-money { font-size: 10px; color: #00ff88; font-weight: 700; }
+  .seller-name { font-size: 15px; font-weight: 800; color: #fff; }
+  .seller-money { font-size: 12px; color: #00ff88; font-weight: 700; }
 
   .trunk-bar {
     background: #0a0a0a;
-    border-radius: 8px;
-    padding: 8px 10px;
-    margin-bottom: 8px;
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
     border: 1px solid #1a1a1a;
   }
-  .trunk-bar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
-  .trunk-bar-label { font-size: 9px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
-  .trunk-bar-value { font-size: 11px; color: #ffbe0b; font-weight: 800; }
+  .trunk-bar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .trunk-bar-label { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
+  .trunk-bar-value { font-size: 14px; color: #ffbe0b; font-weight: 800; }
   .trunk-bar-value.empty { color: #555; }
-  .trunk-progress { height: 4px; background: #1a1a1a; border-radius: 2px; overflow: hidden; }
+  .trunk-progress { height: 6px; background: #1a1a1a; border-radius: 3px; overflow: hidden; }
   .trunk-progress-fill {
     height: 100%;
     background: linear-gradient(90deg, #ffbe0b, #fb5607);
-    border-radius: 2px;
+    border-radius: 3px;
     transition: width 0.3s;
     box-shadow: 0 0 8px rgba(255, 190, 11, 0.5);
   }
@@ -230,190 +254,346 @@
   .wholesale-stat {
     background: rgba(131, 56, 236, 0.1);
     border: 1px solid rgba(131, 56, 236, 0.3);
-    border-radius: 8px;
-    padding: 6px 10px;
-    margin-bottom: 8px;
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 10px;
+    font-size: 11px;
   }
   .wholesale-stat .ws-label { color: #a78bfa; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-  .wholesale-stat .ws-value { color: #fff; font-weight: 800; font-size: 11px; }
+  .wholesale-stat .ws-value { color: #fff; font-weight: 800; font-size: 12px; }
   .wholesale-stat .ws-value.zero { color: #555; }
 
-  .seller-stats { display: flex; justify-content: space-between; font-size: 10px; color: #555; margin-bottom: 10px; }
-  .seller-stats b { color: #fff; font-size: 12px; }
+  .seller-stats { display: flex; justify-content: space-between; font-size: 11px; color: #555; margin-bottom: 12px; }
+  .seller-stats b { color: #fff; font-size: 14px; }
 
-  .seller-actions { display: flex; flex-direction: column; gap: 6px; }
+  /* ═══ КРУПНЫЕ КНОПКИ ДЕЙСТВИЙ ПРОдавца ═══ */
+  .seller-actions { display: flex; flex-direction: column; gap: 8px; }
   .seller-actions button {
     border: none;
-    border-radius: 8px;
-    padding: 8px;
-    font-size: 11px;
-    font-weight: 700;
+    border-radius: 12px;
+    padding: 14px 10px;
+    font-size: 14px;
+    font-weight: 800;
     cursor: pointer;
     color: white;
     transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    letter-spacing: 0.3px;
   }
   .seller-actions button:active { transform: scale(0.96); }
-  .btn-load { background: linear-gradient(135deg, #ffbe0b, #fb5607); font-size: 10px; }
-  .btn-sell-can { background: linear-gradient(135deg, #3a86ff, #0066ff); }
-  .btn-sell-pack { background: linear-gradient(135deg, #8338ec, #6a0dad); }
+  .seller-actions button .btn-icon { font-size: 18px; }
+  .btn-load { background: linear-gradient(135deg, #ffbe0b, #fb5607); box-shadow: 0 4px 12px rgba(255, 190, 11, 0.3); }
+  .btn-sell-can { background: linear-gradient(135deg, #3a86ff, #0066ff); box-shadow: 0 4px 12px rgba(58, 134, 255, 0.3); }
+  .btn-sell-pack { background: linear-gradient(135deg, #8338ec, #6a0dad); box-shadow: 0 4px 12px rgba(131, 56, 236, 0.3); }
 
-  /* ═══ СЕТКА ДЕЙСТВИЙ ═══ */
+  /* ═══ БОЛЬШАЯ СЕТКА ДЕЙСТВИЙ ═══ */
   .actions-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 16px;
+    gap: 12px;
+    margin-bottom: 18px;
   }
   .action-btn {
     background: linear-gradient(135deg, #151515, #0f0f0f);
     border: 1px solid #222;
-    border-radius: 14px;
-    padding: 14px 10px;
+    border-radius: 18px;
+    padding: 22px 14px;
     text-align: center;
     cursor: pointer;
     transition: all 0.2s;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
   }
   .action-btn:active { transform: scale(0.97); }
-  .action-btn .icon { font-size: 24px; margin-bottom: 6px; }
-  .action-btn .label { font-size: 11px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; }
+  .action-btn .icon { font-size: 34px; margin-bottom: 8px; filter: drop-shadow(0 0 10px currentColor); }
+  .action-btn .label { 
+    font-size: 14px; 
+    font-weight: 800; 
+    color: #fff; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+  }
   .action-btn .badge {
     position: absolute;
-    top: 6px; right: 6px;
-    font-size: 9px;
-    font-weight: 800;
-    padding: 2px 6px;
-    border-radius: 8px;
+    top: 10px; right: 10px;
+    font-size: 11px;
+    font-weight: 900;
+    padding: 4px 8px;
+    border-radius: 10px;
+    min-width: 22px;
+    text-align: center;
   }
-  .action-btn.stock-in { border-color: rgba(0, 255, 136, 0.4); background: linear-gradient(135deg, rgba(0,255,136,0.08), rgba(0,204,106,0.03)); }
+  .action-btn.stock-in { border-color: rgba(0, 255, 136, 0.4); background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,204,106,0.03)); }
   .action-btn.stock-in .label { color: #00ff88; }
+  .action-btn.stock-in .icon { color: #00ff88; }
   .action-btn.stock-in .badge { background: rgba(0,255,136,0.2); color: #00ff88; }
-  .action-btn.self { border-color: rgba(255, 190, 11, 0.3); }
+  
+  .action-btn.self { border-color: rgba(255, 190, 11, 0.4); background: linear-gradient(135deg, rgba(255,190,11,0.08), rgba(251,86,7,0.03)); }
+  .action-btn.self .label { color: #ffbe0b; }
+  .action-btn.self .icon { color: #ffbe0b; }
   .action-btn.self .badge { background: rgba(255,190,11,0.2); color: #ffbe0b; }
-  .action-btn.expense { border-color: rgba(255, 0, 110, 0.3); }
+  
+  .action-btn.expense { border-color: rgba(255, 0, 110, 0.4); background: linear-gradient(135deg, rgba(255,0,110,0.08), rgba(217,4,41,0.03)); }
+  .action-btn.expense .label { color: #ff006e; }
+  .action-btn.expense .icon { color: #ff006e; }
   .action-btn.expense .badge { background: rgba(255,0,110,0.2); color: #ff006e; }
+  
   .action-btn.save { 
-    border-color: rgba(58, 134, 255, 0.3);
+    border-color: rgba(58, 134, 255, 0.4);
     grid-column: span 2;
-    background: linear-gradient(135deg, rgba(58, 134, 255, 0.1), rgba(0, 102, 255, 0.05));
+    background: linear-gradient(135deg, rgba(58, 134, 255, 0.12), rgba(0, 102, 255, 0.05));
+    min-height: 80px;
   }
   .action-btn.save .label { color: #3a86ff; }
+  .action-btn.save .icon { color: #3a86ff; }
+  
   .action-btn.wholesale { 
-    border-color: rgba(131, 56, 236, 0.4);
-    background: linear-gradient(135deg, rgba(131, 56, 236, 0.15), rgba(109, 40, 217, 0.05));
+    border-color: rgba(131, 56, 236, 0.5);
+    background: linear-gradient(135deg, rgba(131, 56, 236, 0.18), rgba(109, 40, 217, 0.05));
   }
   .action-btn.wholesale::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 2px;
+    height: 3px;
     background: linear-gradient(90deg, #8338ec, #a78bfa);
   }
   .action-btn.wholesale .label { color: #a78bfa; }
-  .action-btn.wholesale .icon { font-size: 26px; }
-  .action-btn.wholesale .badge { background: rgba(131,56,236,0.25); color: #a78bfa; }
+  .action-btn.wholesale .icon { color: #a78bfa; font-size: 36px; }
+  .action-btn.wholesale .badge { background: rgba(131,56,236,0.3); color: #a78bfa; }
 
   /* ═══ ИСТОРИЯ ═══ */
-  .history-list { display: flex; flex-direction: column; gap: 10px; }
+  .history-list { display: flex; flex-direction: column; gap: 12px; }
   .h-item {
     background: linear-gradient(135deg, #151515, #0f0f0f);
     border: 1px solid #222;
-    border-radius: 14px;
-    padding: 14px;
+    border-radius: 16px;
+    padding: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   .h-left { flex: 1; }
-  .h-date { color: #fff; font-weight: 700; font-size: 13px; margin-bottom: 4px; }
-  .h-detail { color: #555; font-size: 11px; }
+  .h-date { color: #fff; font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+  .h-detail { color: #666; font-size: 12px; }
   .h-right { text-align: right; }
-  .h-sum { font-weight: 800; color: #00ff88; font-size: 16px; text-shadow: 0 0 10px rgba(0, 255, 136, 0.3); }
-  .h-profit { font-size: 11px; font-weight: 700; margin-top: 2px; }
+  .h-sum { font-weight: 800; color: #00ff88; font-size: 18px; text-shadow: 0 0 10px rgba(0, 255, 136, 0.3); }
+  .h-profit { font-size: 12px; font-weight: 700; margin-top: 4px; }
   .h-profit.positive { color: #00ff88; }
   .h-profit.negative { color: #ff0000; }
   .h-delete {
     background: rgba(255, 0, 0, 0.1);
     color: #ff0000;
     border: 1px solid rgba(255, 0, 0, 0.3);
-    border-radius: 6px;
-    padding: 4px 8px;
-    font-size: 12px;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
     font-weight: 700;
     cursor: pointer;
-    margin-left: 10px;
+    margin-left: 12px;
   }
-  .empty-state { text-align: center; padding: 40px 20px; color: #444; }
-  .empty-state .emoji { font-size: 48px; margin-bottom: 12px; }
+  .empty-state { text-align: center; padding: 60px 20px; color: #444; }
+  .empty-state .emoji { font-size: 64px; margin-bottom: 16px; }
+  .empty-state .msg { font-size: 14px; color: #555; }
+
+  /* ═══ БЛОКНОТ ЗАКАЗОВ ═══ */
+  .orders-fab {
+    position: fixed;
+    bottom: 110px;
+    right: 20px;
+    width: 64px; height: 64px;
+    background: linear-gradient(135deg, #00ff88, #00cc6a);
+    border: none;
+    border-radius: 50%;
+    font-size: 32px;
+    color: #000;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0, 255, 136, 0.4);
+    z-index: 50;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .orders-fab:active { transform: scale(0.9); }
+  .orders-fab.visible { display: flex; }
+
+  .order-card {
+    background: linear-gradient(135deg, #151515, #0f0f0f);
+    border: 1px solid #222;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .order-card.status-done { border-color: rgba(0, 255, 136, 0.3); }
+  .order-card.status-pending { border-color: rgba(255, 190, 11, 0.3); }
+  .order-card.status-cancelled { border-color: rgba(255, 0, 0, 0.3); opacity: 0.6; }
+  
+  .order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .order-client {
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+  }
+  .order-phone {
+    font-size: 13px;
+    color: #3a86ff;
+    text-decoration: none;
+    margin-top: 2px;
+    display: inline-block;
+  }
+  .order-status-badge {
+    font-size: 10px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .order-status-badge.pending { background: rgba(255,190,11,0.15); color: #ffbe0b; border: 1px solid rgba(255,190,11,0.3); }
+  .order-status-badge.done { background: rgba(0,255,136,0.15); color: #00ff88; border: 1px solid rgba(0,255,136,0.3); }
+  .order-status-badge.cancelled { background: rgba(255,0,0,0.15); color: #ff0000; border: 1px solid rgba(255,0,0,0.3); }
+  
+  .order-body {
+    font-size: 13px;
+    color: #aaa;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    word-break: break-word;
+  }
+  .order-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid #1f1f1f;
+    font-size: 11px;
+    color: #555;
+  }
+  .order-qty {
+    font-weight: 800;
+    color: #a78bfa;
+    font-size: 13px;
+  }
+  .order-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .order-action-btn {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    color: #888;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .order-action-btn:active { transform: scale(0.95); }
+  .order-action-btn.complete { color: #00ff88; border-color: rgba(0,255,136,0.3); }
+  .order-action-btn.cancel { color: #ff0000; border-color: rgba(255,0,0,0.3); }
+  .order-action-btn.delete { color: #ff0000; }
 
   /* ═══ НАСТРОЙКИ ═══ */
   .settings-group {
     background: linear-gradient(135deg, #151515, #0f0f0f);
     border: 1px solid #222;
-    border-radius: 14px;
-    padding: 14px;
-    margin-bottom: 12px;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 14px;
   }
-  .settings-group-title { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-weight: 700; }
-  .price-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #1a1a1a; }
+  .settings-group-title { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; font-weight: 700; }
+  .price-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #1a1a1a; }
   .price-row:last-child { border-bottom: none; }
-  .price-row label { font-size: 13px; color: #ccc; }
+  .price-row label { font-size: 15px; color: #ccc; font-weight: 600; }
   .price-row input {
     background: #0a0a0a;
     border: 1px solid #2a2a2a;
     color: #fff;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 800;
-    padding: 6px 10px;
-    border-radius: 8px;
-    width: 90px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    width: 110px;
     text-align: right;
   }
   .danger-btn {
     width: 100%;
-    padding: 14px;
+    padding: 18px;
     background: rgba(255, 0, 0, 0.1);
     border: 1px solid rgba(255, 0, 0, 0.3);
     color: #ff0000;
-    border-radius: 12px;
-    font-size: 13px;
-    font-weight: 700;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 800;
     cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 1px;
   }
+  .danger-btn:active { transform: scale(0.98); }
 
-  /* ═══ НИЖНЯЯ НАВИГАЦИЯ ═══ */
+  /* ═══ НИЖНЯЯ НАВИГАЦИЯ (БОЛЕЕ КРУПНАЯ) ═══ */
   .bottom-nav {
     position: fixed;
     bottom: 0; left: 0; right: 0;
-    background: rgba(10, 10, 10, 0.95);
+    background: rgba(10, 10, 10, 0.98);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-top: 1px solid #1a1a1a;
     display: flex;
     justify-content: space-around;
-    padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+    padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
     z-index: 100;
   }
   .nav-item {
     flex: 1;
     text-align: center;
-    padding: 6px;
+    padding: 8px 4px;
     cursor: pointer;
     transition: all 0.2s;
     border: none;
     background: transparent;
     color: #555;
+    border-radius: 12px;
   }
-  .nav-item.active { color: #ff006e; }
-  .nav-item .nav-icon { font-size: 22px; margin-bottom: 2px; }
-  .nav-item .nav-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+  .nav-item:active { transform: scale(0.95); }
+  .nav-item.active { 
+    color: #ff006e; 
+    background: rgba(255, 0, 110, 0.08);
+  }
+  .nav-item .nav-icon { font-size: 26px; margin-bottom: 4px; }
+  .nav-item .nav-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+  .nav-item .nav-badge {
+    position: absolute;
+    top: 4px;
+    right: calc(50% - 22px);
+    background: #00ff88;
+    color: #000;
+    font-size: 9px;
+    font-weight: 900;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+  }
 
   /* ═══ МОДАЛКИ ═══ */
   .modal-overlay {
@@ -443,15 +623,15 @@
     to { transform: translateY(0); }
   }
   .modal-handle { width: 40px; height: 4px; background: #333; border-radius: 2px; margin: 0 auto 16px; }
-  .modal-title { text-align: center; font-size: 20px; font-weight: 900; margin-bottom: 6px; color: #fff; }
-  .modal-subtitle { text-align: center; font-size: 12px; color: #666; margin-bottom: 20px; }
+  .modal-title { text-align: center; font-size: 22px; font-weight: 900; margin-bottom: 8px; color: #fff; }
+  .modal-subtitle { text-align: center; font-size: 13px; color: #666; margin-bottom: 22px; }
 
-  .seller-picker { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  .seller-picker { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
   .seller-pick-btn {
     background: #0f0f0f;
     border: 2px solid #222;
-    border-radius: 12px;
-    padding: 12px;
+    border-radius: 14px;
+    padding: 16px;
     text-align: center;
     cursor: pointer;
     transition: all 0.15s;
@@ -463,20 +643,20 @@
     border-color: #8338ec;
     background: rgba(131, 56, 236, 0.15);
     color: #fff;
-    box-shadow: 0 0 15px rgba(131, 56, 236, 0.3);
+    box-shadow: 0 0 20px rgba(131, 56, 236, 0.3);
   }
-  .seller-pick-btn .sp-avatar { font-size: 24px; margin-bottom: 4px; }
-  .seller-pick-btn .sp-name { font-size: 12px; }
+  .seller-pick-btn .sp-avatar { font-size: 28px; margin-bottom: 6px; }
+  .seller-pick-btn .sp-name { font-size: 14px; font-weight: 800; }
 
-  .qty-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
+  .qty-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
   .qty-btn {
     background: #0f0f0f;
     border: 2px solid #222;
     color: #fff;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 800;
-    padding: 16px 0;
-    border-radius: 12px;
+    padding: 20px 0;
+    border-radius: 14px;
     cursor: pointer;
     transition: all 0.15s;
   }
@@ -496,62 +676,62 @@
   .qty-custom {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 12px;
+    gap: 12px;
+    margin-bottom: 14px;
     background: #0a0a0a;
-    padding: 12px;
-    border-radius: 12px;
+    padding: 14px;
+    border-radius: 14px;
     border: 1px solid #222;
   }
-  .qty-custom label { font-size: 12px; color: #666; font-weight: 700; }
+  .qty-custom label { font-size: 13px; color: #666; font-weight: 700; }
   .qty-custom input {
     flex: 1;
     background: #151515;
     border: 1px solid #2a2a2a;
     color: #fff;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 800;
     text-align: center;
-    padding: 8px;
-    border-radius: 8px;
+    padding: 12px;
+    border-radius: 10px;
   }
 
   .modal-info {
     text-align: center;
-    font-size: 13px;
+    font-size: 14px;
     color: #ffbe0b;
-    margin-bottom: 16px;
-    padding: 12px;
+    margin-bottom: 18px;
+    padding: 14px;
     background: rgba(255, 190, 11, 0.1);
     border: 1px solid rgba(255, 190, 11, 0.3);
-    border-radius: 10px;
+    border-radius: 12px;
     font-weight: 700;
   }
   .modal-info.error { color: #ff0000; background: rgba(255, 0, 0, 0.1); border-color: rgba(255, 0, 0, 0.3); }
   .modal-info.wholesale-info { color: #a78bfa; background: rgba(131, 56, 236, 0.1); border-color: rgba(131, 56, 236, 0.3); }
   .modal-info.stock-info { color: #00ff88; background: rgba(0, 255, 136, 0.1); border-color: rgba(0, 255, 136, 0.3); }
 
-  .modal-buttons { display: flex; gap: 10px; }
+  .modal-buttons { display: flex; gap: 12px; }
   .btn-cancel {
     flex: 1;
     background: #222;
     color: #888;
-    padding: 14px;
-    font-size: 14px;
+    padding: 18px;
+    font-size: 16px;
     font-weight: 700;
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
     cursor: pointer;
   }
   .btn-confirm {
     flex: 2;
     background: linear-gradient(135deg, #00ff88, #00cc6a);
     color: #000;
-    padding: 14px;
-    font-size: 15px;
+    padding: 18px;
+    font-size: 17px;
     font-weight: 800;
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
   }
@@ -568,43 +748,43 @@
     font-size: 28px;
     font-weight: 800;
     text-align: center;
-    padding: 14px;
-    border-radius: 12px;
-    margin-bottom: 16px;
+    padding: 16px;
+    border-radius: 14px;
+    margin-bottom: 18px;
   }
   .password-input { font-size: 22px; letter-spacing: 4px; }
 
   .warning-box {
     background: rgba(255, 0, 0, 0.1);
     border: 1px solid rgba(255, 0, 0, 0.3);
-    border-radius: 12px;
-    padding: 14px;
-    margin-bottom: 16px;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 18px;
     text-align: center;
     color: #ff0000;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     line-height: 1.5;
   }
   .success-box {
     background: rgba(0, 255, 136, 0.1);
     border: 1px solid rgba(0, 255, 136, 0.3);
-    border-radius: 12px;
-    padding: 14px;
-    margin-bottom: 16px;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 18px;
     text-align: center;
     color: #00ff88;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
   }
 
   .trunk-status-line {
-    font-size: 11px;
+    font-size: 12px;
     color: #666;
-    margin-bottom: 14px;
-    padding: 10px;
+    margin-bottom: 16px;
+    padding: 12px;
     background: #0a0a0a;
-    border-radius: 10px;
+    border-radius: 12px;
     border: 1px solid #222;
     text-align: center;
   }
@@ -613,14 +793,14 @@
   .input-row {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 12px;
+    gap: 12px;
+    margin-bottom: 14px;
     background: #0a0a0a;
-    padding: 12px;
-    border-radius: 12px;
+    padding: 14px;
+    border-radius: 14px;
     border: 1px solid #222;
   }
-  .input-row label { font-size: 12px; color: #666; font-weight: 700; white-space: nowrap; }
+  .input-row label { font-size: 13px; color: #666; font-weight: 700; white-space: nowrap; }
   .input-row input {
     flex: 1;
     background: #151515;
@@ -629,27 +809,67 @@
     font-size: 22px;
     font-weight: 800;
     text-align: center;
-    padding: 8px;
-    border-radius: 8px;
+    padding: 12px;
+    border-radius: 10px;
   }
-  .input-row .unit { font-size: 12px; color: #666; font-weight: 700; }
+  .input-row .unit { font-size: 13px; color: #666; font-weight: 700; }
 
   .field-label {
-    font-size: 11px;
-    color: #666;
+    font-size: 12px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  /* Форма заказа */
+  .order-form-field {
+    margin-bottom: 16px;
+  }
+  .order-form-field label {
+    display: block;
+    font-size: 12px;
+    color: #888;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 8px;
     font-weight: 700;
+  }
+  .order-form-field input,
+  .order-form-field textarea,
+  .order-form-field select {
+    width: 100%;
+    background: #0a0a0a;
+    border: 1px solid #2a2a2a;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px;
+    border-radius: 12px;
+    font-family: inherit;
+  }
+  .order-form-field textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+  .order-form-field select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23888' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
   }
 </style>
 </head>
 <body>
 
 <div class="app">
+  <!-- ШАПКА С КНОПКОЙ НАЗАД -->
   <div class="top-bar">
-    <div class="logo">❄️ ЖИЖА ПРО 26-27</div>
-    <div class="status">ONLINE</div>
+    <button class="back-btn" id="backBtn" onclick="goBack()">←</button>
+    <div class="page-title" id="pageTitle"><span class="logo-small">❄️ ЖИЖА ПРО 26-27</span></div>
+    <div class="status-pill">ONLINE</div>
   </div>
 
   <!-- ═══ TAB: ГЛАВНАЯ ═══ -->
@@ -727,9 +947,9 @@
           <span>Розница: <b id="p1_total">0</b> шт</span>
         </div>
         <div class="seller-actions">
-          <button class="btn-load" onclick="openLoadModal(1)">🚗 В багажник</button>
-          <button class="btn-sell-can" onclick="openSellModal(1, 'can')">🧴 Банки</button>
-          <button class="btn-sell-pack" onclick="openSellModal(1, 'pack')">📦 Упаковки</button>
+          <button class="btn-load" onclick="openLoadModal(1)"><span class="btn-icon">🚗</span> В багажник</button>
+          <button class="btn-sell-can" onclick="openSellModal(1, 'can')"><span class="btn-icon">🧴</span> Банки</button>
+          <button class="btn-sell-pack" onclick="openSellModal(1, 'pack')"><span class="btn-icon">📦</span> Упаковки</button>
         </div>
       </div>
 
@@ -758,9 +978,9 @@
           <span>Розница: <b id="p2_total">0</b> шт</span>
         </div>
         <div class="seller-actions">
-          <button class="btn-load" onclick="openLoadModal(2)">🚗 В багажник</button>
-          <button class="btn-sell-can" onclick="openSellModal(2, 'can')">🧴 Банки</button>
-          <button class="btn-sell-pack" onclick="openSellModal(2, 'pack')">📦 Упаковки</button>
+          <button class="btn-load" onclick="openLoadModal(2)"><span class="btn-icon">🚗</span> В багажник</button>
+          <button class="btn-sell-can" onclick="openSellModal(2, 'can')"><span class="btn-icon">🧴</span> Банки</button>
+          <button class="btn-sell-pack" onclick="openSellModal(2, 'pack')"><span class="btn-icon">📦</span> Упаковки</button>
         </div>
       </div>
     </div>
@@ -770,28 +990,37 @@
       <div class="action-btn stock-in" onclick="openStockModal()">
         <div class="badge">+</div>
         <div class="icon">🚛</div>
-        <div class="label">Приход на склад</div>
+        <div class="label">Приход<br>на склад</div>
       </div>
       <div class="action-btn wholesale" onclick="openWholesaleModal()">
         <div class="badge" id="wsBadge" style="display:none;">0</div>
         <div class="icon">📦</div>
-        <div class="label">Продать оптом</div>
+        <div class="label">Продать<br>оптом</div>
       </div>
       <div class="action-btn self" onclick="openSelfTakeModal()">
         <div class="badge" id="selfBadge" style="display:none;">0</div>
         <div class="icon">🏠</div>
-        <div class="label">Залили себе</div>
+        <div class="label">Залили<br>себе</div>
       </div>
       <div class="action-btn expense" onclick="openExpenseModal()">
         <div class="badge" id="expBadge" style="display:none;">0</div>
         <div class="icon">💸</div>
-        <div class="label">Добавить расход</div>
+        <div class="label">Добавить<br>расход</div>
       </div>
       <div class="action-btn save" onclick="saveDay()">
         <div class="icon">💾</div>
         <div class="label">Сохранить итоги дня</div>
       </div>
     </div>
+  </div>
+
+  <!-- ═══ TAB: ЗАКАЗЫ (БЛОКНОТ) ═══ -->
+  <div class="tab-content" id="tab-orders">
+    <div class="section-title">
+      <span>📝 Заказы клиентов</span>
+      <span class="hint" id="ordersCount">0 активных</span>
+    </div>
+    <div id="ordersList"></div>
   </div>
 
   <!-- ═══ TAB: ИСТОРИЯ ═══ -->
@@ -823,16 +1052,24 @@
       <button class="danger-btn" onclick="openDeleteAllModal()">🗑 Удалить все данные</button>
     </div>
     <div style="text-align: center; color: #333; font-size: 11px; margin-top: 30px; padding: 20px;">
-      ЖИЖА ПРО СЕЗОН_26-27<br>v2.2 · Firebase Sync
+      ЖИЖА ПРО СЕЗОН_26-27<br>v2.3 · Firebase Sync
     </div>
   </div>
 </div>
+
+<!-- FAB кнопка добавления заказа (видна только на вкладке заказов) -->
+<button class="orders-fab" id="ordersFab" onclick="openOrderForm()">+</button>
 
 <!-- НИЖНЯЯ НАВИГАЦИЯ -->
 <div class="bottom-nav">
   <button class="nav-item active" onclick="switchTab('main', this)">
     <div class="nav-icon">🏠</div>
     <div class="nav-label">Главная</div>
+  </button>
+  <button class="nav-item" onclick="switchTab('orders', this)" style="position:relative;">
+    <div class="nav-icon">📝</div>
+    <div class="nav-label">Заказы</div>
+    <div class="nav-badge" id="ordersNavBadge" style="display:none;">0</div>
   </button>
   <button class="nav-item" onclick="switchTab('history', this)">
     <div class="nav-icon">📜</div>
@@ -983,12 +1220,56 @@
   </div>
 </div>
 
+<!-- ═══ МОДАЛКА: ФОРМА ЗАКАЗА ═══ -->
+<div class="modal-overlay" id="orderFormModal">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-title">📝 Новый заказ</div>
+    <div class="modal-subtitle">Запись клиента / заявки</div>
+    
+    <div class="order-form-field">
+      <label>Имя клиента *</label>
+      <input type="text" id="orderClient" placeholder="Например: Иван Петрович" maxlength="50">
+    </div>
+    
+    <div class="order-form-field">
+      <label>Телефон</label>
+      <input type="tel" id="orderPhone" placeholder="+7 ___ ___ __ __" maxlength="20">
+    </div>
+    
+    <div class="order-form-field">
+      <label>Что нужно</label>
+      <select id="orderProduct">
+        <option value="Незамерзайка">🧴 Незамерзайка (банки)</option>
+        <option value="Упаковка">📦 Упаковка (4 шт)</option>
+        <option value="Опт">📦 Опт (много)</option>
+        <option value="Другое">✏️ Другое</option>
+      </select>
+    </div>
+    
+    <div class="order-form-field">
+      <label>Количество</label>
+      <input type="number" id="orderQty" placeholder="0" min="0" step="1">
+    </div>
+    
+    <div class="order-form-field">
+      <label>Комментарий</label>
+      <textarea id="orderNote" placeholder="Детали заказа, адрес, время..." maxlength="300"></textarea>
+    </div>
+    
+    <div class="modal-buttons">
+      <button class="btn-cancel" onclick="closeOrderForm()">Отмена</button>
+      <button class="btn-confirm" onclick="saveOrder()">💾 Сохранить заказ</button>
+    </div>
+  </div>
+</div>
+
 <!-- ═══ МОДАЛКА: УДАЛИТЬ ВСЁ ═══ -->
 <div class="modal-overlay" id="deleteAllModal">
   <div class="modal-box">
     <div class="modal-handle"></div>
     <div class="modal-title" style="color:#ff0000;">🗑 Удалить всё?</div>
-    <div class="warning-box">⚠️ Будут удалены:<br>Склад · Багажники · Продажи · История · Цены<br><br><b>Восстановить невозможно!</b></div>
+    <div class="warning-box">⚠️ Будут удалены:<br>Склад · Багажники · Продажи · История · Цены · Заказы<br><br><b>Восстановить невозможно!</b></div>
     <div class="qty-custom" style="background:rgba(255,0,0,0.05);border-color:rgba(255,0,0,0.3);">
       <label style="color:#ff0000;">Пароль:</label>
       <input type="password" class="password-input" id="deletePassword" placeholder="••••" style="background:#0a0a0a;border-color:#ff0000;">
@@ -1033,6 +1314,7 @@
   const shiftRef = ref(db, 'current_shift');
   const priceRef = ref(db, 'prices');
   const historyRef = ref(db, 'history');
+  const ordersRef = ref(db, 'orders'); // НОВОЕ: блокнот заказов
 
   const PER_PACK = 4;
   const QUICK_CANS = [1, 2, 3, 5, 6, 7, 9, 10, 11];
@@ -1049,6 +1331,7 @@
     selfTaken: 0, spent: 0 
   };
   let prices = { cost: 100, can: 200, pack: 750 };
+  let currentTab = 'main';
 
   function normalizeShift(v) {
     function fixPerson(p) {
@@ -1106,7 +1389,7 @@
     const el = document.getElementById('historyList');
     el.innerHTML = '';
     if (!s.exists()) {
-      el.innerHTML = '<div class="empty-state"><div class="emoji">📭</div>Пока пусто</div>';
+      el.innerHTML = '<div class="empty-state"><div class="emoji">📭</div><div class="msg">Пока пусто</div></div>';
       return;
     }
     const arr = [];
@@ -1131,6 +1414,82 @@
       el.appendChild(d);
     });
   });
+
+  // ═══ СЛУШАТЕЛЬ ЗАКАЗОВ ═══
+  onValue(ordersRef, s => {
+    const el = document.getElementById('ordersList');
+    el.innerHTML = '';
+    if (!s.exists()) {
+      el.innerHTML = '<div class="empty-state"><div class="emoji">📝</div><div class="msg">Нет заказов<br>Нажмите + чтобы добавить</div></div>';
+      updateOrdersBadge(0);
+      return;
+    }
+    const arr = [];
+    s.forEach(c => arr.push({ key: c.key, val: c.val() }));
+    arr.sort((a,b) => (b.val.createdAt||0) - (a.val.createdAt||0));
+    
+    let pendingCount = 0;
+    arr.forEach(item => {
+      const o = item.val;
+      if (o.status !== 'done' && o.status !== 'cancelled') pendingCount++;
+      
+      const statusClass = o.status === 'done' ? 'status-done' : 
+                          o.status === 'cancelled' ? 'status-cancelled' : 'status-pending';
+      const badgeText = o.status === 'done' ? '✓ Выполнен' : 
+                        o.status === 'cancelled' ? '✕ Отменён' : '⏳ Ожидает';
+      const badgeClass = o.status === 'done' ? 'done' : 
+                         o.status === 'cancelled' ? 'cancelled' : 'pending';
+      
+      const phoneHtml = o.phone ? `<a href="tel:${o.phone}" class="order-phone">📞 ${o.phone}</a>` : '';
+      const qtyHtml = o.qty > 0 ? `<span class="order-qty">${o.qty} шт</span>` : '';
+      const noteHtml = o.note ? `<div class="order-body">${escapeHtml(o.note)}</div>` : '';
+      
+      const actionsHtml = o.status === 'pending' 
+        ? `<button class="order-action-btn complete" onclick="markOrderDone('${item.key}')">✓ Выполнить</button>
+           <button class="order-action-btn cancel" onclick="markOrderCancelled('${item.key}')">✕ Отменить</button>`
+        : '';
+      
+      const d = document.createElement('div');
+      d.className = `order-card ${statusClass}`;
+      d.innerHTML = `
+        <div class="order-header">
+          <div>
+            <div class="order-client">${escapeHtml(o.client)} ${qtyHtml}</div>
+            ${phoneHtml}
+          </div>
+          <span class="order-status-badge ${badgeClass}">${badgeText}</span>
+        </div>
+        <div style="font-size:12px;color:#888;margin-bottom:8px;">${o.product||''}</div>
+        ${noteHtml}
+        <div class="order-meta">
+          <span>${new Date(o.createdAt).toLocaleDateString('ru-RU')} ${new Date(o.createdAt).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})}</span>
+          <div class="order-actions">
+            ${actionsHtml}
+            <button class="order-action-btn delete" onclick="deleteOrder('${item.key}')">🗑</button>
+          </div>
+        </div>`;
+      el.appendChild(d);
+    });
+    
+    updateOrdersBadge(pendingCount);
+  });
+
+  function escapeHtml(str) {
+    return String(str||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]);
+  }
+
+  function updateOrdersBadge(count) {
+    const navBadge = document.getElementById('ordersNavBadge');
+    const countEl = document.getElementById('ordersCount');
+    if (count > 0) {
+      navBadge.textContent = count;
+      navBadge.style.display = 'block';
+      countEl.textContent = `${count} активных`;
+    } else {
+      navBadge.style.display = 'none';
+      countEl.textContent = 'нет активных';
+    }
+  }
 
   // ═══ ОТРИСОВКА ═══
   function render() {
@@ -1212,17 +1571,83 @@
     }
   }
 
+  // ═══ НАВИГАЦИЯ МЕЖДУ ТАБАМИ + ВОЗВРАТ ═══
   window.switchTab = function(name, btn) {
+    currentTab = name;
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     document.getElementById('tab-'+name).classList.add('active');
     if (btn) btn.classList.add('active');
     document.querySelector('.app').scrollTop = 0;
+    
+    // Показываем кнопку "назад" если не на главной
+    const backBtn = document.getElementById('backBtn');
+    const pageTitle = document.getElementById('pageTitle');
+    const fab = document.getElementById('ordersFab');
+    
+    if (name === 'main') {
+      backBtn.classList.remove('visible');
+      pageTitle.innerHTML = '<span class="logo-small">❄️ ЖИЖА ПРО 26-27</span>';
+      fab.classList.remove('visible');
+    } else {
+      backBtn.classList.add('visible');
+      const titles = {
+        'orders': '📝 Заказы',
+        'history': '📜 История',
+        'settings': '⚙️ Настройки'
+      };
+      pageTitle.textContent = titles[name] || name;
+      fab.classList.toggle('visible', name === 'orders');
+    }
+  };
+
+  window.goBack = function() {
+    switchTab('main', document.querySelector('.nav-item'));
   };
 
   window.deleteHistoryItem = async function(key) {
     if (!confirm('Удалить запись?')) return;
     await remove(ref(db, `history/${key}`));
+  };
+
+  // ═══ ЗАКАЗЫ: CRUD ═══
+  window.openOrderForm = function() {
+    document.getElementById('orderClient').value = '';
+    document.getElementById('orderPhone').value = '';
+    document.getElementById('orderProduct').value = 'Незамерзайка';
+    document.getElementById('orderQty').value = '';
+    document.getElementById('orderNote').value = '';
+    document.getElementById('orderFormModal').classList.add('active');
+    setTimeout(() => document.getElementById('orderClient').focus(), 100);
+  };
+  window.closeOrderForm = () => document.getElementById('orderFormModal').classList.remove('active');
+  window.saveOrder = async function() {
+    const client = document.getElementById('orderClient').value.trim();
+    if (!client) { alert('Введите имя клиента!'); return; }
+    
+    const order = {
+      client,
+      phone: document.getElementById('orderPhone').value.trim(),
+      product: document.getElementById('orderProduct').value,
+      qty: parseInt(document.getElementById('orderQty').value)||0,
+      note: document.getElementById('orderNote').value.trim(),
+      status: 'pending',
+      createdAt: Date.now()
+    };
+    
+    closeOrderForm();
+    await push(ordersRef, order);
+  };
+  window.markOrderDone = async function(key) {
+    await update(ref(db, `orders/${key}`), { status: 'done' });
+  };
+  window.markOrderCancelled = async function(key) {
+    if (!confirm('Отменить этот заказ?')) return;
+    await update(ref(db, `orders/${key}`), { status: 'cancelled' });
+  };
+  window.deleteOrder = async function(key) {
+    if (!confirm('Удалить заказ навсегда?')) return;
+    await remove(ref(db, `orders/${key}`));
   };
 
   // ═══ 🚛 ПРИХОД НА СКЛАД ═══
@@ -1307,7 +1732,7 @@
     await update(shiftRef, { [`p${loadSeller}/trunk`]: cur+loadQty });
   };
 
-  // ═══ РОЗНИЧНАЯ ПРОДАЖА (из багажника) ═══
+  // ═══ РОЗНИЧНАЯ ПРОДАЖА ═══
   let modalSeller=1, modalType='can', modalQty=1;
   window.openSellModal = function(seller, type) {
     modalSeller=seller; modalType=type; modalQty=1;
@@ -1348,7 +1773,7 @@
     await update(shiftRef, { [`p${modalSeller}/${field}`]: cur+modalQty });
   };
 
-  // ═══ ОПТОВАЯ ПРОДАЖА (со склада) ═══
+  // ═══ ОПТОВАЯ ПРОДАЖА ═══
   let wsSeller = 1, wsQty = 20;
   window.openWholesaleModal = function() {
     wsSeller = 1; wsQty = 20;
@@ -1421,7 +1846,7 @@
     });
   };
 
-  // ═══ ДЛЯ СЕБЯ (со склада) ═══
+  // ═══ ДЛЯ СЕБЯ ═══
   let selfQty=1;
   window.openSelfTakeModal = () => {
     selfQty=1;
@@ -1511,7 +1936,7 @@
     if(document.getElementById('deletePassword').value!==ADMIN_PASSWORD){document.getElementById('deleteError').style.display='block';return;}
     if(!confirm('ТОЧНО УДАЛИТЬ ВСЁ?'))return;
     closeDeleteAllModal();
-    await Promise.all([remove(stockRef),remove(shiftRef),remove(priceRef),remove(historyRef)]);
+    await Promise.all([remove(stockRef),remove(shiftRef),remove(priceRef),remove(historyRef),remove(ordersRef)]);
     document.getElementById('successModal').classList.add('active');
   };
   window.closeSuccessModal=()=>document.getElementById('successModal').classList.remove('active');

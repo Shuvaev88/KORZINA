@@ -236,7 +236,6 @@
   .seller-name { font-size: 15px; font-weight: 800; color: #fff; }
   .seller-money { font-size: 12px; color: #00ff88; font-weight: 700; }
 
-  /* Багажник с кнопкой редактирования */
   .trunk-bar {
     background: #0a0a0a;
     border-radius: 10px;
@@ -277,7 +276,6 @@
   }
   .trunk-progress-fill.empty { background: #333; box-shadow: none; }
 
-  /* Детализация продаж */
   .sales-breakdown {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -288,21 +286,9 @@
     padding: 8px;
     border: 1px solid #1a1a1a;
   }
-  .sb-item {
-    text-align: center;
-  }
-  .sb-val {
-    font-size: 14px;
-    font-weight: 800;
-    color: #fff;
-    line-height: 1;
-  }
-  .sb-lbl {
-    font-size: 9px;
-    color: #666;
-    text-transform: uppercase;
-    margin-top: 2px;
-  }
+  .sb-item { text-align: center; }
+  .sb-val { font-size: 14px; font-weight: 800; color: #fff; line-height: 1; }
+  .sb-lbl { font-size: 9px; color: #666; text-transform: uppercase; margin-top: 2px; }
   .sb-item.cans .sb-val { color: #3a86ff; }
   .sb-item.packs .sb-val { color: #8338ec; }
   .sb-item.wholesale .sb-val { color: #a78bfa; }
@@ -463,262 +449,6 @@
   .empty-state .emoji { font-size: 64px; margin-bottom: 16px; }
   .empty-state .msg { font-size: 14px; color: #555; }
 
-  /* ═══════════════════════════════════════
-     БЛОКНОТ ЗАКАЗОВ
-     ═══════════════════════════════════════ */
-  .order-add-form {
-    background: linear-gradient(135deg, #1a1a1a, #151515);
-    border: 1px solid #333;
-    border-radius: 16px;
-    padding: 16px;
-    margin-bottom: 16px;
-    position: sticky;
-    top: 70px;
-    z-index: 5;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-  }
-  .oaf-title {
-    font-size: 12px;
-    color: #00ff88;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 800;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .oaf-row {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-  .oaf-input {
-    flex: 1;
-    background: #0a0a0a;
-    border: 1px solid #2a2a2a;
-    color: #fff;
-    font-size: 15px;
-    font-weight: 600;
-    padding: 12px 14px;
-    border-radius: 10px;
-    min-width: 0;
-    outline: none;
-    transition: border-color 0.15s;
-  }
-  .oaf-input:focus {
-    border-color: #00ff88;
-    box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.1);
-  }
-  .oaf-input.small {
-    flex: 0 0 80px;
-    text-align: center;
-  }
-  .oaf-submit {
-    width: 100%;
-    background: linear-gradient(135deg, #00ff88, #00cc6a);
-    color: #000;
-    border: none;
-    border-radius: 10px;
-    padding: 14px;
-    font-size: 15px;
-    font-weight: 800;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-top: 4px;
-    transition: all 0.15s;
-  }
-  .oaf-submit:active { transform: scale(0.98); }
-  .oaf-submit:disabled {
-    background: #333;
-    color: #666;
-    cursor: not-allowed;
-  }
-
-  .orders-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-bottom: 16px;
-  }
-  .os-card {
-    background: #111;
-    border: 1px solid #222;
-    border-radius: 12px;
-    padding: 10px;
-    text-align: center;
-  }
-  .os-card.pending { border-color: rgba(255, 190, 11, 0.3); }
-  .os-card.done { border-color: rgba(0, 255, 136, 0.3); }
-  .os-card.cancelled { border-color: rgba(255, 0, 0, 0.3); }
-  .os-count {
-    font-size: 24px;
-    font-weight: 900;
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-  .os-card.pending .os-count { color: #ffbe0b; }
-  .os-card.done .os-count { color: #00ff88; }
-  .os-card.cancelled .os-count { color: #ff0000; }
-  .os-label {
-    font-size: 9px;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-weight: 700;
-  }
-  .os-total {
-    font-size: 10px;
-    color: #888;
-    margin-top: 2px;
-  }
-
-  .orders-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .order-row {
-    background: #111;
-    border: 1px solid #222;
-    border-left: 4px solid #ffbe0b;
-    border-radius: 10px;
-    padding: 10px 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.15s;
-  }
-  .order-row.status-done { 
-    border-left-color: #00ff88; 
-    opacity: 0.5;
-  }
-  .order-row.status-cancelled { 
-    border-left-color: #ff0000; 
-    opacity: 0.4;
-  }
-  .order-row.status-pending {
-    border-left-color: #ffbe0b;
-  }
-
-  .or-status-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .or-status-dot.pending { background: #ffbe0b; box-shadow: 0 0 6px #ffbe0b; }
-  .or-status-dot.done { background: #00ff88; }
-  .or-status-dot.cancelled { background: #ff0000; }
-
-  .or-info {
-    flex: 1;
-    min-width: 0;
-  }
-  .or-main {
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-    margin-bottom: 2px;
-  }
-  .or-client {
-    font-size: 14px;
-    font-weight: 800;
-    color: #fff;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .or-qty {
-    font-size: 11px;
-    font-weight: 800;
-    color: #a78bfa;
-    background: rgba(131, 56, 236, 0.15);
-    padding: 1px 6px;
-    border-radius: 6px;
-    flex-shrink: 0;
-  }
-  .or-product {
-    font-size: 10px;
-    color: #666;
-    font-weight: 600;
-    flex-shrink: 0;
-  }
-  .or-sub {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    color: #555;
-  }
-  .or-phone-link {
-    color: #3a86ff;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 11px;
-    padding: 1px 5px;
-    background: rgba(58, 134, 255, 0.1);
-    border-radius: 4px;
-  }
-  .or-note-short {
-    color: #666;
-    font-style: italic;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 120px;
-  }
-  .or-time {
-    font-size: 10px;
-    color: #444;
-    font-weight: 600;
-    flex-shrink: 0;
-  }
-
-  .or-actions {
-    display: flex;
-    gap: 4px;
-    flex-shrink: 0;
-  }
-  .or-btn {
-    background: #1a1a1a;
-    border: 1px solid #2a2a2a;
-    color: #aaa;
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.1s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-  }
-  .or-btn:active { transform: scale(0.9); }
-  .or-btn.complete { color: #00ff88; border-color: rgba(0,255,136,0.3); background: rgba(0,255,136,0.08); }
-  .or-btn.cancel { color: #ff0000; border-color: rgba(255,0,0,0.3); background: rgba(255,0,0,0.08); }
-  .or-btn.delete { color: #888; }
-  .or-btn.restore { color: #3a86ff; border-color: rgba(58,134,255,0.3); background: rgba(58,134,255,0.08); }
-
-  .date-group {
-    margin-top: 16px;
-    margin-bottom: 8px;
-    font-size: 11px;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 800;
-    padding-left: 4px;
-    border-left: 3px solid #333;
-    padding-left: 8px;
-  }
-  .date-group.today { color: #00ff88; border-left-color: #00ff88; }
-  .date-group.yesterday { color: #ffbe0b; border-left-color: #ffbe0b; }
-
   /* ═══ НАСТРОЙКИ ═══ */
   .settings-group {
     background: linear-gradient(135deg, #151515, #0f0f0f);
@@ -789,18 +519,6 @@
   }
   .nav-item .nav-icon { font-size: 26px; margin-bottom: 4px; }
   .nav-item .nav-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
-  .nav-item .nav-badge {
-    position: absolute;
-    top: 2px;
-    right: calc(50% - 28px);
-    background: #00ff88;
-    color: #000;
-    font-size: 9px;
-    font-weight: 900;
-    padding: 2px 6px;
-    border-radius: 10px;
-    min-width: 18px;
-  }
 
   /* ═══ МОДАЛКИ ═══ */
   .modal-overlay {
@@ -1099,7 +817,6 @@
           </div>
         </div>
         
-        <!-- Багажник с кнопкой редактирования -->
         <div class="trunk-bar">
           <button class="trunk-edit-btn" onclick="openEditTrunkModal(1)" title="Исправить количество">✏️</button>
           <div class="trunk-bar-header">
@@ -1111,7 +828,6 @@
           </div>
         </div>
 
-        <!-- Детализация продаж -->
         <div class="sales-breakdown">
           <div class="sb-item cans">
             <div class="sb-val" id="p1_cans_sold">0</div>
@@ -1148,7 +864,6 @@
           </div>
         </div>
         
-        <!-- Багажник с кнопкой редактирования -->
         <div class="trunk-bar">
           <button class="trunk-edit-btn" onclick="openEditTrunkModal(2)" title="Исправить количество">✏️</button>
           <div class="trunk-bar-header">
@@ -1160,7 +875,6 @@
           </div>
         </div>
 
-        <!-- Детализация продаж -->
         <div class="sales-breakdown">
           <div class="sb-item cans">
             <div class="sb-val" id="p2_cans_sold">0</div>
@@ -1218,55 +932,6 @@
     </div>
   </div>
 
-  <!-- ═══ TAB: ЗАКАЗЫ ═══ -->
-  <div class="tab-content" id="tab-orders">
-    
-    <div class="order-add-form">
-      <div class="oaf-title">➕ Новый заказ</div>
-      <div class="oaf-row">
-        <input type="text" class="oaf-input" id="qofClient" placeholder="Имя клиента *" maxlength="30">
-        <input type="number" class="oaf-input small" id="qofQty" placeholder="шт" min="0">
-      </div>
-      <div class="oaf-row">
-        <input type="tel" class="oaf-input" id="qofPhone" placeholder="Телефон" maxlength="20">
-        <select class="oaf-input" id="qofProduct" style="flex: 0 0 110px;">
-          <option value="Банки">🧴 Банки</option>
-          <option value="Упаковка">📦 Упак.</option>
-          <option value="Опт">📦 Опт</option>
-          <option value="Другое">✏️ Другое</option>
-        </select>
-      </div>
-      <div class="oaf-row">
-        <input type="text" class="oaf-input" id="qofNote" placeholder="Комментарий (адрес, время...)" maxlength="100">
-      </div>
-      <button class="oaf-submit" id="qofSubmit" onclick="addQuickOrder()">ДОБАВИТЬ В СПИСОК</button>
-    </div>
-
-    <div class="orders-stats">
-      <div class="os-card pending">
-        <div class="os-count" id="statPending">0</div>
-        <div class="os-label">Активные</div>
-        <div class="os-total" id="statPendingSum">0 шт</div>
-      </div>
-      <div class="os-card done">
-        <div class="os-count" id="statDone">0</div>
-        <div class="os-label">Выполнено</div>
-        <div class="os-total" id="statDoneSum">0 шт</div>
-      </div>
-      <div class="os-card cancelled">
-        <div class="os-count" id="statCancelled">0</div>
-        <div class="os-label">Отменено</div>
-        <div class="os-total" id="statCancelledSum">0 шт</div>
-      </div>
-    </div>
-
-    <div class="section-title">
-      <span>📋 Все заказы</span>
-      <span class="hint" id="ordersCountHint">—</span>
-    </div>
-    <div class="orders-list" id="ordersList"></div>
-  </div>
-
   <!-- ═══ TAB: ИСТОРИЯ ═══ -->
   <div class="tab-content" id="tab-history">
     <div class="section-title">История записей</div>
@@ -1296,7 +961,7 @@
       <button class="danger-btn" onclick="openDeleteAllModal()">🗑 Удалить все данные</button>
     </div>
     <div style="text-align: center; color: #333; font-size: 11px; margin-top: 30px; padding: 20px;">
-      ЖИЖА ПРО СЕЗОН_26-27<br>v2.6 · Firebase Sync
+      ЖИЖА ПРО СЕЗОН_26-27<br>v2.8 · Firebase Sync
     </div>
   </div>
 </div>
@@ -1306,11 +971,6 @@
   <button class="nav-item active" onclick="switchTab('main', this)">
     <div class="nav-icon">🏠</div>
     <div class="nav-label">Главная</div>
-  </button>
-  <button class="nav-item" onclick="switchTab('orders', this)">
-    <div class="nav-icon">📝</div>
-    <div class="nav-label">Заказы</div>
-    <div class="nav-badge" id="ordersNavBadge" style="display:none;">0</div>
   </button>
   <button class="nav-item" onclick="switchTab('history', this)">
     <div class="nav-icon">📜</div>
@@ -1322,7 +982,7 @@
   </button>
 </div>
 
-<!-- ═══ МОДАЛКА РЕДАКТИРОВАНИЯ БАГАЖНИКА ═══ -->
+<!-- ═══ МОДАЛКИ ═══ -->
 <div class="modal-overlay" id="editTrunkModal">
   <div class="modal-box">
     <div class="modal-handle"></div>
@@ -1349,7 +1009,6 @@
   </div>
 </div>
 
-<!-- ═══ ОСТАЛЬНЫЕ МОДАЛКИ ═══ -->
 <div class="modal-overlay" id="stockModal">
   <div class="modal-box">
     <div class="modal-handle"></div>
@@ -1487,7 +1146,7 @@
   <div class="modal-box">
     <div class="modal-handle"></div>
     <div class="modal-title" style="color:#ff0000;">🗑 Удалить всё?</div>
-    <div class="warning-box">⚠️ Будут удалены:<br>Склад · Багажники · Продажи · История · Цены · Заказы<br><br><b>Восстановить невозможно!</b></div>
+    <div class="warning-box">⚠️ Будут удалены:<br>Склад · Багажники · Продажи · История · Цены<br><br><b>Восстановить невозможно!</b></div>
     <div class="qty-custom" style="background:rgba(255,0,0,0.05);border-color:rgba(255,0,0,0.3);">
       <label style="color:#ff0000;">Пароль:</label>
       <input type="password" class="password-input" id="deletePassword" placeholder="••••" style="background:#0a0a0a;border-color:#ff0000;">
@@ -1532,7 +1191,6 @@
   const shiftRef = ref(db, 'current_shift');
   const priceRef = ref(db, 'prices');
   const historyRef = ref(db, 'history');
-  const ordersRef = ref(db, 'orders');
 
   const PER_PACK = 4;
   const QUICK_CANS = [1, 2, 3, 5, 6, 7, 9, 10, 11];
@@ -1549,7 +1207,6 @@
     selfTaken: 0, spent: 0 
   };
   let prices = { cost: 100, can: 200, pack: 750 };
-  let isAddingOrder = false;
 
   function normalizeShift(v) {
     function fixPerson(p) {
@@ -1633,128 +1290,6 @@
     });
   });
 
-  // ═══ СЛУШАТЕЛЬ ЗАКАЗОВ ═══
-  onValue(ordersRef, s => {
-    const el = document.getElementById('ordersList');
-    el.innerHTML = '';
-    
-    if (!s.exists()) {
-      el.innerHTML = '<div class="empty-state"><div class="emoji">📝</div><div class="msg">Нет заказов<br>Заполните форму выше ↑</div></div>';
-      updateOrdersStats([], [], []);
-      return;
-    }
-    
-    const arr = [];
-    s.forEach(c => arr.push({ key: c.key, val: c.val() }));
-    
-    const pending = arr.filter(x => x.val.status === 'pending' || !x.val.status)
-                       .sort((a,b) => (b.val.createdAt||0) - (a.val.createdAt||0));
-    const done = arr.filter(x => x.val.status === 'done')
-                    .sort((a,b) => (b.val.createdAt||0) - (a.val.createdAt||0));
-    const cancelled = arr.filter(x => x.val.status === 'cancelled')
-                         .sort((a,b) => (b.val.createdAt||0) - (a.val.createdAt||0));
-    
-    let html = '';
-    
-    if (pending.length > 0) {
-      html += `<div class="date-group today">⏳ АКТИВНЫЕ ЗАКАЗЫ (${pending.length})</div>`;
-      pending.forEach(item => { html += renderOrderRow(item); });
-    }
-    
-    if (done.length > 0) {
-      html += `<div class="date-group">✓ ВЫПОЛНЕНЫ (${done.length})</div>`;
-      done.forEach(item => { html += renderOrderRow(item); });
-    }
-    
-    if (cancelled.length > 0) {
-      html += `<div class="date-group">✕ ОТМЕНЕНЫ (${cancelled.length})</div>`;
-      cancelled.forEach(item => { html += renderOrderRow(item); });
-    }
-    
-    el.innerHTML = html;
-    updateOrdersStats(pending, done, cancelled);
-  });
-
-  function renderOrderRow(item) {
-    const o = item.val;
-    const statusClass = o.status === 'done' ? 'status-done' : 
-                        o.status === 'cancelled' ? 'status-cancelled' : 'status-pending';
-    const dotClass = o.status === 'done' ? 'done' : 
-                     o.status === 'cancelled' ? 'cancelled' : 'pending';
-    
-    const qtyTag = o.qty > 0 ? `<span class="or-qty">${o.qty} шт</span>` : '';
-    const phoneLink = o.phone ? `<a href="tel:${o.phone}" class="or-phone-link">📞</a>` : '';
-    const noteShort = o.note ? `<span class="or-note-short">💬 ${escapeHtml(o.note.substring(0, 20))}${o.note.length > 20 ? '...' : ''}</span>` : '';
-    
-    let actions = '';
-    if (o.status === 'pending' || !o.status) {
-      actions = `
-        <button class="or-btn complete" title="Выполнить" onclick="markOrderDone('${item.key}')">✓</button>
-        <button class="or-btn cancel" title="Отменить" onclick="markOrderCancelled('${item.key}')">✕</button>
-        <button class="or-btn delete" title="Удалить" onclick="deleteOrder('${item.key}')">🗑</button>`;
-    } else {
-      actions = `
-        <button class="or-btn restore" title="Вернуть в активные" onclick="restoreOrder('${item.key}')">↺</button>
-        <button class="or-btn delete" title="Удалить" onclick="deleteOrder('${item.key}')">🗑</button>`;
-    }
-    
-    const timeStr = new Date(o.createdAt).toLocaleDateString('ru-RU', {day:'2-digit', month:'2-digit'}) + ' ' + 
-                    new Date(o.createdAt).toLocaleTimeString('ru-RU', {hour:'2-digit', minute:'2-digit'});
-    
-    return `
-      <div class="order-row ${statusClass}">
-        <span class="or-status-dot ${dotClass}"></span>
-        <div class="or-info">
-          <div class="or-main">
-            <span class="or-client">${escapeHtml(o.client)}</span>
-            ${qtyTag}
-            <span class="or-product">${o.product||''}</span>
-          </div>
-          <div class="or-sub">
-            ${phoneLink}
-            ${noteShort}
-            <span class="or-time">${timeStr}</span>
-          </div>
-        </div>
-        <div class="or-actions">${actions}</div>
-      </div>`;
-  }
-
-  function escapeHtml(str) {
-    return String(str||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]);
-  }
-
-  function updateOrdersStats(pending, done, cancelled) {
-    const sumArr = arr => arr.reduce((acc, x) => acc + (parseInt(x.val.qty)||0), 0);
-    
-    document.getElementById('statPending').textContent = pending.length;
-    document.getElementById('statPendingSum').textContent = sumArr(pending) + ' шт';
-    
-    document.getElementById('statDone').textContent = done.length;
-    document.getElementById('statDoneSum').textContent = sumArr(done) + ' шт';
-    
-    document.getElementById('statCancelled').textContent = cancelled.length;
-    document.getElementById('statCancelledSum').textContent = sumArr(cancelled) + ' шт';
-    
-    const hint = document.getElementById('ordersCountHint');
-    const totalActive = pending.length;
-    if (totalActive > 0) {
-      hint.textContent = `${sumArr(pending)} шт нужно привезти`;
-      hint.style.color = '#ffbe0b';
-    } else {
-      hint.textContent = 'все выполнены';
-      hint.style.color = '#00ff88';
-    }
-    
-    const navBadge = document.getElementById('ordersNavBadge');
-    if (totalActive > 0) {
-      navBadge.textContent = totalActive;
-      navBadge.style.display = 'block';
-    } else {
-      navBadge.style.display = 'none';
-    }
-  }
-
   // ═══ ОТРИСОВКА ═══
   function render() {
     const stEl = document.getElementById('stockTotal');
@@ -1781,13 +1316,11 @@
       totalTrunks += trunk;
       totalWholesale += wholesale;
 
-      // Обновляем детализацию продаж
       document.getElementById(`p${id}_cans_sold`).textContent = cans;
       document.getElementById(`p${id}_packs_sold`).textContent = packs;
       document.getElementById(`p${id}_ws_sold`).textContent = wholesale;
       document.getElementById(`p${id}_money`).textContent = (retailMoney + wholesaleMoney).toLocaleString();
       
-      // Обновляем багажник
       const trunkEl = document.getElementById(`trunk${id}_count`);
       trunkEl.textContent = trunk + ' шт';
       trunkEl.className = 'trunk-bar-value' + (trunk===0?' empty':'');
@@ -1798,7 +1331,6 @@
       barEl.style.width = pct + '%';
       barEl.className = 'trunk-progress-fill' + (trunk===0?' empty':'');
 
-      // Выручка от опта
       const wsMoneyEl = document.getElementById(`p${id}_wholesale_money`);
       if (wholesaleMoney > 0) {
         wsMoneyEl.textContent = wholesaleMoney.toLocaleString() + ' ₽';
@@ -1857,7 +1389,6 @@
     } else {
       backBtn.classList.add('visible');
       const titles = {
-        'orders': '📝 Заказы',
         'history': '📜 История',
         'settings': '⚙️ Настройки'
       };
@@ -1872,71 +1403,6 @@
   window.deleteHistoryItem = async function(key) {
     if (!confirm('Удалить запись?')) return;
     await remove(ref(db, `history/${key}`));
-  };
-
-  // ═══ ЗАКАЗЫ ═══
-  window.addQuickOrder = async function() {
-    if (isAddingOrder) return; 
-    
-    const client = document.getElementById('qofClient').value.trim();
-    if (!client) { 
-      alert('Введите имя клиента!'); 
-      document.getElementById('qofClient').focus();
-      return; 
-    }
-    
-    isAddingOrder = true;
-    const submitBtn = document.getElementById('qofSubmit');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'СОХРАНЕНИЕ...';
-    
-    const order = {
-      client,
-      phone: document.getElementById('qofPhone').value.trim(),
-      product: document.getElementById('qofProduct').value,
-      qty: parseInt(document.getElementById('qofQty').value)||0,
-      note: document.getElementById('qofNote').value.trim(),
-      status: 'pending',
-      createdAt: Date.now()
-    };
-    
-    try {
-      await push(ordersRef, order);
-      
-      document.getElementById('qofClient').value = '';
-      document.getElementById('qofPhone').value = '';
-      document.getElementById('qofQty').value = '';
-      document.getElementById('qofNote').value = '';
-      
-      setTimeout(() => {
-        document.getElementById('qofClient').focus();
-      }, 50);
-      
-      if (navigator.vibrate) navigator.vibrate(30);
-      
-    } catch (err) {
-      console.error('Ошибка при сохранении заказа:', err);
-      alert('Не удалось сохранить заказ. Проверьте интернет.');
-    } finally {
-      isAddingOrder = false;
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'ДОБАВИТЬ В СПИСОК';
-    }
-  };
-
-  window.markOrderDone = async function(key) {
-    await update(ref(db, `orders/${key}`), { status: 'done' });
-  };
-  window.markOrderCancelled = async function(key) {
-    if (!confirm('Отменить этот заказ?')) return;
-    await update(ref(db, `orders/${key}`), { status: 'cancelled' });
-  };
-  window.restoreOrder = async function(key) {
-    await update(ref(db, `orders/${key}`), { status: 'pending' });
-  };
-  window.deleteOrder = async function(key) {
-    if (!confirm('Удалить заказ навсегда?')) return;
-    await remove(ref(db, `orders/${key}`));
   };
 
   // ═══ ✏️ РЕДАКТИРОВАНИЕ БАГАЖНИКА ═══
@@ -1966,7 +1432,6 @@
       infoEl.className = 'modal-info';
       btnEl.disabled = true;
     } else if (diff > 0) {
-      // Добавляем товар -> списываем со склада
       if (diff > stock) {
         infoEl.textContent = `⚠️ Не хватает ${diff - stock} шт. на складе!`;
         infoEl.className = 'modal-info error';
@@ -1977,7 +1442,6 @@
         btnEl.disabled = false;
       }
     } else {
-      // Убираем товар -> возвращаем на склад
       infoEl.textContent = `Уберём ${Math.abs(diff)} шт. из багажника. Вернём на склад.`;
       infoEl.className = 'modal-info';
       btnEl.disabled = false;
@@ -1992,7 +1456,6 @@
     
     if (diff === 0) return;
     
-    // Проверка на недостаток товара на складе при добавлении
     if (diff > 0 && diff > stock) {
       alert('Недостаточно товара на складе для добавления!');
       return;
@@ -2000,15 +1463,11 @@
     
     closeEditTrunkModal();
     
-    // Обновляем багажник
     await update(shiftRef, { [`p${editTrunkSeller}/trunk`]: newVal });
     
-    // Корректируем склад
     if (diff > 0) {
-      // Товар уходит со склада в багажник
       await set(stockRef, stock - diff);
     } else {
-      // Товар возвращается из багажника на склад
       await set(stockRef, stock + Math.abs(diff));
     }
   };
@@ -2299,7 +1758,7 @@
     if(document.getElementById('deletePassword').value!==ADMIN_PASSWORD){document.getElementById('deleteError').style.display='block';return;}
     if(!confirm('ТОЧНО УДАЛИТЬ ВСЁ?'))return;
     closeDeleteAllModal();
-    await Promise.all([remove(stockRef),remove(shiftRef),remove(priceRef),remove(historyRef),remove(ordersRef)]);
+    await Promise.all([remove(stockRef),remove(shiftRef),remove(priceRef),remove(historyRef)]);
     document.getElementById('successModal').classList.add('active');
   };
   window.closeSuccessModal=()=>document.getElementById('successModal').classList.remove('active');

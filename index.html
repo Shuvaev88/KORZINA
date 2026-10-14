@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>❄️ ЖИЖА ПРО СЕЗОН_26-27</title>
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff006e'/%3E%3Cstop offset='1' stop-color='%238338ec'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='110' fill='url(%23g)'/%3E%3Ctext x='256' y='340' font-size='280' text-anchor='middle' fill='white'%3E❄%3C/text%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff006e'/%3E%3Cstop offset='1' stop-color='%238338ec'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='110' fill='url(%23g)'/%3E%3Ctext x='256' y='340' font-size='280' text-anchor='middle' fill='white'%3E❄%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff006e'/%3E%3Cstop offset='1' stop-color='%238338ec'/%3E%3C/defs%3E%3Crect width='512' height='512' rx='110' fill='url(%23g)'/%3E%3Ctext x='256' y='340' font-size='280' text-anchor='middle' fill='white'%3E❄%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff006e'/%3E%3Cstop offset='1' stop-color='%238338ec'/%3E%3C/defs%3E%3Crect width='512' height='512' rx='110' fill='url(%23g)'/%3E%3Ctext x='256' y='340' font-size='280' text-anchor='middle' fill='white'%3E❄%3C/text%3E%3C/svg%3E">
 <meta name="apple-mobile-web-app-title" content="ЖИЖА ПРО">
 <meta name="theme-color" content="#0a0a0a">
 
@@ -415,6 +415,22 @@
   .action-btn.wholesale .icon { color: #a78bfa; font-size: 36px; }
   .action-btn.wholesale .badge { background: rgba(131,56,236,0.3); color: #a78bfa; }
 
+  /* НОВЫЙ стиль для чаевых */
+  .action-btn.tips { 
+    border-color: rgba(255, 190, 11, 0.5);
+    background: linear-gradient(135deg, rgba(255, 190, 11, 0.15), rgba(251, 86, 7, 0.05));
+  }
+  .action-btn.tips::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ffbe0b, #fb5607);
+  }
+  .action-btn.tips .label { color: #ffbe0b; }
+  .action-btn.tips .icon { color: #ffbe0b; font-size: 36px; }
+  .action-btn.tips .badge { background: rgba(255,190,11,0.3); color: #ffbe0b; }
+
   /* ═══ ИСТОРИЯ ═══ */
   .history-list { display: flex; flex-direction: column; gap: 12px; }
   .h-item {
@@ -635,6 +651,7 @@
   .modal-info.error { color: #ff0000; background: rgba(255, 0, 0, 0.1); border-color: rgba(255, 0, 0, 0.3); }
   .modal-info.wholesale-info { color: #a78bfa; background: rgba(131, 56, 236, 0.1); border-color: rgba(131, 56, 236, 0.3); }
   .modal-info.stock-info { color: #00ff88; background: rgba(0, 255, 136, 0.1); border-color: rgba(0, 255, 136, 0.3); }
+  .modal-info.tip-info { color: #ffbe0b; background: rgba(255, 190, 11, 0.1); border-color: rgba(255, 190, 11, 0.3); }
 
   .modal-buttons { display: flex; gap: 12px; }
   .btn-cancel {
@@ -664,6 +681,7 @@
   .btn-confirm-load { background: linear-gradient(135deg, #ffbe0b, #fb5607); color: #fff; }
   .btn-confirm-wholesale { background: linear-gradient(135deg, #8338ec, #6a0dad); color: #fff; box-shadow: 0 4px 15px rgba(131, 56, 236, 0.3); }
   .btn-confirm-stock { background: linear-gradient(135deg, #00ff88, #00cc6a); color: #000; }
+  .btn-confirm-tip { background: linear-gradient(135deg, #ffbe0b, #fb5607); color: #fff; box-shadow: 0 4px 15px rgba(255, 190, 11, 0.3); }
 
   .expense-input, .password-input {
     width: 100%;
@@ -810,7 +828,7 @@
     <div class="sellers-scroll">
       <div class="seller-card">
         <div class="seller-header">
-          <div class="seller-avatar">👨</div>
+          <div class="seller-avatar">👨‍</div> <!-- МУЖСКОЙ ЭМОДЗИ -->
           <div>
             <div class="seller-name">Никита</div>
             <div class="seller-money"><b id="p1_money">0</b> ₽</div>
@@ -857,7 +875,7 @@
 
       <div class="seller-card">
         <div class="seller-header">
-          <div class="seller-avatar">👩</div>
+          <div class="seller-avatar">👨‍</div> <!-- МУЖСКОЙ ЭМОДЗИ -->
           <div>
             <div class="seller-name">Максим</div>
             <div class="seller-money"><b id="p2_money">0</b> ₽</div>
@@ -925,6 +943,14 @@
         <div class="icon">💸</div>
         <div class="label">Добавить<br>расход</div>
       </div>
+      
+      <!-- НОВАЯ КНОПКА ЧАЕВЫХ -->
+      <div class="action-btn tips" onclick="openTipsModal()">
+        <div class="badge" id="tipsBadge" style="display:none;">0</div>
+        <div class="icon">🤝</div>
+        <div class="label">Чаевые<br>(общие)</div>
+      </div>
+      
       <div class="action-btn save" onclick="saveDay()">
         <div class="icon">💾</div>
         <div class="label">Сохранить итоги дня</div>
@@ -961,7 +987,7 @@
       <button class="danger-btn" onclick="openDeleteAllModal()">🗑 Удалить все данные</button>
     </div>
     <div style="text-align: center; color: #333; font-size: 11px; margin-top: 30px; padding: 20px;">
-      ЖИЖА ПРО СЕЗОН_26-27<br>v2.8 · Firebase Sync
+      ЖИЖА ПРО СЕЗОН_26-27<br>v2.9 · Firebase Sync
     </div>
   </div>
 </div>
@@ -1078,11 +1104,11 @@
     <div class="field-label">Кто продал</div>
     <div class="seller-picker">
       <div class="seller-pick-btn selected" id="wsPick1" onclick="pickWholesaleSeller(1)">
-        <div class="sp-avatar">👨</div>
+        <div class="sp-avatar">👨‍🔧</div>
         <div class="sp-name">Никита</div>
       </div>
       <div class="seller-pick-btn" id="wsPick2" onclick="pickWholesaleSeller(2)">
-        <div class="sp-avatar">👩</div>
+        <div class="sp-avatar">👨‍💼</div>
         <div class="sp-name">Максим</div>
       </div>
     </div>
@@ -1142,11 +1168,38 @@
   </div>
 </div>
 
+<!-- НОВАЯ МОДАЛКА ЧАЕВЫХ -->
+<div class="modal-overlay" id="tipsModal">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-title">🤝 Чаевые (общие)</div>
+    <div class="modal-subtitle">Добавляется к выручке дня</div>
+    
+    <div class="trunk-status-line">
+      Сейчас чаевых за день: <b id="currentTips">0</b> ₽
+    </div>
+    
+    <div class="field-label">Сколько добавить?</div>
+    <div class="qty-grid" id="tipsQtyGrid"></div>
+    <div class="qty-custom">
+      <label>Своё число:</label>
+      <input type="number" id="tipsCustomQty" value="100" min="1" max="99999" oninput="onTipsCustomInput()">
+    </div>
+    
+    <div class="modal-info tip-info" id="tipsModalInfo">Станет всего: 100 ₽</div>
+    
+    <div class="modal-buttons">
+      <button class="btn-cancel" onclick="closeTipsModal()">Отмена</button>
+      <button class="btn-confirm btn-confirm-tip" id="tipsBtnConfirm" onclick="confirmTips()">🤝 Добавить</button>
+    </div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="deleteAllModal">
   <div class="modal-box">
     <div class="modal-handle"></div>
     <div class="modal-title" style="color:#ff0000;">🗑 Удалить всё?</div>
-    <div class="warning-box">⚠️ Будут удалены:<br>Склад · Багажники · Продажи · История · Цены<br><br><b>Восстановить невозможно!</b></div>
+    <div class="warning-box">⚠️ Будут удалены:<br>Склад · Багажники · Продажи · История · Цены · Чаевые<br><br><b>Восстановить невозможно!</b></div>
     <div class="qty-custom" style="background:rgba(255,0,0,0.05);border-color:rgba(255,0,0,0.3);">
       <label style="color:#ff0000;">Пароль:</label>
       <input type="password" class="password-input" id="deletePassword" placeholder="••••" style="background:#0a0a0a;border-color:#ff0000;">
@@ -1199,12 +1252,13 @@
   const QUICK_LOAD = [5, 10, 15, 20, 25, 30, 40, 50, 100];
   const QUICK_WHOLESALE = [10, 20, 30, 40, 50, 60, 80, 100, 200];
   const QUICK_STOCK = [20, 50, 100, 200, 400, 500, 1000, 2000, 5000];
+  const QUICK_TIPS = [50, 100, 200, 300, 500, 1000]; // Быстрые суммы чаевых
 
   let stock = 0;
   let shift = { 
     p1: { cans: 0, packs: 0, trunk: 0, wholesale: 0, wholesaleMoney: 0 }, 
     p2: { cans: 0, packs: 0, trunk: 0, wholesale: 0, wholesaleMoney: 0 }, 
-    selfTaken: 0, spent: 0 
+    selfTaken: 0, spent: 0, tips: 0 // ДОБАВЛЕНО ПОЛЕ TIPS
   };
   let prices = { cost: 100, can: 200, pack: 750 };
 
@@ -1223,7 +1277,8 @@
       p1: fixPerson(v.p1), 
       p2: fixPerson(v.p2), 
       selfTaken: parseInt(v.selfTaken)||0, 
-      spent: parseInt(v.spent)||0 
+      spent: parseInt(v.spent)||0,
+      tips: parseInt(v.tips)||0 // ОБРАБОТКА CHAEVYKH
     };
   }
 
@@ -1248,13 +1303,14 @@
       const raw = s.val();
       const needsFix = !raw.p1 || typeof raw.p1 !== 'object' || raw.p1.trunk === undefined 
                     || !raw.p2 || raw.p2.trunk === undefined
-                    || raw.p1.wholesale === undefined || raw.p2.wholesale === undefined;
+                    || raw.p1.wholesale === undefined || raw.p2.wholesale === undefined
+                    || raw.tips === undefined; // ПРОВЕРКА TIPS
       if (needsFix) set(shiftRef, shift);
     } else {
       shift = { 
         p1: { cans:0, packs:0, trunk:0, wholesale:0, wholesaleMoney:0 }, 
         p2: { cans:0, packs:0, trunk:0, wholesale:0, wholesaleMoney:0 }, 
-        selfTaken:0, spent:0 
+        selfTaken:0, spent:0, tips:0 
       };
     }
     render();
@@ -1279,7 +1335,7 @@
       d.innerHTML = `
         <div class="h-left">
           <div class="h-date">${i.date||'—'}</div>
-          <div class="h-detail">Розн:${(parseInt(i.tCans)||0)+(parseInt(i.tPacks)||0)*4} · Опт:${parseInt(i.tWholesale)||0} · Себе:${parseInt(i.selfTaken)||0}</div>
+          <div class="h-detail">Розн:${(parseInt(i.tCans)||0)+(parseInt(i.tPacks)||0)*4} · Опт:${parseInt(i.tWholesale)||0} · Чаевые:${parseInt(i.tips)||0}₽</div>
         </div>
         <div class="h-right">
           <div class="h-sum">${totalSum.toLocaleString()} ₽</div>
@@ -1343,7 +1399,11 @@
 
     const spent = parseInt(shift.spent)||0;
     const selfTaken = parseInt(shift.selfTaken)||0;
-    const profit = totalRevenue - spent;
+    const tips = parseInt(shift.tips)||0;
+    
+    // ВЫРУЧКА ТЕПЕРЬ ВКЛЮЧАЕТ ЧАЕВЫЕ
+    const allMoney = totalRevenue + tips;
+    const profit = allMoney - spent;
 
     document.getElementById('totalInTrunks').textContent = totalTrunks + ' шт';
     document.getElementById('totalWholesale').textContent = totalWholesale + ' шт';
@@ -1352,13 +1412,14 @@
 
     document.getElementById('profitValue').textContent = profit.toLocaleString() + ' ₽';
     document.getElementById('profitValue').className = 'value' + (profit<0?' negative':'');
-    document.getElementById('revenueValue').textContent = totalRevenue.toLocaleString() + ' ₽';
+    document.getElementById('revenueValue').textContent = allMoney.toLocaleString() + ' ₽'; // Сюда входят чаевые
     document.getElementById('spentValue').textContent = spent.toLocaleString() + ' ₽';
     document.getElementById('soldItemsValue').textContent = totalRetailItems + totalWholesale;
 
     setBadge('wsBadge', totalWholesale);
     setBadge('selfBadge', selfTaken);
     setBadge('expBadge', spent);
+    setBadge('tipsBadge', tips); // БЕЙДЖ ДЛЯ ЧАЕВЫХ
   }
 
   function setBadge(id, value) {
@@ -1715,6 +1776,51 @@
     await update(shiftRef,{spent:cur+a});
   };
 
+  // ═══ 🤝 ЧАЕВЫЕ ═══
+  let tipsQty = 100;
+  window.openTipsModal = function() {
+    tipsQty = 100;
+    document.getElementById('currentTips').textContent = parseInt(shift.tips)||0;
+    document.getElementById('tipsCustomQty').value = 100;
+    const grid = document.getElementById('tipsQtyGrid');
+    grid.innerHTML = '';
+    QUICK_TIPS.forEach(num => {
+      const btn = document.createElement('button');
+      btn.className = 'qty-btn' + (num===100?' selected':'');
+      btn.textContent = num;
+      btn.onclick = () => pickTipsQty(num);
+      grid.appendChild(btn);
+    });
+    updateTipsModalInfo();
+    document.getElementById('tipsModal').classList.add('active');
+  };
+  window.pickTipsQty = function(n) {
+    tipsQty = n;
+    document.getElementById('tipsCustomQty').value = n;
+    document.querySelectorAll('#tipsQtyGrid .qty-btn').forEach(b => b.classList.toggle('selected', parseInt(b.textContent) === n));
+    updateTipsModalInfo();
+  };
+  window.onTipsCustomInput = function() {
+    tipsQty = Math.max(1, parseInt(document.getElementById('tipsCustomQty').value)||0);
+    document.querySelectorAll('#tipsQtyGrid .qty-btn').forEach(b => b.classList.toggle('selected', parseInt(b.textContent) === tipsQty));
+    updateTipsModalInfo();
+  };
+  function updateTipsModalInfo() {
+    const info = document.getElementById('tipsModalInfo');
+    const current = parseInt(shift.tips)||0;
+    const newTotal = current + tipsQty;
+    info.textContent = `Добавляем: ${tipsQty} ₽ · Всего станет: ${newTotal} ₽`;
+    info.className = 'modal-info tip-info';
+  }
+  window.closeTipsModal = () => document.getElementById('tipsModal').classList.remove('active');
+  window.confirmTips = async function() {
+    if (tipsQty <= 0) { alert('Введите сумму'); return; }
+    if (!confirm(`Добавить чаевые ${tipsQty.toLocaleString()} ₽ к общему счету?`)) return;
+    closeTipsModal();
+    const cur = parseInt(shift.tips)||0;
+    await update(shiftRef, { tips: cur + tipsQty });
+  };
+
   // ═══ СОХРАНЕНИЕ ДНЯ ═══
   window.saveDay=async()=>{
     const p1=shift.p1||{cans:0,packs:0,wholesale:0,wholesaleMoney:0};
@@ -1726,16 +1832,18 @@
     
     const retailMoney=(p1c+p2c)*prices.can+(p1p+p2p)*prices.pack;
     const wholesaleMoney=p1wm+p2wm;
-    const allMoney=retailMoney+wholesaleMoney;
+    const tips=parseInt(shift.tips)||0;
+    const allMoney=retailMoney+wholesaleMoney+tips; // ЧАЕВЫЕ ВКЛЮЧЕНЫ
+    
     const spent=parseInt(shift.spent)||0,selfTaken=parseInt(shift.selfTaken)||0,profit=allMoney-spent;
     
-    if(allMoney===0&&selfTaken===0&&spent===0){alert('Нечего сохранять.');return;}
-    if(!confirm(`Сохранить?\n\nРозница: ${retailMoney.toLocaleString()} ₽\nОпт: ${wholesaleMoney.toLocaleString()} ₽\nРасходы: ${spent.toLocaleString()} ₽\nПрибыль: ${profit.toLocaleString()} ₽\nОстаток: ${stock} шт.`))return;
+    if(allMoney===0&&selfTaken===0&&spent===0&&tips===0){alert('Нечего сохранять.');return;}
+    if(!confirm(`Сохранить?\n\nРозница: ${retailMoney.toLocaleString()} ₽\nОпт: ${wholesaleMoney.toLocaleString()} ₽\nЧаевые: ${tips.toLocaleString()} ₽\nРасходы: ${spent.toLocaleString()} ₽\nПрибыль: ${profit.toLocaleString()} ₽\nОстаток: ${stock} шт.`))return;
     
     const now=new Date();
     await push(historyRef,{
       date:now.toLocaleDateString('ru-RU')+' '+now.toLocaleTimeString('ru-RU').slice(0,5),
-      totalSum:allMoney, retailSum:retailMoney, wholesaleSum:wholesaleMoney,
+      totalSum:allMoney, retailSum:retailMoney, wholesaleSum:wholesaleMoney, tips:tips,
       spent,profit,
       tCans:p1c+p2c,tPacks:p1p+p2p,
       tWholesale:p1w+p2w,
@@ -1747,7 +1855,7 @@
     await set(shiftRef,{
       p1:{cans:0,packs:0,trunk:0,wholesale:0,wholesaleMoney:0},
       p2:{cans:0,packs:0,trunk:0,wholesale:0,wholesaleMoney:0},
-      selfTaken:0,spent:0
+      selfTaken:0,spent:0,tips:0 // СБРОС ЧАЕВЫХ
     });
   };
 

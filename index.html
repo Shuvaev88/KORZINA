@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>❄️ ЖИЖА ПРО СЕЗОН_26-27</title>
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff006e'/%3E%3Cstop offset='1' stop-color='%238338ec'/%3E%3C/defs%3E%3Crect width='512' height='512' rx='110' fill='url(%23g)'/%3E%3Ctext x='256' y='340' font-size='280' text-anchor='middle' fill='white'%3E❄%3C/text%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff006e'/%3E%3Cstop offset='1' stop-color='%238338ec'/%3E%3C/defs%3E%3Crect width='512' height='512' rx='110' fill='url(%23g)'/%3E%3Ctext x='256' y='340' font-size='280' text-anchor='middle' fill='white'%3E❄%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff006e'/%3E%3Cstop offset='1' stop-color='%238338ec'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='110' fill='url(%23g)'/%3E%3Ctext x='256' y='340' font-size='280' text-anchor='middle' fill='white'%3E❄%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff006e'/%3E%3Cstop offset='1' stop-color='%238338ec'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='110' fill='url(%23g)'/%3E%3Ctext x='256' y='340' font-size='280' text-anchor='middle' fill='white'%3E❄%3C/text%3E%3C/svg%3E">
 <meta name="apple-mobile-web-app-title" content="ЖИЖА ПРО">
 <meta name="theme-color" content="#0a0a0a">
 
@@ -42,7 +42,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-bottom: 90px;
+    padding-bottom: 90px; /* Место под навигацию */
     overflow-y: auto;
     overflow-x: hidden;
   }
@@ -285,6 +285,7 @@
     border-radius: 8px;
     padding: 8px;
     border: 1px solid #1a1a1a;
+    position: relative;
   }
   .sb-item { text-align: center; }
   .sb-val { font-size: 14px; font-weight: 800; color: #fff; line-height: 1; }
@@ -292,6 +293,25 @@
   .sb-item.cans .sb-val { color: #3a86ff; }
   .sb-item.packs .sb-val { color: #8338ec; }
   .sb-item.wholesale .sb-val { color: #a78bfa; }
+  
+  .edit-sales-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #333;
+    color: #888;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    font-size: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+  .edit-sales-btn:hover { background: rgba(255,255,255,0.1); color: #fff; border-color: #555; }
 
   .wholesale-stat {
     background: rgba(131, 56, 236, 0.1);
@@ -307,9 +327,6 @@
   .wholesale-stat .ws-label { color: #a78bfa; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
   .wholesale-stat .ws-value { color: #fff; font-weight: 800; font-size: 12px; }
   .wholesale-stat .ws-value.zero { color: #555; }
-
-  .seller-stats { display: flex; justify-content: space-between; font-size: 11px; color: #555; margin-bottom: 12px; }
-  .seller-stats b { color: #fff; font-size: 14px; }
 
   .seller-actions { display: flex; flex-direction: column; gap: 8px; }
   .seller-actions button {
@@ -333,7 +350,7 @@
   .btn-sell-can { background: linear-gradient(135deg, #3a86ff, #0066ff); box-shadow: 0 4px 12px rgba(58, 134, 255, 0.3); }
   .btn-sell-pack { background: linear-gradient(135deg, #8338ec, #6a0dad); box-shadow: 0 4px 12px rgba(131, 56, 236, 0.3); }
 
-  /* ═══ СЕТКА ДЕЙСТВИЙ ═══ */
+  /* ═══ СЕТКА ДЕЙСТВИЙ (В НОВОЙ ВКЛАДКЕ) ═══ */
   .actions-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -415,7 +432,6 @@
   .action-btn.wholesale .icon { color: #a78bfa; font-size: 36px; }
   .action-btn.wholesale .badge { background: rgba(131,56,236,0.3); color: #a78bfa; }
 
-  /* НОВЫЙ стиль для чаевых */
   .action-btn.tips { 
     border-color: rgba(255, 190, 11, 0.5);
     background: linear-gradient(135deg, rgba(255, 190, 11, 0.15), rgba(251, 86, 7, 0.05));
@@ -464,6 +480,137 @@
   .empty-state { text-align: center; padding: 60px 20px; color: #444; }
   .empty-state .emoji { font-size: 64px; margin-bottom: 16px; }
   .empty-state .msg { font-size: 14px; color: #555; }
+
+  /* ═══════════════════════════════════════
+     АНАЛИТИКА
+     ═══════════════════════════════════════ */
+  
+  .analytics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .metric-card {
+    background: linear-gradient(135deg, #151515, #0f0f0f);
+    border: 1px solid #222;
+    border-radius: 16px;
+    padding: 14px;
+    text-align: center;
+  }
+  .mc-label { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; font-weight: 700; }
+  .mc-value { font-size: 24px; font-weight: 900; color: #fff; line-height: 1; }
+  .mc-sub { font-size: 11px; color: #555; margin-top: 4px; }
+  
+  .mc-value.green { color: #00ff88; text-shadow: 0 0 10px rgba(0, 255, 136, 0.3); }
+  .mc-value.blue { color: #3a86ff; text-shadow: 0 0 10px rgba(58, 134, 255, 0.3); }
+  .mc-value.purple { color: #a78bfa; text-shadow: 0 0 10px rgba(167, 139, 250, 0.3); }
+  .mc-value.orange { color: #ffbe0b; text-shadow: 0 0 10px rgba(255, 190, 11, 0.3); }
+
+  .chart-container {
+    background: linear-gradient(135deg, #151515, #0f0f0f);
+    border: 1px solid #222;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+  }
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .chart-title { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+  .chart-total { font-size: 14px; color: #00ff88; font-weight: 800; }
+  
+  .bars-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 6px;
+    padding-top: 10px;
+    position: relative;
+  }
+  
+  .bar-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+  .bar-fill {
+    width: 100%;
+    max-width: 30px;
+    background: linear-gradient(to top, #8338ec, #ff006e);
+    border-radius: 4px 4px 0 0;
+    min-height: 2px;
+    transition: height 0.5s ease-out;
+    box-shadow: 0 0 10px rgba(131, 56, 236, 0.3);
+    position: relative;
+  }
+  .bar-fill.today {
+    background: linear-gradient(to top, #00ff88, #00cc6a);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+  }
+  .bar-label {
+    font-size: 9px;
+    color: #555;
+    margin-top: 6px;
+    font-weight: 700;
+  }
+  .bar-value-tooltip {
+    position: absolute;
+    top: -20px;
+    font-size: 9px;
+    color: #fff;
+    font-weight: 800;
+    opacity: 0;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+  }
+  .bar-col:hover .bar-value-tooltip { opacity: 1; }
+
+  .ranking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .rank-item {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .rank-pos {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #222;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 900;
+  }
+  .rank-pos.gold { background: linear-gradient(135deg, #ffd700, #ffb700); color: #000; }
+  .rank-pos.silver { background: linear-gradient(135deg, #c0c0c0, #a0a0a0); color: #000; }
+  
+  .rank-info { flex: 1; }
+  .rank-name { font-size: 14px; font-weight: 800; color: #fff; }
+  .rank-stats { font-size: 10px; color: #666; margin-top: 2px; }
+  .rank-money { font-size: 16px; font-weight: 900; color: #00ff88; text-align: right; }
 
   /* ═══ НАСТРОЙКИ ═══ */
   .settings-group {
@@ -776,7 +923,7 @@
     <div class="status-pill">ONLINE</div>
   </div>
 
-  <!-- ═══ TAB: ГЛАВНАЯ ═══ -->
+  <!-- ═══ TAB: ГЛАВНАЯ (ТОЛЬКО ЦИФРЫ И ПРОДАВЦЫ) ═══ -->
   <div class="tab-content active" id="tab-main">
     
     <div class="bento-row">
@@ -828,7 +975,7 @@
     <div class="sellers-scroll">
       <div class="seller-card">
         <div class="seller-header">
-          <div class="seller-avatar">👨‍</div> <!-- МУЖСКОЙ ЭМОДЗИ -->
+          <div class="seller-avatar">👨‍</div>
           <div>
             <div class="seller-name">Никита</div>
             <div class="seller-money"><b id="p1_money">0</b> ₽</div>
@@ -847,6 +994,7 @@
         </div>
 
         <div class="sales-breakdown">
+          <button class="edit-sales-btn" onclick="openEditSalesModal(1)" title="Исправить продажи">✏️</button>
           <div class="sb-item cans">
             <div class="sb-val" id="p1_cans_sold">0</div>
             <div class="sb-lbl">Банки</div>
@@ -875,7 +1023,7 @@
 
       <div class="seller-card">
         <div class="seller-header">
-          <div class="seller-avatar">👨‍</div> <!-- МУЖСКОЙ ЭМОДЗИ -->
+          <div class="seller-avatar">👨‍💼</div>
           <div>
             <div class="seller-name">Максим</div>
             <div class="seller-money"><b id="p2_money">0</b> ₽</div>
@@ -894,6 +1042,7 @@
         </div>
 
         <div class="sales-breakdown">
+          <button class="edit-sales-btn" onclick="openEditSalesModal(2)" title="Исправить продажи">✏️</button>
           <div class="sb-item cans">
             <div class="sb-val" id="p2_cans_sold">0</div>
             <div class="sb-lbl">Банки</div>
@@ -920,8 +1069,11 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="section-title">Действия со складом</div>
+  <!-- ═══ TAB: СКЛАД (ДЕЙСТВИЯ) ═══ -->
+  <div class="tab-content" id="tab-stock">
+    <div class="section-title">Операции со складом</div>
     <div class="actions-grid">
       <div class="action-btn stock-in" onclick="openStockModal()">
         <div class="badge">+</div>
@@ -944,7 +1096,6 @@
         <div class="label">Добавить<br>расход</div>
       </div>
       
-      <!-- НОВАЯ КНОПКА ЧАЕВЫХ -->
       <div class="action-btn tips" onclick="openTipsModal()">
         <div class="badge" id="tipsBadge" style="display:none;">0</div>
         <div class="icon">🤝</div>
@@ -956,6 +1107,47 @@
         <div class="label">Сохранить итоги дня</div>
       </div>
     </div>
+  </div>
+
+  <!-- ═══ TAB: АНАЛИТИКА ═══ -->
+  <div class="tab-content" id="tab-analytics">
+    
+    <div class="section-title">Статистика за 7 дней (+ текущая смена)</div>
+    
+    <div class="analytics-grid">
+      <div class="metric-card">
+        <div class="mc-label">Общая выручка</div>
+        <div class="mc-value green" id="an_totalRev">0 ₽</div>
+        <div class="mc-sub">за неделю</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-label">Средний чек</div>
+        <div class="mc-value blue" id="an_avgCheck">0 ₽</div>
+        <div class="mc-sub">на одну продажу</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-label">Лучший день</div>
+        <div class="mc-value orange" id="an_bestDay">—</div>
+        <div class="mc-sub" id="an_bestDayVal">0 ₽</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-label">Топ формат</div>
+        <div class="mc-value purple" id="an_topFormat">—</div>
+        <div class="mc-sub" id="an_topFormatVal">0%</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-header">
+        <div class="chart-title">Динамика продаж</div>
+        <div class="chart-total" id="chartTotalLabel">0 ₽</div>
+      </div>
+      <div class="bars-wrapper" id="salesChartBars"></div>
+    </div>
+
+    <div class="section-title">Рейтинг продавцов (7 дней)</div>
+    <div class="ranking-list" id="sellerRanking"></div>
+
   </div>
 
   <!-- ═══ TAB: ИСТОРИЯ ═══ -->
@@ -987,7 +1179,7 @@
       <button class="danger-btn" onclick="openDeleteAllModal()">🗑 Удалить все данные</button>
     </div>
     <div style="text-align: center; color: #333; font-size: 11px; margin-top: 30px; padding: 20px;">
-      ЖИЖА ПРО СЕЗОН_26-27<br>v2.9 · Firebase Sync
+      ЖИЖА ПРО СЕЗОН_26-27<br>v3.2 · Mobile Optimized
     </div>
   </div>
 </div>
@@ -998,17 +1190,63 @@
     <div class="nav-icon">🏠</div>
     <div class="nav-label">Главная</div>
   </button>
+  <button class="nav-item" onclick="switchTab('stock', this)">
+    <div class="nav-icon">🏪</div>
+    <div class="nav-label">Склад</div>
+  </button>
+  <button class="nav-item" onclick="switchTab('analytics', this)">
+    <div class="nav-icon">📊</div>
+    <div class="nav-label">Аналитика</div>
+  </button>
   <button class="nav-item" onclick="switchTab('history', this)">
     <div class="nav-icon">📜</div>
     <div class="nav-label">История</div>
   </button>
   <button class="nav-item" onclick="switchTab('settings', this)">
     <div class="nav-icon">⚙️</div>
-    <div class="nav-label">Настройки</div>
+    <div class="nav-label">Настр.</div>
   </button>
 </div>
 
-<!-- ═══ МОДАЛКИ ═══ -->
+<!-- ═══ МОДАЛКИ (БЕЗ ИЗМЕНЕНИЙ) ═══ -->
+<div class="modal-overlay" id="editSalesModal">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-title">✏️ Исправить продажи</div>
+    <div class="modal-subtitle" id="esSubtitle">Продавец 1</div>
+    
+    <div class="trunk-status-line">
+      Текущие значения:<br>
+      Банки: <b id="esCurCans">0</b> · Упаковки: <b id="esCurPacks">0</b> · Опт: <b id="esCurWs">0</b>
+    </div>
+    
+    <div class="field-label">Новое количество банков</div>
+    <div class="qty-custom">
+      <label>Штук:</label>
+      <input type="number" id="esNewCans" value="0" min="0" max="9999" oninput="updateEsInfo()">
+    </div>
+
+    <div class="field-label">Новое количество упаковок</div>
+    <div class="qty-custom">
+      <label>Штук:</label>
+      <input type="number" id="esNewPacks" value="0" min="0" max="9999" oninput="updateEsInfo()">
+    </div>
+
+    <div class="field-label">Новое количество опта (банок)</div>
+    <div class="qty-custom">
+      <label>Штук:</label>
+      <input type="number" id="esNewWs" value="0" min="0" max="9999" oninput="updateEsInfo()">
+    </div>
+    
+    <div class="modal-info" id="esInfo">Изменения будут применены к багажнику и складу</div>
+    
+    <div class="modal-buttons">
+      <button class="btn-cancel" onclick="closeEditSalesModal()">Отмена</button>
+      <button class="btn-confirm btn-confirm-load" id="esBtnConfirm" onclick="confirmEditSales()">✅ Сохранить</button>
+    </div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="editTrunkModal">
   <div class="modal-box">
     <div class="modal-handle"></div>
@@ -1104,7 +1342,7 @@
     <div class="field-label">Кто продал</div>
     <div class="seller-picker">
       <div class="seller-pick-btn selected" id="wsPick1" onclick="pickWholesaleSeller(1)">
-        <div class="sp-avatar">👨‍🔧</div>
+        <div class="sp-avatar">👨‍</div>
         <div class="sp-name">Никита</div>
       </div>
       <div class="seller-pick-btn" id="wsPick2" onclick="pickWholesaleSeller(2)">
@@ -1168,7 +1406,6 @@
   </div>
 </div>
 
-<!-- НОВАЯ МОДАЛКА ЧАЕВЫХ -->
 <div class="modal-overlay" id="tipsModal">
   <div class="modal-box">
     <div class="modal-handle"></div>
@@ -1252,15 +1489,16 @@
   const QUICK_LOAD = [5, 10, 15, 20, 25, 30, 40, 50, 100];
   const QUICK_WHOLESALE = [10, 20, 30, 40, 50, 60, 80, 100, 200];
   const QUICK_STOCK = [20, 50, 100, 200, 400, 500, 1000, 2000, 5000];
-  const QUICK_TIPS = [50, 100, 200, 300, 500, 1000]; // Быстрые суммы чаевых
+  const QUICK_TIPS = [50, 100, 200, 300, 500, 1000];
 
   let stock = 0;
   let shift = { 
     p1: { cans: 0, packs: 0, trunk: 0, wholesale: 0, wholesaleMoney: 0 }, 
     p2: { cans: 0, packs: 0, trunk: 0, wholesale: 0, wholesaleMoney: 0 }, 
-    selfTaken: 0, spent: 0, tips: 0 // ДОБАВЛЕНО ПОЛЕ TIPS
+    selfTaken: 0, spent: 0, tips: 0 
   };
   let prices = { cost: 100, can: 200, pack: 750 };
+  let historyData = []; 
 
   function normalizeShift(v) {
     function fixPerson(p) {
@@ -1278,7 +1516,7 @@
       p2: fixPerson(v.p2), 
       selfTaken: parseInt(v.selfTaken)||0, 
       spent: parseInt(v.spent)||0,
-      tips: parseInt(v.tips)||0 // ОБРАБОТКА CHAEVYKH
+      tips: parseInt(v.tips)||0
     };
   }
 
@@ -1290,6 +1528,7 @@
       document.getElementById('priceCan').value = prices.can;
       document.getElementById('pricePack').value = prices.pack;
       render();
+      renderAnalytics(historyData);
     }
   });
   document.getElementById('priceCost').addEventListener('change', e => update(priceRef, { cost: Math.max(0, parseInt(e.target.value)||0) }));
@@ -1297,6 +1536,7 @@
   document.getElementById('pricePack').addEventListener('change', e => update(priceRef, { pack: Math.max(0, parseInt(e.target.value)||0) }));
 
   onValue(stockRef, s => { stock = s.exists() ? (parseInt(s.val())||0) : 0; render(); });
+  
   onValue(shiftRef, s => {
     if (s.exists()) {
       shift = normalizeShift(s.val());
@@ -1304,7 +1544,7 @@
       const needsFix = !raw.p1 || typeof raw.p1 !== 'object' || raw.p1.trunk === undefined 
                     || !raw.p2 || raw.p2.trunk === undefined
                     || raw.p1.wholesale === undefined || raw.p2.wholesale === undefined
-                    || raw.tips === undefined; // ПРОВЕРКА TIPS
+                    || raw.tips === undefined;
       if (needsFix) set(shiftRef, shift);
     } else {
       shift = { 
@@ -1314,18 +1554,25 @@
       };
     }
     render();
+    renderAnalytics(historyData);
   });
 
   onValue(historyRef, s => {
+    historyData = [];
     const el = document.getElementById('historyList');
     el.innerHTML = '';
+    
     if (!s.exists()) {
       el.innerHTML = '<div class="empty-state"><div class="emoji">📭</div><div class="msg">Пока пусто</div></div>';
+      renderAnalytics([]);
       return;
     }
+    
     const arr = [];
     s.forEach(c => arr.push({ key: c.key, val: c.val() }));
-    arr.reverse().forEach(item => {
+    arr.sort((a,b) => (b.val.timestamp||0) - (a.val.timestamp||0));
+    
+    arr.slice(0, 50).forEach(item => { 
       const i = item.val;
       const totalSum = parseInt(i.totalSum)||0;
       const spent = parseInt(i.spent)||0;
@@ -1344,9 +1591,183 @@
         <button class="h-delete" onclick="deleteHistoryItem('${item.key}')">✕</button>`;
       el.appendChild(d);
     });
+
+    renderAnalytics(arr.map(x => x.val));
   });
 
-  // ═══ ОТРИСОВКА ═══
+  // ═══ ЛОГИКА АНАЛИТИКИ (REAL-TIME) ═══
+  function renderAnalytics(allHistory) {
+    let combinedData = [...allHistory];
+
+    const hasActiveShift = (shift.p1.cans > 0 || shift.p1.packs > 0 || shift.p1.wholesale > 0 || 
+                           shift.p2.cans > 0 || shift.p2.packs > 0 || shift.p2.wholesale > 0 || 
+                           shift.tips > 0 || shift.spent > 0);
+    
+    if (hasActiveShift) {
+      const now = new Date();
+      const p1Retail = (shift.p1.cans * prices.can) + (shift.p1.packs * prices.pack);
+      const p2Retail = (shift.p2.cans * prices.can) + (shift.p2.packs * prices.pack);
+      const retailTotal = p1Retail + p2Retail;
+      const wholesaleTotal = shift.p1.wholesaleMoney + shift.p2.wholesaleMoney;
+      const tipsTotal = shift.tips;
+      const totalRevenue = retailTotal + wholesaleTotal + tipsTotal;
+
+      combinedData.push({
+        timestamp: now.getTime(),
+        date: "СЕГОДНЯ (Live)",
+        totalSum: totalRevenue,
+        retailSum: retailTotal,
+        wholesaleSum: wholesaleTotal,
+        tips: tipsTotal,
+        spent: shift.spent,
+        tCans: shift.p1.cans + shift.p2.cans,
+        tPacks: shift.p1.packs + shift.p2.packs,
+        tWholesale: shift.p1.wholesale + shift.p2.wholesale,
+        selfTaken: shift.selfTaken,
+        p1: { ...shift.p1 },
+        p2: { ...shift.p2 }
+      });
+    }
+
+    if (combinedData.length === 0) {
+      resetAnalyticsUI();
+      return;
+    }
+
+    const now = Date.now();
+    const sevenDaysAgo = now - (7 * 24 * 60 * 60 * 1000);
+    const recentHistory = combinedData.filter(h => (h.timestamp || 0) >= sevenDaysAgo);
+
+    let totalRevenue = 0;
+    let totalSalesCount = 0;
+    const dailyMap = {}; 
+    const sellerStats = { p1: 0, p2: 0 };
+    let formatCounts = { cans: 0, packs: 0, wholesale: 0 };
+
+    recentHistory.forEach(day => {
+      const rev = parseInt(day.totalSum) || 0;
+      const salesCnt = (parseInt(day.tCans)||0) + (parseInt(day.tPacks)||0) + (parseInt(day.tWholesale)||0);
+      
+      totalRevenue += rev;
+      totalSalesCount += salesCnt;
+
+      const dObj = new Date(day.timestamp);
+      const dayName = ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'][dObj.getDay()];
+      const dateKey = dObj.toISOString().split('T')[0]; 
+      
+      if (!dailyMap[dateKey]) dailyMap[dateKey] = { label: dayName, revenue: 0, count: 0 };
+      dailyMap[dateKey].revenue += rev;
+      dailyMap[dateKey].count += salesCnt;
+
+      if (day.p1) sellerStats.p1 += ((parseInt(day.p1.cans)||0)*prices.can + (parseInt(day.p1.packs)||0)*prices.pack + (parseInt(day.p1.wholesaleMoney)||0));
+      if (day.p2) sellerStats.p2 += ((parseInt(day.p2.cans)||0)*prices.can + (parseInt(day.p2.packs)||0)*prices.pack + (parseInt(day.p2.wholesaleMoney)||0));
+
+      formatCounts.cans += parseInt(day.tCans)||0;
+      formatCounts.packs += parseInt(day.tPacks)||0;
+      formatCounts.wholesale += parseInt(day.tWholesale)||0;
+    });
+
+    document.getElementById('an_totalRev').textContent = totalRevenue.toLocaleString() + ' ₽';
+    
+    const avgCheck = totalSalesCount > 0 ? Math.round(totalRevenue / totalSalesCount) : 0;
+    document.getElementById('an_avgCheck').textContent = avgCheck.toLocaleString() + ' ₽';
+
+    let bestDayName = '—';
+    let bestDayVal = 0;
+    Object.values(dailyMap).forEach(d => {
+      if (d.revenue > bestDayVal) {
+        bestDayVal = d.revenue;
+        bestDayName = d.label;
+      }
+    });
+    document.getElementById('an_bestDay').textContent = bestDayName;
+    document.getElementById('an_bestDayVal').textContent = bestDayVal.toLocaleString() + ' ₽';
+
+    const totalFormats = formatCounts.cans + formatCounts.packs + formatCounts.wholesale;
+    let topFmt = '—';
+    let topFmtPercent = 0;
+    if (totalFormats > 0) {
+      const max = Math.max(formatCounts.cans, formatCounts.packs, formatCounts.wholesale);
+      if (max === formatCounts.cans) topFmt = 'Банки';
+      else if (max === formatCounts.packs) topFmt = 'Упаковки';
+      else topFmt = 'Опт';
+      topFmtPercent = Math.round((max / totalFormats) * 100);
+    }
+    document.getElementById('an_topFormat').textContent = topFmt;
+    document.getElementById('an_topFormatVal').textContent = topFmtPercent + '% от всех продаж';
+
+    drawChart(dailyMap, now);
+    drawRanking(sellerStats);
+  }
+
+  function resetAnalyticsUI() {
+    document.getElementById('an_totalRev').textContent = '0 ₽';
+    document.getElementById('an_avgCheck').textContent = '0 ₽';
+    document.getElementById('an_bestDay').textContent = '—';
+    document.getElementById('an_bestDayVal').textContent = 'Нет данных';
+    document.getElementById('an_topFormat').textContent = '—';
+    document.getElementById('an_topFormatVal').textContent = 'Нет данных';
+    document.getElementById('salesChartBars').innerHTML = '<div style="text-align:center;width:100%;color:#555;padding:40px 0;">Нет данных</div>';
+    document.getElementById('sellerRanking').innerHTML = '<div style="text-align:center;color:#555;padding:20px;">Нет данных</div>';
+  }
+
+  function drawChart(dailyMap, currentTime) {
+    const container = document.getElementById('salesChartBars');
+    container.innerHTML = '';
+    
+    const daysArray = Object.keys(dailyMap).map(k => ({ key: k, ...dailyMap[k] }))
+                            .sort((a,b) => a.key.localeCompare(b.key));
+    
+    if (daysArray.length === 0) {
+       container.innerHTML = '<div style="text-align:center;width:100%;color:#555;padding:40px 0;">Нет продаж за период</div>';
+       return;
+    }
+
+    const maxRev = Math.max(...daysArray.map(d => d.revenue), 1000); 
+    
+    daysArray.forEach((d, index) => {
+      const col = document.createElement('div');
+      col.className = 'bar-col';
+      
+      const heightPct = Math.min(100, (d.revenue / maxRev) * 100);
+      const isToday = d.key === new Date(currentTime).toISOString().split('T')[0];
+      
+      col.innerHTML = `
+        <div class="bar-value-tooltip">${d.revenue.toLocaleString()} ₽</div>
+        <div class="bar-fill ${isToday ? 'today' : ''}" style="height: ${heightPct}%"></div>
+        <div class="bar-label">${d.label}</div>
+      `;
+      container.appendChild(col);
+    });
+  }
+
+  function drawRanking(stats) {
+    const container = document.getElementById('sellerRanking');
+    container.innerHTML = '';
+    
+    const sellers = [
+      { id: 'p1', name: 'Никита', avatar: '👨‍', money: stats.p1 },
+      { id: 'p2', name: 'Максим', avatar: '👨‍💼', money: stats.p2 }
+    ].sort((a,b) => b.money - a.money);
+
+    sellers.forEach((s, idx) => {
+      const posClass = idx === 0 ? 'gold' : (idx === 1 ? 'silver' : '');
+      const div = document.createElement('div');
+      div.className = 'rank-item';
+      div.innerHTML = `
+        <div class="rank-pos ${posClass}">${idx+1}</div>
+        <div style="font-size:24px;">${s.avatar}</div>
+        <div class="rank-info">
+          <div class="rank-name">${s.name}</div>
+          <div class="rank-stats">Выручка за 7 дней</div>
+        </div>
+        <div class="rank-money">${s.money.toLocaleString()} ₽</div>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  // ═══ ОТРИСОВКА ГЛАВНОГО ЭКРАНА ═══
   function render() {
     const stEl = document.getElementById('stockTotal');
     stEl.textContent = stock;
@@ -1401,7 +1822,6 @@
     const selfTaken = parseInt(shift.selfTaken)||0;
     const tips = parseInt(shift.tips)||0;
     
-    // ВЫРУЧКА ТЕПЕРЬ ВКЛЮЧАЕТ ЧАЕВЫЕ
     const allMoney = totalRevenue + tips;
     const profit = allMoney - spent;
 
@@ -1412,14 +1832,14 @@
 
     document.getElementById('profitValue').textContent = profit.toLocaleString() + ' ₽';
     document.getElementById('profitValue').className = 'value' + (profit<0?' negative':'');
-    document.getElementById('revenueValue').textContent = allMoney.toLocaleString() + ' ₽'; // Сюда входят чаевые
+    document.getElementById('revenueValue').textContent = allMoney.toLocaleString() + ' ₽';
     document.getElementById('spentValue').textContent = spent.toLocaleString() + ' ₽';
     document.getElementById('soldItemsValue').textContent = totalRetailItems + totalWholesale;
 
     setBadge('wsBadge', totalWholesale);
     setBadge('selfBadge', selfTaken);
     setBadge('expBadge', spent);
-    setBadge('tipsBadge', tips); // БЕЙДЖ ДЛЯ ЧАЕВЫХ
+    setBadge('tipsBadge', tips);
   }
 
   function setBadge(id, value) {
@@ -1450,6 +1870,8 @@
     } else {
       backBtn.classList.add('visible');
       const titles = {
+        'stock': '🏪 Склад',
+        'analytics': '📊 Аналитика',
         'history': '📜 История',
         'settings': '⚙️ Настройки'
       };
@@ -1531,6 +1953,95 @@
     } else {
       await set(stockRef, stock + Math.abs(diff));
     }
+  };
+
+  // ═══ ✏️ РЕДАКТИРОВАНИЕ ПРОДАЖ ═══
+  let esSeller = 1;
+  let esOldCans = 0, esOldPacks = 0, esOldWs = 0;
+
+  window.openEditSalesModal = function(seller) {
+    esSeller = seller;
+    const p = shift[`p${seller}`];
+    esOldCans = parseInt(p.cans) || 0;
+    esOldPacks = parseInt(p.packs) || 0;
+    esOldWs = parseInt(p.wholesale) || 0;
+    
+    document.getElementById('esSubtitle').textContent = `Продавец ${seller}`;
+    document.getElementById('esCurCans').textContent = esOldCans;
+    document.getElementById('esCurPacks').textContent = esOldPacks;
+    document.getElementById('esCurWs').textContent = esOldWs;
+    
+    document.getElementById('esNewCans').value = esOldCans;
+    document.getElementById('esNewPacks').value = esOldPacks;
+    document.getElementById('esNewWs').value = esOldWs;
+    
+    updateEsInfo();
+    document.getElementById('editSalesModal').classList.add('active');
+  };
+
+  window.updateEsInfo = function() {
+    const newCans = parseInt(document.getElementById('esNewCans').value) || 0;
+    const newPacks = parseInt(document.getElementById('esNewPacks').value) || 0;
+    const newWs = parseInt(document.getElementById('esNewWs').value) || 0;
+    
+    const diffCans = newCans - esOldCans;
+    const diffPacks = newPacks - esOldPacks;
+    const diffWs = newWs - esOldWs;
+    
+    const trunkChange = -(diffCans + (diffPacks * PER_PACK) + diffWs);
+    
+    const currentTrunk = parseInt(shift[`p${esSeller}`].trunk) || 0;
+    const newTrunk = currentTrunk + trunkChange;
+    
+    const infoEl = document.getElementById('esInfo');
+    const btnEl = document.getElementById('esBtnConfirm');
+    
+    if (trunkChange === 0) {
+      infoEl.textContent = 'Изменений нет';
+      infoEl.className = 'modal-info';
+      btnEl.disabled = true;
+    } else if (newTrunk < 0) {
+      infoEl.textContent = `⚠️ Ошибка: Багажник уйдет в минус (${newTrunk}). Проверьте ввод.`;
+      infoEl.className = 'modal-info error';
+      btnEl.disabled = true;
+    } else {
+      const sign = trunkChange > 0 ? '+' : '';
+      infoEl.textContent = `Багажник станет: ${newTrunk} шт (${sign}${trunkChange})`;
+      infoEl.className = 'modal-info';
+      btnEl.disabled = false;
+    }
+  };
+
+  window.closeEditSalesModal = () => document.getElementById('editSalesModal').classList.remove('active');
+
+  window.confirmEditSales = async function() {
+    const newCans = parseInt(document.getElementById('esNewCans').value) || 0;
+    const newPacks = parseInt(document.getElementById('esNewPacks').value) || 0;
+    const newWs = parseInt(document.getElementById('esNewWs').value) || 0;
+    
+    const diffCans = newCans - esOldCans;
+    const diffPacks = newPacks - esOldPacks;
+    const diffWs = newWs - esOldWs;
+    
+    if (diffCans === 0 && diffPacks === 0 && diffWs === 0) return;
+    
+    const trunkChange = -(diffCans + (diffPacks * PER_PACK) + diffWs);
+    const currentTrunk = parseInt(shift[`p${esSeller}`].trunk) || 0;
+    const newTrunk = currentTrunk + trunkChange;
+    
+    if (newTrunk < 0) {
+      alert('Ошибка: Багажник не может быть отрицательным.');
+      return;
+    }
+    
+    closeEditSalesModal();
+    
+    await update(shiftRef, {
+      [`p${esSeller}/cans`]: newCans,
+      [`p${esSeller}/packs`]: newPacks,
+      [`p${esSeller}/wholesale`]: newWs,
+      [`p${esSeller}/trunk`]: newTrunk
+    });
   };
 
   // ═══ ПРИХОД НА СКЛАД ═══
@@ -1776,7 +2287,7 @@
     await update(shiftRef,{spent:cur+a});
   };
 
-  // ═══ 🤝 ЧАЕВЫЕ ═══
+  // ═══ ЧАЕВЫЕ ═══
   let tipsQty = 100;
   window.openTipsModal = function() {
     tipsQty = 100;
@@ -1833,7 +2344,7 @@
     const retailMoney=(p1c+p2c)*prices.can+(p1p+p2p)*prices.pack;
     const wholesaleMoney=p1wm+p2wm;
     const tips=parseInt(shift.tips)||0;
-    const allMoney=retailMoney+wholesaleMoney+tips; // ЧАЕВЫЕ ВКЛЮЧЕНЫ
+    const allMoney=retailMoney+wholesaleMoney+tips;
     
     const spent=parseInt(shift.spent)||0,selfTaken=parseInt(shift.selfTaken)||0,profit=allMoney-spent;
     
@@ -1842,6 +2353,7 @@
     
     const now=new Date();
     await push(historyRef,{
+      timestamp: now.getTime(), 
       date:now.toLocaleDateString('ru-RU')+' '+now.toLocaleTimeString('ru-RU').slice(0,5),
       totalSum:allMoney, retailSum:retailMoney, wholesaleSum:wholesaleMoney, tips:tips,
       spent,profit,
@@ -1855,7 +2367,7 @@
     await set(shiftRef,{
       p1:{cans:0,packs:0,trunk:0,wholesale:0,wholesaleMoney:0},
       p2:{cans:0,packs:0,trunk:0,wholesale:0,wholesaleMoney:0},
-      selfTaken:0,spent:0,tips:0 // СБРОС ЧАЕВЫХ
+      selfTaken:0,spent:0,tips:0
     });
   };
 

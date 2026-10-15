@@ -42,8 +42,8 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    /* ИСПРАВЛЕНИЕ: Увеличен отступ снизу до 100px + safe area */
-    padding-bottom: calc(100px + env(safe-area-inset-bottom)); 
+    /* ИСПРАВЛЕНИЕ: Отступ снизу гарантированно больше высоты навигации */
+    padding-bottom: calc(90px + env(safe-area-inset-bottom)); 
     overflow-y: auto;
     overflow-x: hidden;
   }
@@ -332,13 +332,12 @@
   .seller-stats { display: flex; justify-content: space-between; font-size: 11px; color: #555; margin-bottom: 12px; }
   .seller-stats b { color: #fff; font-size: 14px; }
 
-  /* ИСПРАВЛЕНИЕ: Уменьшены кнопки действий продавца для экономии места */
   .seller-actions { display: flex; flex-direction: column; gap: 6px; }
   .seller-actions button {
     border: none;
     border-radius: 10px;
-    padding: 10px 8px; /* Было 14px 10px */
-    font-size: 13px;   /* Было 14px */
+    padding: 10px 8px;
+    font-size: 13px;
     font-weight: 800;
     cursor: pointer;
     color: white;
@@ -350,12 +349,12 @@
     letter-spacing: 0.3px;
   }
   .seller-actions button:active { transform: scale(0.96); }
-  .seller-actions button .btn-icon { font-size: 16px; } /* Было 18px */
+  .seller-actions button .btn-icon { font-size: 16px; }
   .btn-load { background: linear-gradient(135deg, #ffbe0b, #fb5607); box-shadow: 0 2px 8px rgba(255, 190, 11, 0.2); }
   .btn-sell-can { background: linear-gradient(135deg, #3a86ff, #0066ff); box-shadow: 0 2px 8px rgba(58, 134, 255, 0.2); }
   .btn-sell-pack { background: linear-gradient(135deg, #8338ec, #6a0dad); box-shadow: 0 2px 8px rgba(131, 56, 236, 0.2); }
 
-  /* ═══ СЕТКА ДЕЙСТВИЙ (В НОВОЙ ВКЛАДКЕ) ═══ */
+  /* ═══ СЕТКА ДЕЙСТВИЙ ═══ */
   .actions-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -487,38 +486,39 @@
   .empty-state .msg { font-size: 14px; color: #555; }
 
   /* ═══════════════════════════════════════
-     АНАЛИТИКА
+     АНАЛИТИКА (ИСПРАВЛЕННАЯ ВЫСОТА)
      ═══════════════════════════════════════ */
   
   .analytics-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 16px;
+    gap: 10px; /* Уменьшен gap */
+    margin-bottom: 12px; /* Уменьшен margin */
   }
   .metric-card {
     background: linear-gradient(135deg, #151515, #0f0f0f);
     border: 1px solid #222;
-    border-radius: 16px;
-    padding: 14px;
+    border-radius: 14px; /* Чуть меньше радиус */
+    padding: 10px; /* Меньше паддинга */
     text-align: center;
   }
-  .mc-label { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; font-weight: 700; }
-  .mc-value { font-size: 24px; font-weight: 900; color: #fff; line-height: 1; }
-  .mc-sub { font-size: 11px; color: #555; margin-top: 4px; }
+  .mc-label { font-size: 9px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 700; }
+  .mc-value { font-size: 20px; font-weight: 900; color: #fff; line-height: 1; } /* Меньше шрифт значения */
+  .mc-sub { font-size: 10px; color: #555; margin-top: 2px; }
   
   .mc-value.green { color: #00ff88; text-shadow: 0 0 10px rgba(0, 255, 136, 0.3); }
   .mc-value.blue { color: #3a86ff; text-shadow: 0 0 10px rgba(58, 134, 255, 0.3); }
   .mc-value.purple { color: #a78bfa; text-shadow: 0 0 10px rgba(167, 139, 250, 0.3); }
   .mc-value.orange { color: #ffbe0b; text-shadow: 0 0 10px rgba(255, 190, 11, 0.3); }
 
+  /* ГРАФИК: УМЕНЬШЕНА ВЫСОТА КОНТЕЙНЕРА */
   .chart-container {
     background: linear-gradient(135deg, #151515, #0f0f0f);
     border: 1px solid #222;
-    border-radius: 16px;
-    padding: 16px;
-    margin-bottom: 16px;
-    height: 220px;
+    border-radius: 14px;
+    padding: 12px; /* Меньше паддинг */
+    margin-bottom: 12px; /* Меньше маргин */
+    height: 180px; /* БЫЛО 220px -> СТАЛО 180px */
     display: flex;
     flex-direction: column;
   }
@@ -526,18 +526,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 8px; /* Меньше отступ */
   }
-  .chart-title { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
-  .chart-total { font-size: 14px; color: #00ff88; font-weight: 800; }
+  .chart-title { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+  .chart-total { font-size: 13px; color: #00ff88; font-weight: 800; }
   
   .bars-wrapper {
     flex: 1;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    gap: 6px;
-    padding-top: 10px;
+    gap: 4px; /* Плотнее бары */
+    padding-top: 5px;
     position: relative;
   }
   
@@ -553,28 +553,28 @@
   }
   .bar-fill {
     width: 100%;
-    max-width: 30px;
+    max-width: 24px; /* Тоньше столбики */
     background: linear-gradient(to top, #8338ec, #ff006e);
-    border-radius: 4px 4px 0 0;
+    border-radius: 3px 3px 0 0;
     min-height: 2px;
     transition: height 0.5s ease-out;
-    box-shadow: 0 0 10px rgba(131, 56, 236, 0.3);
+    box-shadow: 0 0 8px rgba(131, 56, 236, 0.3);
     position: relative;
   }
   .bar-fill.today {
     background: linear-gradient(to top, #00ff88, #00cc6a);
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+    box-shadow: 0 0 12px rgba(0, 255, 136, 0.4);
   }
   .bar-label {
-    font-size: 9px;
+    font-size: 8px; /* Мельче подпись дня */
     color: #555;
-    margin-top: 6px;
+    margin-top: 4px;
     font-weight: 700;
   }
   .bar-value-tooltip {
     position: absolute;
-    top: -20px;
-    font-size: 9px;
+    top: -18px;
+    font-size: 8px;
     color: #fff;
     font-weight: 800;
     opacity: 0;
@@ -583,39 +583,41 @@
   }
   .bar-col:hover .bar-value-tooltip { opacity: 1; }
 
+  /* РЕЙТИНГ: КОМПАКТНЫЙ СПИСОК */
   .ranking-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px; /* Меньше расстояние между картами */
   }
   .rank-item {
     background: #111;
     border: 1px solid #222;
-    border-radius: 12px;
-    padding: 12px;
+    border-radius: 10px; /* Меньше радиус */
+    padding: 10px; /* Меньше паддинг */
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px; /* Меньше зазор */
   }
   .rank-pos {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background: #222;
     color: #888;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 900;
+    flex-shrink: 0;
   }
   .rank-pos.gold { background: linear-gradient(135deg, #ffd700, #ffb700); color: #000; }
   .rank-pos.silver { background: linear-gradient(135deg, #c0c0c0, #a0a0a0); color: #000; }
   
   .rank-info { flex: 1; }
-  .rank-name { font-size: 14px; font-weight: 800; color: #fff; }
-  .rank-stats { font-size: 10px; color: #666; margin-top: 2px; }
-  .rank-money { font-size: 16px; font-weight: 900; color: #00ff88; text-align: right; }
+  .rank-name { font-size: 13px; font-weight: 800; color: #fff; }
+  .rank-stats { font-size: 9px; color: #666; margin-top: 1px; }
+  .rank-money { font-size: 14px; font-weight: 900; color: #00ff88; text-align: right; }
 
   /* ═══ НАСТРОЙКИ ═══ */
   .settings-group {
@@ -665,14 +667,13 @@
     border-top: 1px solid #1a1a1a;
     display: flex;
     justify-content: space-around;
-    /* ИСПРАВЛЕНИЕ: Чуть уменьшили внутренний отступ, чтобы панель была компактнее */
     padding: 8px 0 calc(8px + env(safe-area-inset-bottom)); 
     z-index: 100;
   }
   .nav-item {
     flex: 1;
     text-align: center;
-    padding: 6px 4px; /* Уменьшен padding внутри кнопок навигации */
+    padding: 6px 4px;
     cursor: pointer;
     transition: all 0.2s;
     border: none;
@@ -686,7 +687,7 @@
     color: #ff006e; 
     background: rgba(255, 0, 110, 0.08);
   }
-  .nav-item .nav-icon { font-size: 24px; margin-bottom: 2px; } /* Немного меньше иконки */
+  .nav-item .nav-icon { font-size: 24px; margin-bottom: 2px; }
   .nav-item .nav-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
 
   /* ═══ МОДАЛКИ ═══ */
@@ -1185,7 +1186,7 @@
       <button class="danger-btn" onclick="openDeleteAllModal()">🗑 Удалить все данные</button>
     </div>
     <div style="text-align: center; color: #333; font-size: 11px; margin-top: 30px; padding: 20px;">
-      ЖИЖА ПРО СЕЗОН_26-27<br>v3.3 · Fixed Layout
+      ЖИЖА ПРО СЕЗОН_26-27<br>v3.4 · Compact Analytics
     </div>
   </div>
 </div>
@@ -1352,7 +1353,7 @@
         <div class="sp-name">Никита</div>
       </div>
       <div class="seller-pick-btn" id="wsPick2" onclick="pickWholesaleSeller(2)">
-        <div class="sp-avatar">👨‍</div>
+        <div class="sp-avatar">👨‍💼</div>
         <div class="sp-name">Максим</div>
       </div>
     </div>
@@ -1762,7 +1763,7 @@
       div.className = 'rank-item';
       div.innerHTML = `
         <div class="rank-pos ${posClass}">${idx+1}</div>
-        <div style="font-size:24px;">${s.avatar}</div>
+        <div style="font-size:20px;">${s.avatar}</div>
         <div class="rank-info">
           <div class="rank-name">${s.name}</div>
           <div class="rank-stats">Выручка за 7 дней</div>

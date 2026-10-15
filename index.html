@@ -42,7 +42,8 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-bottom: 90px; /* Место под навигацию */
+    /* ИСПРАВЛЕНИЕ: Увеличен отступ снизу до 100px + safe area */
+    padding-bottom: calc(100px + env(safe-area-inset-bottom)); 
     overflow-y: auto;
     overflow-x: hidden;
   }
@@ -328,12 +329,16 @@
   .wholesale-stat .ws-value { color: #fff; font-weight: 800; font-size: 12px; }
   .wholesale-stat .ws-value.zero { color: #555; }
 
-  .seller-actions { display: flex; flex-direction: column; gap: 8px; }
+  .seller-stats { display: flex; justify-content: space-between; font-size: 11px; color: #555; margin-bottom: 12px; }
+  .seller-stats b { color: #fff; font-size: 14px; }
+
+  /* ИСПРАВЛЕНИЕ: Уменьшены кнопки действий продавца для экономии места */
+  .seller-actions { display: flex; flex-direction: column; gap: 6px; }
   .seller-actions button {
     border: none;
-    border-radius: 12px;
-    padding: 14px 10px;
-    font-size: 14px;
+    border-radius: 10px;
+    padding: 10px 8px; /* Было 14px 10px */
+    font-size: 13px;   /* Было 14px */
     font-weight: 800;
     cursor: pointer;
     color: white;
@@ -341,14 +346,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
     letter-spacing: 0.3px;
   }
   .seller-actions button:active { transform: scale(0.96); }
-  .seller-actions button .btn-icon { font-size: 18px; }
-  .btn-load { background: linear-gradient(135deg, #ffbe0b, #fb5607); box-shadow: 0 4px 12px rgba(255, 190, 11, 0.3); }
-  .btn-sell-can { background: linear-gradient(135deg, #3a86ff, #0066ff); box-shadow: 0 4px 12px rgba(58, 134, 255, 0.3); }
-  .btn-sell-pack { background: linear-gradient(135deg, #8338ec, #6a0dad); box-shadow: 0 4px 12px rgba(131, 56, 236, 0.3); }
+  .seller-actions button .btn-icon { font-size: 16px; } /* Было 18px */
+  .btn-load { background: linear-gradient(135deg, #ffbe0b, #fb5607); box-shadow: 0 2px 8px rgba(255, 190, 11, 0.2); }
+  .btn-sell-can { background: linear-gradient(135deg, #3a86ff, #0066ff); box-shadow: 0 2px 8px rgba(58, 134, 255, 0.2); }
+  .btn-sell-pack { background: linear-gradient(135deg, #8338ec, #6a0dad); box-shadow: 0 2px 8px rgba(131, 56, 236, 0.2); }
 
   /* ═══ СЕТКА ДЕЙСТВИЙ (В НОВОЙ ВКЛАДКЕ) ═══ */
   .actions-grid {
@@ -660,13 +665,14 @@
     border-top: 1px solid #1a1a1a;
     display: flex;
     justify-content: space-around;
-    padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+    /* ИСПРАВЛЕНИЕ: Чуть уменьшили внутренний отступ, чтобы панель была компактнее */
+    padding: 8px 0 calc(8px + env(safe-area-inset-bottom)); 
     z-index: 100;
   }
   .nav-item {
     flex: 1;
     text-align: center;
-    padding: 8px 4px;
+    padding: 6px 4px; /* Уменьшен padding внутри кнопок навигации */
     cursor: pointer;
     transition: all 0.2s;
     border: none;
@@ -680,8 +686,8 @@
     color: #ff006e; 
     background: rgba(255, 0, 110, 0.08);
   }
-  .nav-item .nav-icon { font-size: 26px; margin-bottom: 4px; }
-  .nav-item .nav-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+  .nav-item .nav-icon { font-size: 24px; margin-bottom: 2px; } /* Немного меньше иконки */
+  .nav-item .nav-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
 
   /* ═══ МОДАЛКИ ═══ */
   .modal-overlay {
@@ -923,7 +929,7 @@
     <div class="status-pill">ONLINE</div>
   </div>
 
-  <!-- ═══ TAB: ГЛАВНАЯ (ТОЛЬКО ЦИФРЫ И ПРОДАВЦЫ) ═══ -->
+  <!-- ═══ TAB: ГЛАВНАЯ ═══ -->
   <div class="tab-content active" id="tab-main">
     
     <div class="bento-row">
@@ -1071,7 +1077,7 @@
     </div>
   </div>
 
-  <!-- ═══ TAB: СКЛАД (ДЕЙСТВИЯ) ═══ -->
+  <!-- ═══ TAB: СКЛАД ═══ -->
   <div class="tab-content" id="tab-stock">
     <div class="section-title">Операции со складом</div>
     <div class="actions-grid">
@@ -1179,7 +1185,7 @@
       <button class="danger-btn" onclick="openDeleteAllModal()">🗑 Удалить все данные</button>
     </div>
     <div style="text-align: center; color: #333; font-size: 11px; margin-top: 30px; padding: 20px;">
-      ЖИЖА ПРО СЕЗОН_26-27<br>v3.2 · Mobile Optimized
+      ЖИЖА ПРО СЕЗОН_26-27<br>v3.3 · Fixed Layout
     </div>
   </div>
 </div>
@@ -1346,7 +1352,7 @@
         <div class="sp-name">Никита</div>
       </div>
       <div class="seller-pick-btn" id="wsPick2" onclick="pickWholesaleSeller(2)">
-        <div class="sp-avatar">👨‍💼</div>
+        <div class="sp-avatar">👨‍</div>
         <div class="sp-name">Максим</div>
       </div>
     </div>

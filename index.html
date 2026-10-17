@@ -6,7 +6,7 @@
 <title>❄️ ЖИЖА ПРО СЕЗОН_26-27</title>
 
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff006e'/%3E%3Cstop offset='1' stop-color='%238338ec'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='110' fill='url(%23g)'/%3E%3Ctext x='256' y='340' font-size='280' text-anchor='middle' fill='white'%3E❄%3C/text%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff006e'/%3E%3Cstop offset='1' stop-color='%238338ec'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='110' fill='url(%23g)'/%3E%3Ctext x='256' y='340' font-size='280' text-anchor='middle' fill='white'%3E❄%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff006e'/%3E%3Cstop offset='1' stop-color='%238338ec'/%3E%3C/defs%3E%3Crect width='512' height='512' rx='110' fill='url(%23g)'/%3E%3Ctext x='256' y='340' font-size='280' text-anchor='middle' fill='white'%3E❄%3C/text%3E%3C/svg%3E">
 <meta name="apple-mobile-web-app-title" content="ЖИЖА ПРО">
 <meta name="theme-color" content="#0a0a0a">
 
@@ -485,7 +485,7 @@
   .empty-state .msg { font-size: 14px; color: #555; }
 
   /* ═══════════════════════════════════════
-     АНАЛИТИКА (НОВАЯ ВЕРСИЯ)
+     АНАЛИТИКА (БУХГАЛТЕРСКАЯ КНИГА)
      ═══════════════════════════════════════ */
   
   .period-switcher {
@@ -515,119 +515,179 @@
     box-shadow: 0 2px 8px rgba(131, 56, 236, 0.3);
   }
 
-  .summary-block {
+  .report-block {
     background: linear-gradient(135deg, #151515, #0f0f0f);
     border: 1px solid #222;
     border-radius: 16px;
     padding: 16px;
     margin-bottom: 16px;
   }
-  .summary-title {
+  .rb-title {
     font-size: 11px;
     color: #888;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 12px;
     font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-  .summary-grid {
+  .rb-badge {
+    background: #222;
+    color: #aaa;
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 800;
+  }
+
+  /* Финансы */
+  .finance-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .fin-item {
+    background: #0a0a0a;
+    border-radius: 10px;
+    padding: 12px 8px;
+    text-align: center;
+    border: 1px solid #1a1a1a;
+  }
+  .fin-label { font-size: 9px; color: #666; text-transform: uppercase; margin-bottom: 4px; font-weight: 700; }
+  .fin-value { font-size: 16px; font-weight: 900; line-height: 1; }
+  .fin-value.rev { color: #00ff88; }
+  .fin-value.exp { color: #ff006e; }
+  .fin-value.net { color: #fff; }
+  .fin-sub { font-size: 9px; color: #555; margin-top: 4px; }
+
+  /* Товары */
+  .goods-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 10px;
   }
-  .sum-item {
+  .good-item {
     background: #0a0a0a;
     border-radius: 10px;
     padding: 12px;
-    text-align: center;
-  }
-  .sum-val { font-size: 20px; font-weight: 900; color: #fff; line-height: 1; }
-  .sum-lbl { font-size: 9px; color: #666; text-transform: uppercase; margin-top: 4px; }
-  .sum-val.green { color: #00ff88; }
-  .sum-val.blue { color: #3a86ff; }
-  .sum-val.purple { color: #a78bfa; }
-  .sum-val.orange { color: #ffbe0b; }
-
-  .monthly-chart {
-    background: linear-gradient(135deg, #151515, #0f0f0f);
-    border: 1px solid #222;
-    border-radius: 16px;
-    padding: 16px;
-    margin-bottom: 16px;
-  }
-  .month-bars {
     display: flex;
-    align-items: flex-end;
-    justify-content: space-around;
-    height: 120px;
-    gap: 8px;
-    margin-top: 12px;
-  }
-  .m-bar-col {
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
-    flex: 1;
-    height: 100%;
+    gap: 10px;
+    border: 1px solid #1a1a1a;
   }
-  .m-bar-fill {
-    width: 100%;
-    max-width: 30px;
-    background: linear-gradient(to top, #8338ec, #ff006e);
-    border-radius: 4px 4px 0 0;
-    min-height: 4px;
-    transition: height 0.5s ease-out;
+  .gi-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
   }
-  .m-bar-fill.best {
-    background: linear-gradient(to top, #00ff88, #00cc6a);
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
-  }
-  .m-bar-label {
-    font-size: 9px;
-    color: #666;
-    margin-top: 6px;
-    font-weight: 700;
-  }
-  .m-bar-value {
-    font-size: 8px;
-    color: #fff;
-    font-weight: 800;
-    margin-bottom: 4px;
-  }
+  .gi-icon.can { background: rgba(58, 134, 255, 0.15); color: #3a86ff; }
+  .gi-icon.pack { background: rgba(131, 56, 236, 0.15); color: #8338ec; }
+  .gi-icon.ws { background: rgba(167, 139, 250, 0.15); color: #a78bfa; }
+  .gi-icon.self { background: rgba(255, 190, 11, 0.15); color: #ffbe0b; }
+  
+  .gi-info { flex: 1; }
+  .gi-count { font-size: 16px; font-weight: 900; color: #fff; line-height: 1; }
+  .gi-unit { font-size: 9px; color: #666; text-transform: uppercase; margin-top: 2px; }
+  .gi-money { font-size: 11px; color: #00ff88; font-weight: 700; text-align: right; }
 
-  .detail-table {
-    background: linear-gradient(135deg, #151515, #0f0f0f);
-    border: 1px solid #222;
-    border-radius: 16px;
-    overflow: hidden;
-    margin-bottom: 16px;
-  }
-  .dt-header {
-    display: grid;
-    grid-template-columns: 1fr 60px 60px 60px 80px;
-    background: #111;
-    padding: 10px 12px;
-    font-size: 9px;
-    color: #666;
-    text-transform: uppercase;
-    font-weight: 700;
-    border-bottom: 1px solid #222;
-  }
-  .dt-row {
-    display: grid;
-    grid-template-columns: 1fr 60px 60px 60px 80px;
-    padding: 10px 12px;
+  /* Рейтинг продавцов */
+  .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
     border-bottom: 1px solid #1a1a1a;
-    font-size: 11px;
-    align-items: center;
   }
-  .dt-row:last-child { border-bottom: none; }
-  .dt-date { color: #fff; font-weight: 700; }
-  .dt-cans { color: #3a86ff; font-weight: 800; text-align: center; }
-  .dt-packs { color: #8338ec; font-weight: 800; text-align: center; }
-  .dt-ws { color: #a78bfa; font-weight: 800; text-align: center; }
-  .dt-money { color: #00ff88; font-weight: 900; text-align: right; }
+  .rating-row:last-child { border-bottom: none; }
+  .rr-pos {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #222;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+  .rr-pos.gold { background: linear-gradient(135deg, #ffd700, #ffb700); color: #000; }
+  .rr-pos.silver { background: linear-gradient(135deg, #c0c0c0, #a0a0a0); color: #000; }
+  .rr-avatar { font-size: 22px; }
+  .rr-info { flex: 1; }
+  .rr-name { font-size: 14px; font-weight: 800; color: #fff; }
+  .rr-stats { font-size: 10px; color: #666; margin-top: 2px; }
+  .rr-money { font-size: 16px; font-weight: 900; color: #00ff88; }
+  .rr-share {
+    width: 60px;
+    height: 6px;
+    background: #1a1a1a;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+  .rr-share-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #8338ec, #ff006e);
+    border-radius: 3px;
+  }
+
+  /* Лента дней */
+  .days-feed {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    background: #0a0a0a;
+  }
+  .df-day {
+    padding: 12px;
+    border-bottom: 1px solid #151515;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .df-day:last-child { border-bottom: none; }
+  .df-day:active { background: #151515; }
+  .df-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .df-date { font-size: 13px; font-weight: 800; color: #fff; }
+  .df-total { font-size: 14px; font-weight: 900; color: #00ff88; }
+  .df-details {
+    display: none;
+    padding-top: 10px;
+    border-top: 1px dashed #222;
+    margin-top: 8px;
+    font-size: 11px;
+    color: #888;
+    line-height: 1.8;
+  }
+  .df-day.open .df-details { display: block; }
+  .df-arrow {
+    font-size: 10px;
+    color: #555;
+    transition: transform 0.2s;
+  }
+  .df-day.open .df-arrow { transform: rotate(90deg); }
+  .df-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 10px;
+    color: #555;
+  }
+  .df-meta span b { color: #aaa; }
 
   /* ═══ НАСТРОЙКИ ═══ */
   .settings-group {
@@ -930,7 +990,6 @@
     font-weight: 700;
   }
 
-  /* Новые стили для модалки опта */
   .source-toggle {
     display: flex;
     background: #0a0a0a;
@@ -995,7 +1054,6 @@
     line-height: 1.6;
   }
   .calc-preview strong { color: #fff; font-weight: 800; }
-  .calc-preview .result { color: #00ff88; font-weight: 900; font-size: 14px; margin-top: 4px; display: block; }
 </style>
 </head>
 <body>
@@ -1202,72 +1260,106 @@
       <button class="period-btn" onclick="setPeriod('season')" id="perSeason">Сезон</button>
     </div>
 
-    <!-- Общая сводка -->
-    <div class="summary-block">
-      <div class="summary-title">Итоги за период</div>
-      <div class="summary-grid">
-        <div class="sum-item">
-          <div class="sum-val green" id="an_totalRev">0 ₽</div>
-          <div class="sum-lbl">Выручка</div>
+    <!-- Блок 1: Финансы -->
+    <div class="report-block">
+      <div class="rb-title">
+        💰 Деньги
+        <span class="rb-badge" id="an_periodLabel">За неделю</span>
+      </div>
+      <div class="finance-grid">
+        <div class="fin-item">
+          <div class="fin-label">Выручка</div>
+          <div class="fin-value rev" id="an_rev">0 ₽</div>
+          <div class="fin-sub">вся касса</div>
         </div>
-        <div class="sum-item">
-          <div class="sum-val blue" id="an_avgCheck">0 ₽</div>
-          <div class="sum-lbl">Средний чек</div>
+        <div class="fin-item">
+          <div class="fin-label">Расходы</div>
+          <div class="fin-value exp" id="an_exp">0 ₽</div>
+          <div class="fin-sub">закупка/бензин</div>
         </div>
-        <div class="sum-item">
-          <div class="sum-val orange" id="an_daysWorked">0</div>
-          <div class="sum-lbl">Рабочих дней</div>
+        <div class="fin-item">
+          <div class="fin-label">Чистыми</div>
+          <div class="fin-value net" id="an_net">0 ₽</div>
+          <div class="fin-sub">прибыль</div>
         </div>
-        <div class="sum-item">
-          <div class="sum-val purple" id="an_profit">0 ₽</div>
-          <div class="sum-lbl">Чистая прибыль</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:#555;padding-top:8px;border-top:1px solid #1a1a1a;">
+        <span>Средний чек: <b style="color:#fff;" id="an_avg">0 ₽</b></span>
+        <span>Рабочих дней: <b style="color:#fff;" id="an_days">0</b></span>
+      </div>
+    </div>
+
+    <!-- Блок 2: Товары -->
+    <div class="report-block">
+      <div class="rb-title">📦 Что продавали</div>
+      <div class="goods-grid">
+        <div class="good-item">
+          <div class="gi-icon can">🧴</div>
+          <div class="gi-info">
+            <div class="gi-count" id="an_cansCnt">0</div>
+            <div class="gi-unit">банок розница</div>
+          </div>
+          <div class="gi-money" id="an_cansMoney">0 ₽</div>
+        </div>
+        <div class="good-item">
+          <div class="gi-icon pack">📦</div>
+          <div class="gi-info">
+            <div class="gi-count" id="an_packsCnt">0</div>
+            <div class="gi-unit">упаковок</div>
+          </div>
+          <div class="gi-money" id="an_packsMoney">0 ₽</div>
+        </div>
+        <div class="good-item">
+          <div class="gi-icon ws">🏢</div>
+          <div class="gi-info">
+            <div class="gi-count" id="an_wsCnt">0</div>
+            <div class="gi-unit">штук оптом</div>
+          </div>
+          <div class="gi-money" id="an_wsMoney">0 ₽</div>
+        </div>
+        <div class="good-item">
+          <div class="gi-icon self">🏠</div>
+          <div class="gi-info">
+            <div class="gi-count" id="an_selfCnt">0</div>
+            <div class="gi-unit">штук себе</div>
+          </div>
+          <div class="gi-money" style="color:#ffbe0b;">−0 ₽</div>
         </div>
       </div>
     </div>
 
-    <!-- Разбивка по товарам -->
-    <div class="summary-block">
-      <div class="summary-title">Что продавали</div>
-      <div class="summary-grid">
-        <div class="sum-item">
-          <div class="sum-val" style="color:#3a86ff;" id="an_cansSold">0</div>
-          <div class="sum-lbl">Банок</div>
+    <!-- Блок 3: Рейтинг -->
+    <div class="report-block">
+      <div class="rb-title">🏆 Кто продал больше</div>
+      <div id="an_ratingContainer">
+        <div class="rating-row">
+          <div class="rr-pos gold">1</div>
+          <div class="rr-avatar">👨‍</div>
+          <div class="rr-info">
+            <div class="rr-name">Никита</div>
+            <div class="rr-stats">0 продаж</div>
+            <div class="rr-share"><div class="rr-share-fill" style="width:50%"></div></div>
+          </div>
+          <div class="rr-money">0 ₽</div>
         </div>
-        <div class="sum-item">
-          <div class="sum-val" style="color:#8338ec;" id="an_packsSold">0</div>
-          <div class="sum-lbl">Упаковок</div>
-        </div>
-        <div class="sum-item">
-          <div class="sum-val" style="color:#a78bfa;" id="an_wsSold">0</div>
-          <div class="sum-lbl">Оптовых шт.</div>
-        </div>
-        <div class="sum-item">
-          <div class="sum-val" style="color:#ffbe0b;" id="an_selfTaken">0</div>
-          <div class="sum-lbl">Себе взяли</div>
+        <div class="rating-row">
+          <div class="rr-pos silver">2</div>
+          <div class="rr-avatar">👨‍💼</div>
+          <div class="rr-info">
+            <div class="rr-name">Максим</div>
+            <div class="rr-stats">0 продаж</div>
+            <div class="rr-share"><div class="rr-share-fill" style="width:50%"></div></div>
+          </div>
+          <div class="rr-money">0 ₽</div>
         </div>
       </div>
     </div>
 
-    <!-- Помесячная динамика -->
-    <div class="monthly-chart">
-      <div class="summary-title">Динамика по месяцам</div>
-      <div class="month-bars" id="monthBarsContainer">
-        <!-- Генерируется JS -->
-      </div>
-    </div>
-
-    <!-- Детальная таблица по дням -->
-    <div class="section-title">Детализация по дням</div>
-    <div class="detail-table">
-      <div class="dt-header">
-        <div>Дата</div>
-        <div style="text-align:center;">Баны</div>
-        <div style="text-align:center;">Упак</div>
-        <div style="text-align:center;">Опт</div>
-        <div style="text-align:right;">Сумма</div>
-      </div>
-      <div id="dailyDetailsTable">
-        <!-- Строки генерируются JS -->
+    <!-- Блок 4: Лента дней -->
+    <div class="report-block">
+      <div class="rb-title">📅 По дням <span style="font-size:9px;color:#555;text-transform:none;">(нажмите для деталей)</span></div>
+      <div class="days-feed" id="an_feedContainer">
+        <div style="padding:20px;text-align:center;color:#555;font-size:12px;">Нет данных за период</div>
       </div>
     </div>
 
@@ -1302,7 +1394,7 @@
       <button class="danger-btn" onclick="openDeleteAllModal()">🗑 Удалить все данные</button>
     </div>
     <div style="text-align: center; color: #333; font-size: 11px; margin-top: 30px; padding: 20px;">
-      ЖИЖА ПРО СЕЗОН_26-27<br>v4.0 · Full Analytics
+      ЖИЖА ПРО СЕЗОН_26-27<br>v4.1 · Accounting Analytics
     </div>
   </div>
 </div>
@@ -1331,7 +1423,7 @@
   </button>
 </div>
 
-<!-- ═══ МОДАЛКИ (БЕЗ ИЗМЕНЕНИЙ) ═══ -->
+<!-- ═══ МОДАЛКИ ═══ -->
 <div class="modal-overlay" id="editSalesModal">
   <div class="modal-box">
     <div class="modal-handle"></div>
@@ -1462,14 +1554,12 @@
     <div class="modal-title">📦 Оптовая продажа</div>
     <div class="modal-subtitle">Полная свобода действий</div>
 
-    <!-- 1. Источник товара -->
     <div class="field-label">Откуда продаем?</div>
     <div class="source-toggle">
       <button class="source-btn active" id="srcStock" onclick="setWsSource('stock')">🏪 Склад</button>
       <button class="source-btn" id="srcTrunk" onclick="setWsSource('trunk')">🚗 Багажник</button>
     </div>
 
-    <!-- Выбор продавца (если багажник) -->
     <div id="wsSellerSelect" style="display:none; margin-bottom: 16px;">
       <div class="field-label">Чей багажник?</div>
       <div class="seller-picker">
@@ -1484,7 +1574,6 @@
       </div>
     </div>
 
-    <!-- 2. Единица измерения -->
     <div class="field-label">Что продаем?</div>
     <div class="unit-selector">
       <button class="unit-btn selected" id="unitCan" onclick="setWsUnit('can')">
@@ -1497,7 +1586,6 @@
       </button>
     </div>
 
-    <!-- 3. Количество и Цена -->
     <div class="field-label">Количество</div>
     <div class="input-row">
       <label id="wsQtyLabel">Штук:</label>
@@ -1512,7 +1600,6 @@
       <span class="unit" id="wsPriceUnit">руб./банка</span>
     </div>
 
-    <!-- Предпросмотр расчета -->
     <div class="calc-preview" id="wsPreview">
       Введите данные для расчета...
     </div>
@@ -1649,8 +1736,7 @@
   let prices = { cost: 100, can: 200, pack: 750 };
   let historyData = []; 
   
-  // Переменная для хранения выбранного периода аналитики
-  let analyticsPeriod = 'week'; // 'week', 'month', 'season'
+  let analyticsPeriod = 'week';
 
   function normalizeShift(v) {
     function fixPerson(p) {
@@ -1747,7 +1833,7 @@
     renderAnalytics(arr.map(x => x.val));
   });
 
-  // ═══ ЛОГИКА АНАЛИТИКИ (НОВАЯ) ═══
+  // ═══ ЛОГИКА АНАЛИТИКИ ═══
   window.setPeriod = function(period) {
     analyticsPeriod = period;
     document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
@@ -1756,28 +1842,28 @@
   };
 
   function renderAnalytics(allHistory) {
-    // 1. Фильтрация по периоду
     let filteredHistory = [];
     const now = Date.now();
     
     if (analyticsPeriod === 'week') {
       const weekAgo = now - (7 * 24 * 60 * 60 * 1000);
       filteredHistory = allHistory.filter(h => (h.timestamp || 0) >= weekAgo);
+      document.getElementById('an_periodLabel').textContent = 'За 7 дней';
     } else if (analyticsPeriod === 'month') {
       const monthAgo = now - (30 * 24 * 60 * 60 * 1000);
       filteredHistory = allHistory.filter(h => (h.timestamp || 0) >= monthAgo);
+      document.getElementById('an_periodLabel').textContent = 'За 30 дней';
     } else {
-      // Сезон = вся история
       filteredHistory = [...allHistory];
+      document.getElementById('an_periodLabel').textContent = 'Весь сезон';
     }
 
-    // 2. Добавляем текущую смену если она активна
+    // Добавляем текущую смену
     const hasActiveShift = (shift.p1.cans > 0 || shift.p1.packs > 0 || shift.p1.wholesale > 0 || 
                            shift.p2.cans > 0 || shift.p2.packs > 0 || shift.p2.wholesale > 0 || 
                            shift.tips > 0 || shift.spent > 0);
     
-    if (hasActiveShift && (analyticsPeriod === 'week' || analyticsPeriod === 'season')) {
-       // Для месяца тоже добавим, так как сегодня входит в этот месяц
+    if (hasActiveShift) {
        const nowDate = new Date();
        const p1Retail = (shift.p1.cans * prices.can) + (shift.p1.packs * prices.pack);
        const p2Retail = (shift.p2.cans * prices.can) + (shift.p2.packs * prices.pack);
@@ -1808,154 +1894,160 @@
       return;
     }
 
-    // 3. Расчет агрегатов
-    let totalRevenue = 0;
-    let totalProfit = 0;
-    let totalSpent = 0;
-    let totalSalesCount = 0;
-    let daysWorkedSet = new Set();
-    
+    // Агрегация
+    let totalRev = 0, totalExp = 0, totalNet = 0;
     let sumCans = 0, sumPacks = 0, sumWS = 0, sumSelf = 0;
+    let sumCansMoney = 0, sumPacksMoney = 0, sumWSMoney = 0;
+    let salesCount = 0;
+    let daysSet = new Set();
     
-    // Группировка по месяцам
-    const monthlyMap = {}; // YYYY-MM -> revenue
-    
-    // Детализация по дням (для таблицы)
-    const dailyRows = [];
+    let p1Money = 0, p2Money = 0;
+    let p1Sales = 0, p2Sales = 0;
 
     filteredHistory.forEach(day => {
       const rev = parseInt(day.totalSum) || 0;
       const spnt = parseInt(day.spent) || 0;
-      const prft = rev - spnt;
+      totalRev += rev;
+      totalExp += spnt;
+      totalNet += (rev - spnt);
       
-      totalRevenue += rev;
-      totalSpent += spnt;
-      totalProfit += prft;
+      const cans = parseInt(day.tCans)||0;
+      const packs = parseInt(day.tPacks)||0;
+      const ws = parseInt(day.tWholesale)||0;
+      const self = parseInt(day.selfTaken)||0;
       
-      const salesCnt = (parseInt(day.tCans)||0) + (parseInt(day.tPacks)||0) + (parseInt(day.tWholesale)||0);
-      totalSalesCount += salesCnt;
-
-      // Дата работы
+      sumCans += cans;
+      sumPacks += packs;
+      sumWS += ws;
+      sumSelf += self;
+      
+      // Деньги по товарам (по текущим ценам для оценки, либо берем из истории если есть)
+      // Для простоты считаем по текущим ценам розницы
+      sumCansMoney += cans * prices.can;
+      sumPacksMoney += packs * prices.pack;
+      // Опт уже в деньгах, но нам нужно количество штук
+      // В истории tWholesale это количество ШТУК
+      
+      salesCount += (cans + packs + ws);
+      
       const dObj = new Date(day.timestamp);
-      const dayKey = dObj.toISOString().split('T')[0]; // YYYY-MM-DD
-      daysWorkedSet.add(dayKey);
+      daysSet.add(dObj.toISOString().split('T')[0]);
 
-      // Товары
-      sumCans += parseInt(day.tCans)||0;
-      sumPacks += parseInt(day.tPacks)||0;
-      sumWS += parseInt(day.tWholesale)||0;
-      sumSelf += parseInt(day.selfTaken)||0;
-
-      // Месяц
-      const monthKey = `${dObj.getFullYear()}-${String(dObj.getMonth()+1).padStart(2,'0')}`;
-      if (!monthlyMap[monthKey]) monthlyMap[monthKey] = 0;
-      monthlyMap[monthKey] += rev;
-
-      // Строка для таблицы
-      dailyRows.push({
-        dateStr: day.date.split(' ')[0], // Только дата без времени
-        cans: parseInt(day.tCans)||0,
-        packs: parseInt(day.tPacks)||0,
-        ws: parseInt(day.tWholesale)||0,
-        money: rev
-      });
+      // Продавцы
+      if (day.p1) {
+        const m1 = ((parseInt(day.p1.cans)||0)*prices.can + (parseInt(day.p1.packs)||0)*prices.pack + (parseInt(day.p1.wholesaleMoney)||0));
+        p1Money += m1;
+        p1Sales += (parseInt(day.p1.cans)||0) + (parseInt(day.p1.packs)||0) + (parseInt(day.p1.wholesale)||0);
+      }
+      if (day.p2) {
+        const m2 = ((parseInt(day.p2.cans)||0)*prices.can + (parseInt(day.p2.packs)||0)*prices.pack + (parseInt(day.p2.wholesaleMoney)||0));
+        p2Money += m2;
+        p2Sales += (parseInt(day.p2.cans)||0) + (parseInt(day.p2.packs)||0) + (parseInt(day.p2.wholesale)||0);
+      }
     });
 
-    // Обновляем карточки метрик
-    document.getElementById('an_totalRev').textContent = totalRevenue.toLocaleString() + ' ₽';
-    document.getElementById('an_profit').textContent = totalProfit.toLocaleString() + ' ₽';
-    document.getElementById('an_daysWorked').textContent = daysWorkedSet.size;
+    // Обновляем DOM
+    document.getElementById('an_rev').textContent = totalRev.toLocaleString() + ' ₽';
+    document.getElementById('an_exp').textContent = totalExp.toLocaleString() + ' ₽';
+    document.getElementById('an_net').textContent = totalNet.toLocaleString() + ' ₽';
+    document.getElementById('an_net').className = 'fin-value net' + (totalNet < 0 ? ' exp' : '');
     
-    const avgCheck = totalSalesCount > 0 ? Math.round(totalRevenue / totalSalesCount) : 0;
-    document.getElementById('an_avgCheck').textContent = avgCheck.toLocaleString() + ' ₽';
+    const avg = salesCount > 0 ? Math.round(totalRev / salesCount) : 0;
+    document.getElementById('an_avg').textContent = avg.toLocaleString() + ' ₽';
+    document.getElementById('an_days').textContent = daysSet.size;
 
-    document.getElementById('an_cansSold').textContent = sumCans.toLocaleString();
-    document.getElementById('an_packsSold').textContent = sumPacks.toLocaleString();
-    document.getElementById('an_wsSold').textContent = sumWS.toLocaleString();
-    document.getElementById('an_selfTaken').textContent = sumSelf.toLocaleString();
+    document.getElementById('an_cansCnt').textContent = sumCans;
+    document.getElementById('an_cansMoney').textContent = sumCansMoney.toLocaleString() + ' ₽';
+    document.getElementById('an_packsCnt').textContent = sumPacks;
+    document.getElementById('an_packsMoney').textContent = sumPacksMoney.toLocaleString() + ' ₽';
+    document.getElementById('an_wsCnt').textContent = sumWS;
+    document.getElementById('an_wsMoney').textContent = (totalRev - sumCansMoney - sumPacksMoney - (parseInt(filteredHistory[0]?.tips)||0)).toLocaleString() + ' ₽'; // Примерно
+    // Точнее возьмем из истории wholesaleSum
+    let realWsMoney = 0;
+    filteredHistory.forEach(d => realWsMoney += parseInt(d.wholesaleSum)||0);
+    document.getElementById('an_wsMoney').textContent = realWsMoney.toLocaleString() + ' ₽';
+    
+    document.getElementById('an_selfCnt').textContent = sumSelf;
 
-    // Рисуем месячный график
-    drawMonthlyChart(monthlyMap);
+    // Рейтинг
+    const totalSellerMoney = p1Money + p2Money;
+    const p1Share = totalSellerMoney > 0 ? Math.round((p1Money / totalSellerMoney) * 100) : 50;
+    const p2Share = 100 - p1Share;
+    
+    const ratingHTML = `
+      <div class="rating-row">
+        <div class="rr-pos gold">1</div>
+        <div class="rr-avatar">👨‍</div>
+        <div class="rr-info">
+          <div class="rr-name">Никита</div>
+          <div class="rr-stats">${p1Sales} продаж · ${p1Share}% оборота</div>
+          <div class="rr-share"><div class="rr-share-fill" style="width:${p1Share}%"></div></div>
+        </div>
+        <div class="rr-money">${p1Money.toLocaleString()} ₽</div>
+      </div>
+      <div class="rating-row">
+        <div class="rr-pos silver">2</div>
+        <div class="rr-avatar">👨‍💼</div>
+        <div class="rr-info">
+          <div class="rr-name">Максим</div>
+          <div class="rr-stats">${p2Sales} продаж · ${p2Share}% оборота</div>
+          <div class="rr-share"><div class="rr-share-fill" style="width:${p2Share}%"></div></div>
+        </div>
+        <div class="rr-money">${p2Money.toLocaleString()} ₽</div>
+      </div>
+    `;
+    document.getElementById('an_ratingContainer').innerHTML = ratingHTML;
 
-    // Рисуем таблицу деталей
-    drawDailyTable(dailyRows);
+    // Лента дней
+    const feedContainer = document.getElementById('an_feedContainer');
+    feedContainer.innerHTML = '';
+    
+    // Группируем по датам (если несколько записей в один день - суммируем или показываем отдельно?)
+    // Покажем каждую запись как отдельный день для детализации
+    const sortedDays = [...filteredHistory].sort((a,b) => (b.timestamp||0) - (a.timestamp||0));
+    
+    sortedDays.forEach((day, idx) => {
+      const dObj = new Date(day.timestamp);
+      const dateStr = day.date?.includes('Live') ? 'СЕГОДНЯ' : dObj.toLocaleDateString('ru-RU');
+      const timeStr = day.date?.includes('Live') ? '' : dObj.toLocaleTimeString('ru-RU', {hour:'2-digit', minute:'2-digit'});
+      
+      const div = document.createElement('div');
+      div.className = 'df-day';
+      div.onclick = () => div.classList.toggle('open');
+      
+      const rev = parseInt(day.totalSum)||0;
+      const spnt = parseInt(day.spent)||0;
+      const prft = rev - spnt;
+      
+      div.innerHTML = `
+        <div class="df-head">
+          <div class="df-date">${dateStr} <span style="font-size:10px;color:#555;">${timeStr}</span></div>
+          <div class="df-total">${rev.toLocaleString()} ₽ <span class="df-arrow">▶</span></div>
+        </div>
+        <div class="df-meta">
+          <span>🧴 <b>${parseInt(day.tCans)||0}</b></span>
+          <span>📦 <b>${parseInt(day.tPacks)||0}</b></span>
+          <span>🏢 <b>${parseInt(day.tWholesale)||0}</b></span>
+          <span>💸 <b style="color:#ff006e;">${spnt.toLocaleString()}</b></span>
+          <span>💰 <b style="color:${prft>=0?'#00ff88':'#ff0000'};">${prft>=0?'+':''}${prft.toLocaleString()}</b></span>
+        </div>
+        <div class="df-details">
+          <div><b>Никита:</b> ${(parseInt(day.p1?.cans)||0)} банок, ${(parseInt(day.p1?.packs)||0)} упак, опт ${(parseInt(day.p1?.wholesale)||0)} шт (${(parseInt(day.p1?.wholesaleMoney)||0).toLocaleString()} ₽)</div>
+          <div><b>Максим:</b> ${(parseInt(day.p2?.cans)||0)} банок, ${(parseInt(day.p2?.packs)||0)} упак, опт ${(parseInt(day.p2?.wholesale)||0)} шт (${(parseInt(day.p2?.wholesaleMoney)||0).toLocaleString()} ₽)</div>
+          <div><b>Чаевые:</b> ${(parseInt(day.tips)||0).toLocaleString()} ₽ · <b>Себе:</b> ${(parseInt(day.selfTaken)||0)} шт</div>
+          <div><b>Остаток склада:</b> ${(parseInt(day.stockLeft)||0)} шт</div>
+        </div>
+      `;
+      feedContainer.appendChild(div);
+    });
   }
 
   function resetAnalyticsUI() {
-    document.getElementById('an_totalRev').textContent = '0 ₽';
-    document.getElementById('an_profit').textContent = '0 ₽';
-    document.getElementById('an_daysWorked').textContent = '0';
-    document.getElementById('an_avgCheck').textContent = '0 ₽';
-    document.getElementById('an_cansSold').textContent = '0';
-    document.getElementById('an_packsSold').textContent = '0';
-    document.getElementById('an_wsSold').textContent = '0';
-    document.getElementById('an_selfTaken').textContent = '0';
-    document.getElementById('monthBarsContainer').innerHTML = '<div style="text-align:center;width:100%;color:#555;padding:20px 0;">Нет данных</div>';
-    document.getElementById('dailyDetailsTable').innerHTML = '<div style="padding:20px;text-align:center;color:#555;font-size:12px;">Нет записей</div>';
-  }
-
-  function drawMonthlyChart(map) {
-    const container = document.getElementById('monthBarsContainer');
-    container.innerHTML = '';
-    
-    const monthsArr = Object.keys(map).sort().map(k => ({ key: k, val: map[k] }));
-    
-    if (monthsArr.length === 0) {
-      container.innerHTML = '<div style="text-align:center;width:100%;color:#555;padding:20px 0;">Нет данных</div>';
-      return;
-    }
-
-    const maxVal = Math.max(...monthsArr.map(m => m.val), 1000);
-
-    // Названия месяцев кратко
-    const monthNames = ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'];
-
-    monthsArr.forEach(m => {
-      const parts = m.key.split('-');
-      const year = parts[0].slice(2); // Последние две цифры года
-      const monIdx = parseInt(parts[1]) - 1;
-      const label = monthNames[monIdx] + ' ' + year;
-      
-      const heightPct = Math.min(100, (m.val / maxVal) * 100);
-      const isBest = m.val === maxVal && m.val > 0;
-
-      const col = document.createElement('div');
-      col.className = 'm-bar-col';
-      col.innerHTML = `
-        <div class="m-bar-value">${(m.val/1000).toFixed(1)}к</div>
-        <div class="m-bar-fill ${isBest ? 'best' : ''}" style="height: ${heightPct}%"></div>
-        <div class="m-bar-label">${label}</div>
-      `;
-      container.appendChild(col);
-    });
-  }
-
-  function drawDailyTable(rows) {
-    const container = document.getElementById('dailyDetailsTable');
-    container.innerHTML = '';
-    
-    // Сортируем новые сверху
-    rows.sort((a,b) => {
-      // Парсим дату обратно чтобы сравнить? Или используем индекс массива source?
-      // Лучше просто оставить порядок как пришел (уже отсортирован по timestamp desc в listener)
-      return 0; 
-    });
-
-    // Берем только последние 10 строк для компактности
-    const displayRows = rows.slice(0, 10);
-
-    displayRows.forEach(r => {
-      const div = document.createElement('div');
-      div.className = 'dt-row';
-      div.innerHTML = `
-        <div class="dt-date">${r.dateStr}</div>
-        <div class="dt-cans">${r.cans}</div>
-        <div class="dt-packs">${r.packs}</div>
-        <div class="dt-ws">${r.ws}</div>
-        <div class="dt-money">${r.money.toLocaleString()}</div>
-      `;
-      container.appendChild(div);
-    });
+    ['an_rev','an_exp','an_net','an_avg'].forEach(id => document.getElementById(id).textContent = '0 ₽');
+    ['an_days','an_cansCnt','an_packsCnt','an_wsCnt','an_selfCnt'].forEach(id => document.getElementById(id).textContent = '0');
+    ['an_cansMoney','an_packsMoney','an_wsMoney'].forEach(id => document.getElementById(id).textContent = '0 ₽');
+    document.getElementById('an_ratingContainer').innerHTML = '<div style="padding:20px;text-align:center;color:#555;font-size:12px;">Нет данных о продавцах</div>';
+    document.getElementById('an_feedContainer').innerHTML = '<div style="padding:20px;text-align:center;color:#555;font-size:12px;">Нет записей за период</div>';
   }
 
   // ═══ ОТРИСОВКА ГЛАВНОГО ЭКРАНА ═══
@@ -2358,29 +2450,17 @@
     await update(shiftRef, { [`p${modalSeller}/${field}`]: cur+modalQty });
   };
 
-  // ═══ ОПТОВАЯ ПРОДАЖА (НОВАЯ ЛОГИКА) ═══
-  let wsState = {
-    source: 'stock', // 'stock' or 'trunk'
-    sellerId: 1,     // 1 or 2 (if trunk)
-    unit: 'can',     // 'can' or 'pack'
-    qty: 0,
-    price: 0
-  };
+  // ═══ ОПТОВАЯ ПРОДАЖА ═══
+  let wsState = { source: 'stock', sellerId: 1, unit: 'can', qty: 0, price: 0 };
 
   window.openWholesaleModal = function() {
-    // Reset state
     wsState = { source: 'stock', sellerId: 1, unit: 'can', qty: 0, price: 0 };
-    
-    // Update UI toggles
     setWsSource('stock');
     setWsUnit('can');
-    
-    // Clear inputs
     document.getElementById('wsQuantity').value = '';
     document.getElementById('wsPricePerUnit').value = '';
     document.getElementById('wsPreview').innerHTML = 'Введите данные для расчета...';
     document.getElementById('wsBtnConfirm').disabled = true;
-    
     document.getElementById('wholesaleModal').classList.add('active');
   };
 
@@ -2388,11 +2468,9 @@
     wsState.source = src;
     document.getElementById('srcStock').classList.toggle('active', src === 'stock');
     document.getElementById('srcTrunk').classList.toggle('active', src === 'trunk');
-    
     const sellerSel = document.getElementById('wsSellerSelect');
     if (src === 'trunk') {
       sellerSel.style.display = 'block';
-      // Default select Nikita if not set
       if (!wsState.sellerId) wsState.sellerId = 1;
       pickWholesaleSeller(wsState.sellerId);
     } else {
@@ -2412,12 +2490,9 @@
     wsState.unit = unit;
     document.getElementById('unitCan').classList.toggle('selected', unit === 'can');
     document.getElementById('unitPack').classList.toggle('selected', unit === 'pack');
-    
-    // Update labels
     const qtyLabel = document.getElementById('wsQtyLabel');
     const qtyUnit = document.getElementById('wsQtyUnit');
     const priceUnit = document.getElementById('wsPriceUnit');
-    
     if (unit === 'pack') {
       qtyLabel.textContent = 'Упаковок:';
       qtyUnit.textContent = 'упак.';
@@ -2431,32 +2506,21 @@
   };
 
   window.updateWsCalculation = function() {
-    const qtyStr = document.getElementById('wsQuantity').value;
-    const priceStr = document.getElementById('wsPricePerUnit').value;
-    
-    const qty = parseInt(qtyStr) || 0;
-    const price = parseInt(priceStr) || 0;
-    
+    const qty = parseInt(document.getElementById('wsQuantity').value) || 0;
+    const price = parseInt(document.getElementById('wsPricePerUnit').value) || 0;
     wsState.qty = qty;
     wsState.price = price;
-    
     const preview = document.getElementById('wsPreview');
     const btn = document.getElementById('wsBtnConfirm');
-    
     if (qty <= 0 || price <= 0) {
       preview.innerHTML = 'Введите количество и цену.';
       btn.disabled = true;
       return;
     }
-    
-    // Calculate total items in cans (for inventory check)
     const itemsInCans = wsState.unit === 'pack' ? qty * PER_PACK : qty;
     const totalPrice = qty * price;
-    
-    // Check availability based on source
     let available = 0;
     let availText = '';
-    
     if (wsState.source === 'stock') {
       available = stock;
       availText = `На складе: ${available} шт.`;
@@ -2465,7 +2529,6 @@
       const name = wsState.sellerId === 1 ? 'Никита' : 'Максим';
       availText = `У ${name}: ${available} шт.`;
     }
-    
     if (itemsInCans > available) {
       preview.innerHTML = `<span style="color:#ff0000;font-weight:800;">⚠️ Недостаточно товара!<br>Нужно: ${itemsInCans} шт. · Есть: ${available} шт.</span>`;
       btn.disabled = true;
@@ -2487,41 +2550,26 @@
     const unit = wsState.unit;
     const source = wsState.source;
     const sellerId = wsState.sellerId;
-    
     const itemsInCans = unit === 'pack' ? qty * PER_PACK : qty;
     const totalPrice = qty * price;
-    
-    // Double check availability before commit
     let available = 0;
     if (source === 'stock') available = stock;
     else available = parseInt(shift[`p${sellerId}`].trunk) || 0;
-    
     if (itemsInCans > available) {
       alert('Ошибка: Товар закончился во время оформления.');
       return;
     }
-    
     if (!confirm(`Подтвердить продажу:\n\n${qty} ${unit === 'pack' ? 'упак.' : 'банок'}\nЦена: ${price} ₽/шт\nИтого: ${totalPrice.toLocaleString()} ₽\nИсточник: ${source === 'stock' ? 'СКЛАД' : 'БАГАЖНИК'}`)) return;
-    
     closeWholesaleModal();
-    
-    // 1. Deduct Inventory
     if (source === 'stock') {
       await set(stockRef, Math.max(0, stock - itemsInCans));
     } else {
       const curTrunk = parseInt(shift[`p${sellerId}`].trunk) || 0;
       await update(shiftRef, { [`p${sellerId}/trunk`]: Math.max(0, curTrunk - itemsInCans) });
     }
-    
-    // 2. Add to Sales Stats
-    // Если продаем со склада, назначаем продавцом Никиту (ID 1) по умолчанию, 
-    // либо можно было бы спросить, но для скорости оставим так.
-    // Если продаем из багажника — явно указанному продавцу.
     const targetSeller = source === 'trunk' ? sellerId : 1; 
-    
     const curW = parseInt(shift[`p${targetSeller}`].wholesale) || 0;
     const curWM = parseInt(shift[`p${targetSeller}`].wholesaleMoney) || 0;
-    
     await update(shiftRef, { 
       [`p${targetSeller}/wholesale`]: curW + itemsInCans,
       [`p${targetSeller}/wholesaleMoney`]: curWM + totalPrice

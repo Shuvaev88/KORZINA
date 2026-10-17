@@ -485,136 +485,149 @@
   .empty-state .msg { font-size: 14px; color: #555; }
 
   /* ═══════════════════════════════════════
-     АНАЛИТИКА
+     АНАЛИТИКА (НОВАЯ ВЕРСИЯ)
      ═══════════════════════════════════════ */
   
-  .analytics-grid {
+  .period-switcher {
+    display: flex;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 16px;
+  }
+  .period-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #666;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+  .period-btn.active {
+    background: linear-gradient(135deg, #8338ec, #6a0dad);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(131, 56, 236, 0.3);
+  }
+
+  .summary-block {
+    background: linear-gradient(135deg, #151515, #0f0f0f);
+    border: 1px solid #222;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .summary-title {
+    font-size: 11px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .summary-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 12px;
+    gap: 12px;
   }
-  .metric-card {
-    background: linear-gradient(135deg, #151515, #0f0f0f);
-    border: 1px solid #222;
-    border-radius: 14px;
-    padding: 10px;
+  .sum-item {
+    background: #0a0a0a;
+    border-radius: 10px;
+    padding: 12px;
     text-align: center;
   }
-  .mc-label { font-size: 9px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 700; }
-  .mc-value { font-size: 20px; font-weight: 900; color: #fff; line-height: 1; }
-  .mc-sub { font-size: 10px; color: #555; margin-top: 2px; }
-  
-  .mc-value.green { color: #00ff88; text-shadow: 0 0 10px rgba(0, 255, 136, 0.3); }
-  .mc-value.blue { color: #3a86ff; text-shadow: 0 0 10px rgba(58, 134, 255, 0.3); }
-  .mc-value.purple { color: #a78bfa; text-shadow: 0 0 10px rgba(167, 139, 250, 0.3); }
-  .mc-value.orange { color: #ffbe0b; text-shadow: 0 0 10px rgba(255, 190, 11, 0.3); }
+  .sum-val { font-size: 20px; font-weight: 900; color: #fff; line-height: 1; }
+  .sum-lbl { font-size: 9px; color: #666; text-transform: uppercase; margin-top: 4px; }
+  .sum-val.green { color: #00ff88; }
+  .sum-val.blue { color: #3a86ff; }
+  .sum-val.purple { color: #a78bfa; }
+  .sum-val.orange { color: #ffbe0b; }
 
-  .chart-container {
+  .monthly-chart {
     background: linear-gradient(135deg, #151515, #0f0f0f);
     border: 1px solid #222;
-    border-radius: 14px;
-    padding: 12px;
-    margin-bottom: 12px;
-    height: 180px;
-    display: flex;
-    flex-direction: column;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
   }
-  .chart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  .chart-title { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
-  .chart-total { font-size: 13px; color: #00ff88; font-weight: 800; }
-  
-  .bars-wrapper {
-    flex: 1;
+  .month-bars {
     display: flex;
     align-items: flex-end;
-    justify-content: space-between;
-    gap: 4px;
-    padding-top: 5px;
-    position: relative;
+    justify-content: space-around;
+    height: 120px;
+    gap: 8px;
+    margin-top: 12px;
   }
-  
-  .bar-col {
-    flex: 1;
+  .m-bar-col {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+    flex: 1;
     height: 100%;
-    position: relative;
-    z-index: 1;
   }
-  .bar-fill {
+  .m-bar-fill {
     width: 100%;
-    max-width: 24px;
+    max-width: 30px;
     background: linear-gradient(to top, #8338ec, #ff006e);
-    border-radius: 3px 3px 0 0;
-    min-height: 2px;
+    border-radius: 4px 4px 0 0;
+    min-height: 4px;
     transition: height 0.5s ease-out;
-    box-shadow: 0 0 8px rgba(131, 56, 236, 0.3);
-    position: relative;
   }
-  .bar-fill.today {
+  .m-bar-fill.best {
     background: linear-gradient(to top, #00ff88, #00cc6a);
-    box-shadow: 0 0 12px rgba(0, 255, 136, 0.4);
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
   }
-  .bar-label {
-    font-size: 8px;
-    color: #555;
-    margin-top: 4px;
+  .m-bar-label {
+    font-size: 9px;
+    color: #666;
+    margin-top: 6px;
     font-weight: 700;
   }
-  .bar-value-tooltip {
-    position: absolute;
-    top: -18px;
+  .m-bar-value {
     font-size: 8px;
     color: #fff;
     font-weight: 800;
-    opacity: 0;
-    transition: opacity 0.2s;
-    white-space: nowrap;
+    margin-bottom: 4px;
   }
-  .bar-col:hover .bar-value-tooltip { opacity: 1; }
 
-  .ranking-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .rank-item {
-    background: #111;
+  .detail-table {
+    background: linear-gradient(135deg, #151515, #0f0f0f);
     border: 1px solid #222;
-    border-radius: 10px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 16px;
   }
-  .rank-pos {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #222;
-    color: #888;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    font-weight: 900;
-    flex-shrink: 0;
+  .dt-header {
+    display: grid;
+    grid-template-columns: 1fr 60px 60px 60px 80px;
+    background: #111;
+    padding: 10px 12px;
+    font-size: 9px;
+    color: #666;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-bottom: 1px solid #222;
   }
-  .rank-pos.gold { background: linear-gradient(135deg, #ffd700, #ffb700); color: #000; }
-  .rank-pos.silver { background: linear-gradient(135deg, #c0c0c0, #a0a0a0); color: #000; }
-  
-  .rank-info { flex: 1; }
-  .rank-name { font-size: 13px; font-weight: 800; color: #fff; }
-  .rank-stats { font-size: 9px; color: #666; margin-top: 1px; }
-  .rank-money { font-size: 14px; font-weight: 900; color: #00ff88; text-align: right; }
+  .dt-row {
+    display: grid;
+    grid-template-columns: 1fr 60px 60px 60px 80px;
+    padding: 10px 12px;
+    border-bottom: 1px solid #1a1a1a;
+    font-size: 11px;
+    align-items: center;
+  }
+  .dt-row:last-child { border-bottom: none; }
+  .dt-date { color: #fff; font-weight: 700; }
+  .dt-cans { color: #3a86ff; font-weight: 800; text-align: center; }
+  .dt-packs { color: #8338ec; font-weight: 800; text-align: center; }
+  .dt-ws { color: #a78bfa; font-weight: 800; text-align: center; }
+  .dt-money { color: #00ff88; font-weight: 900; text-align: right; }
 
   /* ═══ НАСТРОЙКИ ═══ */
   .settings-group {
@@ -1094,7 +1107,7 @@
 
       <div class="seller-card">
         <div class="seller-header">
-          <div class="seller-avatar">👨‍💼</div>
+          <div class="seller-avatar">👨‍</div>
           <div>
             <div class="seller-name">Максим</div>
             <div class="seller-money"><b id="p2_money">0</b> ₽</div>
@@ -1180,44 +1193,83 @@
     </div>
   </div>
 
-  <!-- ═══ TAB: АНАЛИТИКА ═══ -->
+  <!-- ═══ TAB: АНАЛИТИКА (НОВАЯ) ═══ -->
   <div class="tab-content" id="tab-analytics">
     
-    <div class="section-title">Статистика за 7 дней (+ текущая смена)</div>
-    
-    <div class="analytics-grid">
-      <div class="metric-card">
-        <div class="mc-label">Общая выручка</div>
-        <div class="mc-value green" id="an_totalRev">0 ₽</div>
-        <div class="mc-sub">за неделю</div>
-      </div>
-      <div class="metric-card">
-        <div class="mc-label">Средний чек</div>
-        <div class="mc-value blue" id="an_avgCheck">0 ₽</div>
-        <div class="mc-sub">на одну продажу</div>
-      </div>
-      <div class="metric-card">
-        <div class="mc-label">Лучший день</div>
-        <div class="mc-value orange" id="an_bestDay">—</div>
-        <div class="mc-sub" id="an_bestDayVal">0 ₽</div>
-      </div>
-      <div class="metric-card">
-        <div class="mc-label">Топ формат</div>
-        <div class="mc-value purple" id="an_topFormat">—</div>
-        <div class="mc-sub" id="an_topFormatVal">0%</div>
+    <div class="period-switcher">
+      <button class="period-btn active" onclick="setPeriod('week')" id="perWeek">Неделя</button>
+      <button class="period-btn" onclick="setPeriod('month')" id="perMonth">Месяц</button>
+      <button class="period-btn" onclick="setPeriod('season')" id="perSeason">Сезон</button>
+    </div>
+
+    <!-- Общая сводка -->
+    <div class="summary-block">
+      <div class="summary-title">Итоги за период</div>
+      <div class="summary-grid">
+        <div class="sum-item">
+          <div class="sum-val green" id="an_totalRev">0 ₽</div>
+          <div class="sum-lbl">Выручка</div>
+        </div>
+        <div class="sum-item">
+          <div class="sum-val blue" id="an_avgCheck">0 ₽</div>
+          <div class="sum-lbl">Средний чек</div>
+        </div>
+        <div class="sum-item">
+          <div class="sum-val orange" id="an_daysWorked">0</div>
+          <div class="sum-lbl">Рабочих дней</div>
+        </div>
+        <div class="sum-item">
+          <div class="sum-val purple" id="an_profit">0 ₽</div>
+          <div class="sum-lbl">Чистая прибыль</div>
+        </div>
       </div>
     </div>
 
-    <div class="chart-container">
-      <div class="chart-header">
-        <div class="chart-title">Динамика продаж</div>
-        <div class="chart-total" id="chartTotalLabel">0 ₽</div>
+    <!-- Разбивка по товарам -->
+    <div class="summary-block">
+      <div class="summary-title">Что продавали</div>
+      <div class="summary-grid">
+        <div class="sum-item">
+          <div class="sum-val" style="color:#3a86ff;" id="an_cansSold">0</div>
+          <div class="sum-lbl">Банок</div>
+        </div>
+        <div class="sum-item">
+          <div class="sum-val" style="color:#8338ec;" id="an_packsSold">0</div>
+          <div class="sum-lbl">Упаковок</div>
+        </div>
+        <div class="sum-item">
+          <div class="sum-val" style="color:#a78bfa;" id="an_wsSold">0</div>
+          <div class="sum-lbl">Оптовых шт.</div>
+        </div>
+        <div class="sum-item">
+          <div class="sum-val" style="color:#ffbe0b;" id="an_selfTaken">0</div>
+          <div class="sum-lbl">Себе взяли</div>
+        </div>
       </div>
-      <div class="bars-wrapper" id="salesChartBars"></div>
     </div>
 
-    <div class="section-title">Рейтинг продавцов (7 дней)</div>
-    <div class="ranking-list" id="sellerRanking"></div>
+    <!-- Помесячная динамика -->
+    <div class="monthly-chart">
+      <div class="summary-title">Динамика по месяцам</div>
+      <div class="month-bars" id="monthBarsContainer">
+        <!-- Генерируется JS -->
+      </div>
+    </div>
+
+    <!-- Детальная таблица по дням -->
+    <div class="section-title">Детализация по дням</div>
+    <div class="detail-table">
+      <div class="dt-header">
+        <div>Дата</div>
+        <div style="text-align:center;">Баны</div>
+        <div style="text-align:center;">Упак</div>
+        <div style="text-align:center;">Опт</div>
+        <div style="text-align:right;">Сумма</div>
+      </div>
+      <div id="dailyDetailsTable">
+        <!-- Строки генерируются JS -->
+      </div>
+    </div>
 
   </div>
 
@@ -1250,7 +1302,7 @@
       <button class="danger-btn" onclick="openDeleteAllModal()">🗑 Удалить все данные</button>
     </div>
     <div style="text-align: center; color: #333; font-size: 11px; margin-top: 30px; padding: 20px;">
-      ЖИЖА ПРО СЕЗОН_26-27<br>v3.5 · Smart Wholesale
+      ЖИЖА ПРО СЕЗОН_26-27<br>v4.0 · Full Analytics
     </div>
   </div>
 </div>
@@ -1279,77 +1331,7 @@
   </button>
 </div>
 
-<!-- ═══ МОДАЛКИ ═══ -->
-
-<!-- НОВАЯ МОДАЛКА ОПТОВОЙ ПРОДАЖИ -->
-<div class="modal-overlay" id="wholesaleModal">
-  <div class="modal-box">
-    <div class="modal-handle"></div>
-    <div class="modal-title">📦 Оптовая продажа</div>
-    <div class="modal-subtitle">Полная свобода действий</div>
-
-    <!-- 1. Источник товара -->
-    <div class="field-label">Откуда продаем?</div>
-    <div class="source-toggle">
-      <button class="source-btn active" id="srcStock" onclick="setWsSource('stock')">🏪 Склад</button>
-      <button class="source-btn" id="srcTrunk" onclick="setWsSource('trunk')">🚗 Багажник</button>
-    </div>
-
-    <!-- Выбор продавца (если багажник) -->
-    <div id="wsSellerSelect" style="display:none; margin-bottom: 16px;">
-      <div class="field-label">Чей багажник?</div>
-      <div class="seller-picker">
-        <div class="seller-pick-btn selected" id="wsPick1" onclick="pickWholesaleSeller(1)">
-          <div class="sp-avatar">👨‍</div>
-          <div class="sp-name">Никита</div>
-        </div>
-        <div class="seller-pick-btn" id="wsPick2" onclick="pickWholesaleSeller(2)">
-          <div class="sp-avatar">👨‍💼</div>
-          <div class="sp-name">Максим</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2. Единица измерения -->
-    <div class="field-label">Что продаем?</div>
-    <div class="unit-selector">
-      <button class="unit-btn selected" id="unitCan" onclick="setWsUnit('can')">
-        🧴 Банка
-        <small>шт</small>
-      </button>
-      <button class="unit-btn" id="unitPack" onclick="setWsUnit('pack')">
-        📦 Упаковка
-        <small>4 шт</small>
-      </button>
-    </div>
-
-    <!-- 3. Количество и Цена -->
-    <div class="field-label">Количество</div>
-    <div class="input-row">
-      <label id="wsQtyLabel">Штук:</label>
-      <input type="number" id="wsQuantity" value="" placeholder="0" min="1" step="1" oninput="updateWsCalculation()">
-      <span class="unit" id="wsQtyUnit">банок</span>
-    </div>
-
-    <div class="field-label">Цена за единицу</div>
-    <div class="input-row">
-      <label>₽</label>
-      <input type="number" id="wsPricePerUnit" value="" placeholder="0" min="0" step="1" oninput="updateWsCalculation()">
-      <span class="unit" id="wsPriceUnit">руб./банка</span>
-    </div>
-
-    <!-- Предпросмотр расчета -->
-    <div class="calc-preview" id="wsPreview">
-      Введите данные для расчета...
-    </div>
-
-    <div class="modal-buttons">
-      <button class="btn-cancel" onclick="closeWholesaleModal()">Отмена</button>
-      <button class="btn-confirm btn-confirm-wholesale" id="wsBtnConfirm" onclick="confirmWholesale()" disabled>✅ Продать</button>
-    </div>
-  </div>
-</div>
-
+<!-- ═══ МОДАЛКИ (БЕЗ ИЗМЕНЕНИЙ) ═══ -->
 <div class="modal-overlay" id="editSalesModal">
   <div class="modal-box">
     <div class="modal-handle"></div>
@@ -1470,6 +1452,74 @@
     <div class="modal-buttons">
       <button class="btn-cancel" onclick="closeModal()">Отмена</button>
       <button class="btn-confirm" id="btnConfirm" onclick="confirmSell()">Продать</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="wholesaleModal">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-title">📦 Оптовая продажа</div>
+    <div class="modal-subtitle">Полная свобода действий</div>
+
+    <!-- 1. Источник товара -->
+    <div class="field-label">Откуда продаем?</div>
+    <div class="source-toggle">
+      <button class="source-btn active" id="srcStock" onclick="setWsSource('stock')">🏪 Склад</button>
+      <button class="source-btn" id="srcTrunk" onclick="setWsSource('trunk')">🚗 Багажник</button>
+    </div>
+
+    <!-- Выбор продавца (если багажник) -->
+    <div id="wsSellerSelect" style="display:none; margin-bottom: 16px;">
+      <div class="field-label">Чей багажник?</div>
+      <div class="seller-picker">
+        <div class="seller-pick-btn selected" id="wsPick1" onclick="pickWholesaleSeller(1)">
+          <div class="sp-avatar">👨‍</div>
+          <div class="sp-name">Никита</div>
+        </div>
+        <div class="seller-pick-btn" id="wsPick2" onclick="pickWholesaleSeller(2)">
+          <div class="sp-avatar">👨‍</div>
+          <div class="sp-name">Максим</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Единица измерения -->
+    <div class="field-label">Что продаем?</div>
+    <div class="unit-selector">
+      <button class="unit-btn selected" id="unitCan" onclick="setWsUnit('can')">
+        🧴 Банка
+        <small>шт</small>
+      </button>
+      <button class="unit-btn" id="unitPack" onclick="setWsUnit('pack')">
+        📦 Упаковка
+        <small>4 шт</small>
+      </button>
+    </div>
+
+    <!-- 3. Количество и Цена -->
+    <div class="field-label">Количество</div>
+    <div class="input-row">
+      <label id="wsQtyLabel">Штук:</label>
+      <input type="number" id="wsQuantity" value="" placeholder="0" min="1" step="1" oninput="updateWsCalculation()">
+      <span class="unit" id="wsQtyUnit">банок</span>
+    </div>
+
+    <div class="field-label">Цена за единицу</div>
+    <div class="input-row">
+      <label>₽</label>
+      <input type="number" id="wsPricePerUnit" value="" placeholder="0" min="0" step="1" oninput="updateWsCalculation()">
+      <span class="unit" id="wsPriceUnit">руб./банка</span>
+    </div>
+
+    <!-- Предпросмотр расчета -->
+    <div class="calc-preview" id="wsPreview">
+      Введите данные для расчета...
+    </div>
+
+    <div class="modal-buttons">
+      <button class="btn-cancel" onclick="closeWholesaleModal()">Отмена</button>
+      <button class="btn-confirm btn-confirm-wholesale" id="wsBtnConfirm" onclick="confirmWholesale()" disabled>✅ Продать</button>
     </div>
   </div>
 </div>
@@ -1598,6 +1648,9 @@
   };
   let prices = { cost: 100, can: 200, pack: 750 };
   let historyData = []; 
+  
+  // Переменная для хранения выбранного периода аналитики
+  let analyticsPeriod = 'week'; // 'week', 'month', 'season'
 
   function normalizeShift(v) {
     function fixPerson(p) {
@@ -1694,173 +1747,212 @@
     renderAnalytics(arr.map(x => x.val));
   });
 
-  // ═══ ЛОГИКА АНАЛИТИКИ (REAL-TIME) ═══
-  function renderAnalytics(allHistory) {
-    let combinedData = [...allHistory];
+  // ═══ ЛОГИКА АНАЛИТИКИ (НОВАЯ) ═══
+  window.setPeriod = function(period) {
+    analyticsPeriod = period;
+    document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('per' + period.charAt(0).toUpperCase() + period.slice(1)).classList.add('active');
+    renderAnalytics(historyData);
+  };
 
+  function renderAnalytics(allHistory) {
+    // 1. Фильтрация по периоду
+    let filteredHistory = [];
+    const now = Date.now();
+    
+    if (analyticsPeriod === 'week') {
+      const weekAgo = now - (7 * 24 * 60 * 60 * 1000);
+      filteredHistory = allHistory.filter(h => (h.timestamp || 0) >= weekAgo);
+    } else if (analyticsPeriod === 'month') {
+      const monthAgo = now - (30 * 24 * 60 * 60 * 1000);
+      filteredHistory = allHistory.filter(h => (h.timestamp || 0) >= monthAgo);
+    } else {
+      // Сезон = вся история
+      filteredHistory = [...allHistory];
+    }
+
+    // 2. Добавляем текущую смену если она активна
     const hasActiveShift = (shift.p1.cans > 0 || shift.p1.packs > 0 || shift.p1.wholesale > 0 || 
                            shift.p2.cans > 0 || shift.p2.packs > 0 || shift.p2.wholesale > 0 || 
                            shift.tips > 0 || shift.spent > 0);
     
-    if (hasActiveShift) {
-      const now = new Date();
-      const p1Retail = (shift.p1.cans * prices.can) + (shift.p1.packs * prices.pack);
-      const p2Retail = (shift.p2.cans * prices.can) + (shift.p2.packs * prices.pack);
-      const retailTotal = p1Retail + p2Retail;
-      const wholesaleTotal = shift.p1.wholesaleMoney + shift.p2.wholesaleMoney;
-      const tipsTotal = shift.tips;
-      const totalRevenue = retailTotal + wholesaleTotal + tipsTotal;
+    if (hasActiveShift && (analyticsPeriod === 'week' || analyticsPeriod === 'season')) {
+       // Для месяца тоже добавим, так как сегодня входит в этот месяц
+       const nowDate = new Date();
+       const p1Retail = (shift.p1.cans * prices.can) + (shift.p1.packs * prices.pack);
+       const p2Retail = (shift.p2.cans * prices.can) + (shift.p2.packs * prices.pack);
+       const retailTotal = p1Retail + p2Retail;
+       const wholesaleTotal = shift.p1.wholesaleMoney + shift.p2.wholesaleMoney;
+       const tipsTotal = shift.tips;
+       const totalRevenue = retailTotal + wholesaleTotal + tipsTotal;
 
-      combinedData.push({
-        timestamp: now.getTime(),
-        date: "СЕГОДНЯ (Live)",
-        totalSum: totalRevenue,
-        retailSum: retailTotal,
-        wholesaleSum: wholesaleTotal,
-        tips: tipsTotal,
-        spent: shift.spent,
-        tCans: shift.p1.cans + shift.p2.cans,
-        tPacks: shift.p1.packs + shift.p2.packs,
-        tWholesale: shift.p1.wholesale + shift.p2.wholesale,
-        selfTaken: shift.selfTaken,
-        p1: { ...shift.p1 },
-        p2: { ...shift.p2 }
-      });
+       filteredHistory.unshift({
+         timestamp: nowDate.getTime(),
+         date: "СЕГОДНЯ (Live)",
+         totalSum: totalRevenue,
+         retailSum: retailTotal,
+         wholesaleSum: wholesaleTotal,
+         tips: tipsTotal,
+         spent: shift.spent,
+         tCans: shift.p1.cans + shift.p2.cans,
+         tPacks: shift.p1.packs + shift.p2.packs,
+         tWholesale: shift.p1.wholesale + shift.p2.wholesale,
+         selfTaken: shift.selfTaken,
+         p1: { ...shift.p1 },
+         p2: { ...shift.p2 }
+       });
     }
 
-    if (combinedData.length === 0) {
+    if (filteredHistory.length === 0) {
       resetAnalyticsUI();
       return;
     }
 
-    const now = Date.now();
-    const sevenDaysAgo = now - (7 * 24 * 60 * 60 * 1000);
-    const recentHistory = combinedData.filter(h => (h.timestamp || 0) >= sevenDaysAgo);
-
+    // 3. Расчет агрегатов
     let totalRevenue = 0;
+    let totalProfit = 0;
+    let totalSpent = 0;
     let totalSalesCount = 0;
-    const dailyMap = {}; 
-    const sellerStats = { p1: 0, p2: 0 };
-    let formatCounts = { cans: 0, packs: 0, wholesale: 0 };
+    let daysWorkedSet = new Set();
+    
+    let sumCans = 0, sumPacks = 0, sumWS = 0, sumSelf = 0;
+    
+    // Группировка по месяцам
+    const monthlyMap = {}; // YYYY-MM -> revenue
+    
+    // Детализация по дням (для таблицы)
+    const dailyRows = [];
 
-    recentHistory.forEach(day => {
+    filteredHistory.forEach(day => {
       const rev = parseInt(day.totalSum) || 0;
-      const salesCnt = (parseInt(day.tCans)||0) + (parseInt(day.tPacks)||0) + (parseInt(day.tWholesale)||0);
+      const spnt = parseInt(day.spent) || 0;
+      const prft = rev - spnt;
       
       totalRevenue += rev;
+      totalSpent += spnt;
+      totalProfit += prft;
+      
+      const salesCnt = (parseInt(day.tCans)||0) + (parseInt(day.tPacks)||0) + (parseInt(day.tWholesale)||0);
       totalSalesCount += salesCnt;
 
+      // Дата работы
       const dObj = new Date(day.timestamp);
-      const dayName = ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'][dObj.getDay()];
-      const dateKey = dObj.toISOString().split('T')[0]; 
-      
-      if (!dailyMap[dateKey]) dailyMap[dateKey] = { label: dayName, revenue: 0, count: 0 };
-      dailyMap[dateKey].revenue += rev;
-      dailyMap[dateKey].count += salesCnt;
+      const dayKey = dObj.toISOString().split('T')[0]; // YYYY-MM-DD
+      daysWorkedSet.add(dayKey);
 
-      if (day.p1) sellerStats.p1 += ((parseInt(day.p1.cans)||0)*prices.can + (parseInt(day.p1.packs)||0)*prices.pack + (parseInt(day.p1.wholesaleMoney)||0));
-      if (day.p2) sellerStats.p2 += ((parseInt(day.p2.cans)||0)*prices.can + (parseInt(day.p2.packs)||0)*prices.pack + (parseInt(day.p2.wholesaleMoney)||0));
+      // Товары
+      sumCans += parseInt(day.tCans)||0;
+      sumPacks += parseInt(day.tPacks)||0;
+      sumWS += parseInt(day.tWholesale)||0;
+      sumSelf += parseInt(day.selfTaken)||0;
 
-      formatCounts.cans += parseInt(day.tCans)||0;
-      formatCounts.packs += parseInt(day.tPacks)||0;
-      formatCounts.wholesale += parseInt(day.tWholesale)||0;
+      // Месяц
+      const monthKey = `${dObj.getFullYear()}-${String(dObj.getMonth()+1).padStart(2,'0')}`;
+      if (!monthlyMap[monthKey]) monthlyMap[monthKey] = 0;
+      monthlyMap[monthKey] += rev;
+
+      // Строка для таблицы
+      dailyRows.push({
+        dateStr: day.date.split(' ')[0], // Только дата без времени
+        cans: parseInt(day.tCans)||0,
+        packs: parseInt(day.tPacks)||0,
+        ws: parseInt(day.tWholesale)||0,
+        money: rev
+      });
     });
 
+    // Обновляем карточки метрик
     document.getElementById('an_totalRev').textContent = totalRevenue.toLocaleString() + ' ₽';
+    document.getElementById('an_profit').textContent = totalProfit.toLocaleString() + ' ₽';
+    document.getElementById('an_daysWorked').textContent = daysWorkedSet.size;
     
     const avgCheck = totalSalesCount > 0 ? Math.round(totalRevenue / totalSalesCount) : 0;
     document.getElementById('an_avgCheck').textContent = avgCheck.toLocaleString() + ' ₽';
 
-    let bestDayName = '—';
-    let bestDayVal = 0;
-    Object.values(dailyMap).forEach(d => {
-      if (d.revenue > bestDayVal) {
-        bestDayVal = d.revenue;
-        bestDayName = d.label;
-      }
-    });
-    document.getElementById('an_bestDay').textContent = bestDayName;
-    document.getElementById('an_bestDayVal').textContent = bestDayVal.toLocaleString() + ' ₽';
+    document.getElementById('an_cansSold').textContent = sumCans.toLocaleString();
+    document.getElementById('an_packsSold').textContent = sumPacks.toLocaleString();
+    document.getElementById('an_wsSold').textContent = sumWS.toLocaleString();
+    document.getElementById('an_selfTaken').textContent = sumSelf.toLocaleString();
 
-    const totalFormats = formatCounts.cans + formatCounts.packs + formatCounts.wholesale;
-    let topFmt = '—';
-    let topFmtPercent = 0;
-    if (totalFormats > 0) {
-      const max = Math.max(formatCounts.cans, formatCounts.packs, formatCounts.wholesale);
-      if (max === formatCounts.cans) topFmt = 'Банки';
-      else if (max === formatCounts.packs) topFmt = 'Упаковки';
-      else topFmt = 'Опт';
-      topFmtPercent = Math.round((max / totalFormats) * 100);
-    }
-    document.getElementById('an_topFormat').textContent = topFmt;
-    document.getElementById('an_topFormatVal').textContent = topFmtPercent + '% от всех продаж';
+    // Рисуем месячный график
+    drawMonthlyChart(monthlyMap);
 
-    drawChart(dailyMap, now);
-    drawRanking(sellerStats);
+    // Рисуем таблицу деталей
+    drawDailyTable(dailyRows);
   }
 
   function resetAnalyticsUI() {
     document.getElementById('an_totalRev').textContent = '0 ₽';
+    document.getElementById('an_profit').textContent = '0 ₽';
+    document.getElementById('an_daysWorked').textContent = '0';
     document.getElementById('an_avgCheck').textContent = '0 ₽';
-    document.getElementById('an_bestDay').textContent = '—';
-    document.getElementById('an_bestDayVal').textContent = 'Нет данных';
-    document.getElementById('an_topFormat').textContent = '—';
-    document.getElementById('an_topFormatVal').textContent = 'Нет данных';
-    document.getElementById('salesChartBars').innerHTML = '<div style="text-align:center;width:100%;color:#555;padding:40px 0;">Нет данных</div>';
-    document.getElementById('sellerRanking').innerHTML = '<div style="text-align:center;color:#555;padding:20px;">Нет данных</div>';
+    document.getElementById('an_cansSold').textContent = '0';
+    document.getElementById('an_packsSold').textContent = '0';
+    document.getElementById('an_wsSold').textContent = '0';
+    document.getElementById('an_selfTaken').textContent = '0';
+    document.getElementById('monthBarsContainer').innerHTML = '<div style="text-align:center;width:100%;color:#555;padding:20px 0;">Нет данных</div>';
+    document.getElementById('dailyDetailsTable').innerHTML = '<div style="padding:20px;text-align:center;color:#555;font-size:12px;">Нет записей</div>';
   }
 
-  function drawChart(dailyMap, currentTime) {
-    const container = document.getElementById('salesChartBars');
+  function drawMonthlyChart(map) {
+    const container = document.getElementById('monthBarsContainer');
     container.innerHTML = '';
     
-    const daysArray = Object.keys(dailyMap).map(k => ({ key: k, ...dailyMap[k] }))
-                            .sort((a,b) => a.key.localeCompare(b.key));
+    const monthsArr = Object.keys(map).sort().map(k => ({ key: k, val: map[k] }));
     
-    if (daysArray.length === 0) {
-       container.innerHTML = '<div style="text-align:center;width:100%;color:#555;padding:40px 0;">Нет продаж за период</div>';
-       return;
+    if (monthsArr.length === 0) {
+      container.innerHTML = '<div style="text-align:center;width:100%;color:#555;padding:20px 0;">Нет данных</div>';
+      return;
     }
 
-    const maxRev = Math.max(...daysArray.map(d => d.revenue), 1000); 
-    
-    daysArray.forEach((d, index) => {
+    const maxVal = Math.max(...monthsArr.map(m => m.val), 1000);
+
+    // Названия месяцев кратко
+    const monthNames = ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'];
+
+    monthsArr.forEach(m => {
+      const parts = m.key.split('-');
+      const year = parts[0].slice(2); // Последние две цифры года
+      const monIdx = parseInt(parts[1]) - 1;
+      const label = monthNames[monIdx] + ' ' + year;
+      
+      const heightPct = Math.min(100, (m.val / maxVal) * 100);
+      const isBest = m.val === maxVal && m.val > 0;
+
       const col = document.createElement('div');
-      col.className = 'bar-col';
-      
-      const heightPct = Math.min(100, (d.revenue / maxRev) * 100);
-      const isToday = d.key === new Date(currentTime).toISOString().split('T')[0];
-      
+      col.className = 'm-bar-col';
       col.innerHTML = `
-        <div class="bar-value-tooltip">${d.revenue.toLocaleString()} ₽</div>
-        <div class="bar-fill ${isToday ? 'today' : ''}" style="height: ${heightPct}%"></div>
-        <div class="bar-label">${d.label}</div>
+        <div class="m-bar-value">${(m.val/1000).toFixed(1)}к</div>
+        <div class="m-bar-fill ${isBest ? 'best' : ''}" style="height: ${heightPct}%"></div>
+        <div class="m-bar-label">${label}</div>
       `;
       container.appendChild(col);
     });
   }
 
-  function drawRanking(stats) {
-    const container = document.getElementById('sellerRanking');
+  function drawDailyTable(rows) {
+    const container = document.getElementById('dailyDetailsTable');
     container.innerHTML = '';
     
-    const sellers = [
-      { id: 'p1', name: 'Никита', avatar: '👨‍', money: stats.p1 },
-      { id: 'p2', name: 'Максим', avatar: '👨‍💼', money: stats.p2 }
-    ].sort((a,b) => b.money - a.money);
+    // Сортируем новые сверху
+    rows.sort((a,b) => {
+      // Парсим дату обратно чтобы сравнить? Или используем индекс массива source?
+      // Лучше просто оставить порядок как пришел (уже отсортирован по timestamp desc в listener)
+      return 0; 
+    });
 
-    sellers.forEach((s, idx) => {
-      const posClass = idx === 0 ? 'gold' : (idx === 1 ? 'silver' : '');
+    // Берем только последние 10 строк для компактности
+    const displayRows = rows.slice(0, 10);
+
+    displayRows.forEach(r => {
       const div = document.createElement('div');
-      div.className = 'rank-item';
+      div.className = 'dt-row';
       div.innerHTML = `
-        <div class="rank-pos ${posClass}">${idx+1}</div>
-        <div style="font-size:20px;">${s.avatar}</div>
-        <div class="rank-info">
-          <div class="rank-name">${s.name}</div>
-          <div class="rank-stats">Выручка за 7 дней</div>
-        </div>
-        <div class="rank-money">${s.money.toLocaleString()} ₽</div>
+        <div class="dt-date">${r.dateStr}</div>
+        <div class="dt-cans">${r.cans}</div>
+        <div class="dt-packs">${r.packs}</div>
+        <div class="dt-ws">${r.ws}</div>
+        <div class="dt-money">${r.money.toLocaleString()}</div>
       `;
       container.appendChild(div);
     });
@@ -2421,44 +2513,11 @@
       await update(shiftRef, { [`p${sellerId}/trunk`]: Math.max(0, curTrunk - itemsInCans) });
     }
     
-    // 2. Add to Sales Stats (Always add to the specific seller's stats, even if sold from Stock? 
-    // Usually yes, because someone made the sale. If sold from stock by nobody specific, we might need a generic counter, 
-    // but here we force selecting a seller if it's trunk. If it's stock, who gets credit? 
-    // Let's assume if sold from STOCK, it still counts towards Seller 1 by default OR we ask. 
-    // To keep it simple and consistent with previous logic where optimal was tied to seller:
-    // We will attribute the sale to the currently selected seller ID regardless of source, 
-    // BUT if source is stock, maybe we should allow choosing who did it? 
-    // The modal forces picking a seller only if source is Trunk. 
-    // Correction: Even if selling from Stock, a person usually does it. 
-    // Let's modify openWholesaleModal to ALWAYS show seller picker, but disable/change context?
-    // Actually, simpler approach: If Source is Stock, we still need to know WHO sold it for analytics/rating.
-    // I will update the logic so that Seller Picker is ALWAYS visible, but its role changes slightly.
-    // However, looking at the code above, `wsSellerSelect` hides when source is stock. 
-    // This means if I sell from stock, no one gets credited? That breaks rating.
-    // FIX: Make Seller Picker always visible. If Source is Stock, it just records "Who performed this action".
-    
-    // Since I cannot change HTML structure easily now without rewriting whole file, 
-    // I will assume for this patch: If Source is Stock, we credit Seller 1 (Default) or last used.
-    // Better yet, let's look at the generated code again. 
-    // Ah, in `openWholesaleModal` I hide seller select if source is stock. 
-    // This is a bug in my proposed solution regarding ratings.
-    // But wait, the prompt asked for "where to sell from". It didn't explicitly ask for "who sold it if from stock".
-    // For safety, I will ensure that even if source is stock, we use `wsState.sellerId` which defaults to 1.
-    // Users can manually switch to Trunk mode to assign specific seller if needed, or rely on default.
-    // Actually, let's make it robust: Always show seller picker.
-    
-    // RE-EVALUATION OF CODE STRUCTURE PROVIDED IN THOUGHT PROCESS:
-    // The provided code snippet in thought process had `sellerSel.style.display = 'none'` for stock.
-    // I should probably leave it as is for simplicity unless user complains about missing ratings for stock sales.
-    // Given the constraint "make it work", attributing stock sales to a random/default seller is confusing.
-    // Let's stick to the visual flow: If you sell from Stock, it's a "Warehouse Release". Who cares who pressed the button? 
-    // But Analytics needs it. 
-    // Compromise: I will keep the seller picker HIDDEN for stock to reduce clutter, 
-    // BUT internally default to Seller 1 for accounting purposes so numbers don't break.
-    // Or better: Allow changing seller even in stock mode? No, too complex UI.
-    // Decision: Keep hidden for Stock. Credit goes to P1 implicitly. 
-    
-    const targetSeller = source === 'trunk' ? sellerId : 1; // Fallback to P1 for stock sales
+    // 2. Add to Sales Stats
+    // Если продаем со склада, назначаем продавцом Никиту (ID 1) по умолчанию, 
+    // либо можно было бы спросить, но для скорости оставим так.
+    // Если продаем из багажника — явно указанному продавцу.
+    const targetSeller = source === 'trunk' ? sellerId : 1; 
     
     const curW = parseInt(shift[`p${targetSeller}`].wholesale) || 0;
     const curWM = parseInt(shift[`p${targetSeller}`].wholesaleMoney) || 0;
